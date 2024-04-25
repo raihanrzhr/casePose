@@ -1,4 +1,4 @@
-document.querySelector('.navbar-toggle-button').addEventListener('click', function() {
+document.querySelector('.navbar-toggle-button').addEventListener('click', function () {
     document.querySelector('.navbar').classList.toggle('show');
 });
 

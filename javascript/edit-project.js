@@ -1,12 +1,12 @@
 // PI up add
-    var PI = document.getElementById("PI");
-    var UP = document.getElementById("UP");
-    var ADD = document.getElementById("ADD");
-    var content1 = document.getElementById("content-side-bar-1");
-    var content2 = document.getElementById("content-side-bar-2");
-    var content3 = document.getElementById("content-side-bar-3");
+var PI = document.getElementById("PI");
+var UP = document.getElementById("UP");
+var ADD = document.getElementById("ADD");
+var content1 = document.getElementById("content-side-bar-1");
+var content2 = document.getElementById("content-side-bar-2");
+var content3 = document.getElementById("content-side-bar-3");
 
-function nextStep1() { 
+function nextStep1() {
     var PI = document.getElementById("PI");
     var UP = document.getElementById("UP");
     var ADD = document.getElementById("ADD");
@@ -23,7 +23,7 @@ function nextStep1() {
 
     content1.style.display = "block";
     content2.style.display = "none";
-    content3.style.display = "none";    
+    content3.style.display = "none";
 }
 
 function nextStep2() {
@@ -43,7 +43,7 @@ function nextStep2() {
 
     content1.style.display = "none";
     content2.style.display = "block";
-    content3.style.display = "none";  
+    content3.style.display = "none";
 }
 
 function nextStep3() {
@@ -63,13 +63,12 @@ function nextStep3() {
 
     content1.style.display = "none";
     content2.style.display = "none";
-    content3.style.display = "block";  
+    content3.style.display = "block";
 }
 
 function triggerFileInput() {
-    document.getElementById('fileInput').click();
+    document.getElementById("fileInput").click();
 }
-
 
 function notifikasiEditSucces() {
     var notificationDiv = document.getElementById("notification-edit");

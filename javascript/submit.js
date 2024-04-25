@@ -3,9 +3,9 @@ function nextStep1() {
     var UP = document.getElementById("UP");
     var content1 = document.getElementById("content-side-bar-1");
     var content2 = document.getElementById("content-side-bar-2");
-    var back2 = document.getElementById("back2"); 
+    var back2 = document.getElementById("back2");
     var back1 = document.getElementById("back1");
-     
+
     // Mengubah status dan tampilan PI dan UP
     PI.classList.remove("active");
     PI.classList.add("finis");
@@ -57,10 +57,10 @@ function goBack3() {
     var ADD = document.getElementById("ADD");
     var UP = document.getElementById("UP");
     var content3 = document.getElementById("content-side-bar-3");
-    var back1 = document.getElementById("back1"); 
-    var back2 = document.getElementById("back2"); 
-    var back3 = document.getElementById("back3"); 
-    
+    var back1 = document.getElementById("back1");
+    var back2 = document.getElementById("back2");
+    var back3 = document.getElementById("back3");
+
     back1.style.display = "none";
     back2.style.display = "flex";
     back3.style.display = "none";
@@ -78,9 +78,9 @@ function goBack2() {
     var UP = document.getElementById("UP");
     var content2 = document.getElementById("content-side-bar-2");
     var content1 = document.getElementById("content-side-bar-1");
-    var back1 = document.getElementById("back1"); 
-    var back2 = document.getElementById("back2"); 
-    
+    var back1 = document.getElementById("back1");
+    var back2 = document.getElementById("back2");
+
     back1.style.display = "flex";
     back2.style.display = "none";
     content2.style.display = "none";
@@ -90,7 +90,7 @@ function goBack2() {
     PI.classList.add("active");
     UP.classList.remove("active");
     UP.classList.add("inactive");
-    
+
 }
 
 function triggerFileInput() {
