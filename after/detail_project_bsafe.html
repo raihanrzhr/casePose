@@ -174,7 +174,18 @@
                     <label class="more-project-label bold">PROJECT
                         <br></h1>
                 </div>
-                <div class="more-project-2">
+                
+                <form>
+                    <label for="projectCategory"><b>Choose Project Category:</b></label>
+                    <select id="projectCategory" name="projectCategory" onclick="showApplicationCatalog()">
+                        <option value="all">All</option>
+                        <option value="website">Website</option>
+                        <option value="application">Application</option>
+                    </select>
+                    <br><br>
+                </form>
+
+                <div id="allCards" class="more-project-2">
                     <a href="detail_project_viewer.html">
                         <div class="card">
                             <div
@@ -186,17 +197,7 @@
                             <label for="" class="roboto ">by Nadia Aqmarina</label>
                         </div>
                     </a>
-                    <a href="detail_project_viewer.html">
-                        <div class="card">
-                            <div
-                                class="card_image"
-                                style="background-image: url('../asset/card/card2.png');">
-                                <div class="card_image_hover"></div>
-                            </div>
-                            <h3 class="roboto bold">Health Care</h3>
-                            <label for="" class="roboto ">by Mariska Tutuli</label>
-                        </div>
-                    </a>
+                    
                     <a href="detail_project_viewer.html">
                         <div class="card">
                             <div
@@ -212,6 +213,48 @@
             </div>
 
         </div>
+
+    <!--untuk kategori/katalog application-->
+    
+    <div id="applicationCards" class="more-project-2">
+        <a href="detail_project_viewer.html">
+            <div class="card">
+                <div class="card_image" style="background-image: url('../asset/card/card2.png');">
+                    <div class="card_image_hover"></div>
+                </div>
+                <h3 class="roboto bold">Health Care</h3>
+                <label for="" class="roboto ">by Mariska Tutuli</label>
+            </div>
+        </a>
+        
+    </div>
+
+    <script>
+        function showApplicationCatalog() {
+            var selectBox = document.getElementById("projectCategory");
+            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+            var applicationCards = document.getElementById("applicationCards");
+            var websiteCards = document.getElementById("websiteCards");
+            var allCards = document.getElementById("allCards");
+
+            if (selectedValue === "application") {
+                allCards.style.display = "none";
+                websiteCards.style.display = "none";
+                applicationCards.style.display = "block";
+
+            } else if (selectedValue === "website"){ 
+                websiteCards.style.display = "block";
+                applicationCards.style.display = "none";
+                allCards.style.display = "none";
+
+            } else { 
+                websiteCards.style.display = "none";
+                applicationCards.style.display = "none";
+                allCards.style.display = "block";
+            } 
+        }
+    </script>
+    
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-navigation">
