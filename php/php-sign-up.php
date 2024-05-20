@@ -33,14 +33,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
                 // Persiapkan pernyataan SQL untuk menyimpan data pengguna ke dalam tabel user
-                $sql = "INSERT INTO user (email, password, first_name, last_name) VALUES (?, ?, ?, ?)";
+                $sql = "INSERT INTO user (email, password, firstName, lastName) VALUES (?, ?, ?, ?)";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("ssss", $email, $hashed_password, $firstname, $lastname);
 
                 // Jalankan pernyataan yang telah disiapkan
                 if ($stmt->execute()) {
                     // Redirect ke halaman sign-in setelah pendaftaran berhasil
-                    header("Location: ../after/index.html");
+                    header("Location: ../after/index.php");
                     exit();
                 } else {
                     // Redirect dengan pesan kesalahan jika gagal menyimpan data
