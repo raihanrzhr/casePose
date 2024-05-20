@@ -100,6 +100,8 @@
                             echo "Make sure the input data is filled in completely";
                         }else if($_GET['pesan'] == "sinkron"){
                             echo "your passwords are out of sync";
+                        }else if($_GET['pesan'] == "error"){
+                            echo "Sorry, the system is down";
                         }
                     }?>
                         </label><br>
