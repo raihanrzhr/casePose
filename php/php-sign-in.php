@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "SELECT * FROM user WHERE email='$email' AND password='$password'";
     $result = mysqli_query($conn, $sql);
 
+    
     if ($result && mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_assoc($result);
         $_SESSION["userId"] = $row["userId"];
