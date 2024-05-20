@@ -6,6 +6,8 @@
 } */
 *{
     margin: 0 auto;
+    text-decoration: none;
+    list-style: none;
 }
 @media (width <= 480px) {
     .card_image, .card_image_hover {

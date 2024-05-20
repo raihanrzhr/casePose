@@ -16,6 +16,9 @@
 .grey {
     color: rgb(150, 150, 150);
 }
+.grey2 {
+    color: rgb(95, 95, 95);
+}
 .bg-black {
     background-color: rgba(3, 7, 18, 1);
 }
@@ -27,4 +30,19 @@
 }
 .bold2 {
     font-weight: 700;
+}
+.margin-0-auto {
+    margin :0 auto ;
+}
+.margin-auto {
+    margin: auto
+}
+.ft-15{
+    font-size: 15px;
+}
+.ft-20{
+    font-size: 20px;
+}
+.ft-25{
+    font-size: 25px;
 }
