@@ -56,6 +56,8 @@
                             echo "Invalid email or password";
                         }else if($_GET['pesan'] == "kosong"){
                             echo "Make sure the input data is filled in completely";
+                        }else if($_GET['pesan'] == "belum_login"){
+                            echo "you should Login first";
                         }
                     }?>
                     </label><br>    
