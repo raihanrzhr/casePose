@@ -46,6 +46,92 @@ body{
     gap: 8px;
     margin-bottom: 32px;
 }
+.div-filter{
+    display: flex;
+    margin: 60px auto 0px;
+    flex-wrap: wrap;
+    width: 71vw;
+    justify-content: space-between;
+    align-items: center;
+}
+.div-bar{
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none; 
+    align-items: flex-start;
+    gap: 12px;
+    align-self: stretch;
+}
+.div-daftar{
+    display: flex;
+    
+    width: 110px;
+    padding: 8px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    border-radius: 6px;
+    background: #F1F5F9;
+}
+.btn-sorted{
+    display: flex;
+    
+    height: 38px;
+    padding: 10px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+
+    border-radius: 6px;
+    border: 1px solid #F1F5F9;
+    background: white;
+}
+.btn-sorted svg{
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+.btn-sorted label{
+    color: black;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 100%; 
+}
+.div-daftar:hover {
+    background-color: black;
+    
+    transition-duration: 0.5s;
+}
+.div-daftar label:hover{
+    color: white;
+}
+.dm-active {
+    background-color: black;
+    color: white;
+}
+.div-daftar label{
+    color: black;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 100%; 
+}
+
+@media (max-width:1120px) {
+    .div-filter{
+        width: 810px;
+    }
+}
+@media (max-width:1050px) {
+    .div-filter{
+        gap:20px;
+        width: 630px;
+    }
+
+}
 @media (width > 768px) {
     .header-home {
         width: 700px;
@@ -66,6 +152,11 @@ body{
     }
 }
 
+@media (max-width :700px){
+    .div-filter{
+        width: 83vw;
+    }
+}
 @media (width > 560px) {
     .header-home {
         height: 200px;

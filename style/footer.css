@@ -25,32 +25,6 @@
 }
 
 /* Responsive design for navigation at smaller viewport widths */
-@media (max-width: 900px) {
-    .footer-navigation {
-        flex-direction: column;
-        gap: 30px;
-    }
-}
-
-/* Responsive styles for frames within the footer */
-@media (max-width: 768px) {
-    .footer {
-        padding: 140px 0 100px;
-    }
-
-    .footer-frame {
-        gap: 2%;
-        padding: 6px 8px;
-    }
-}
-
-/* Responsive design for navigation items at smaller viewport widths */
-@media (max-width: 600px) {
-    .footer-frame {
-        padding: 0.5rem;
-        gap: 8px;
-    }
-}
 
 /* Styling for navigation items */
 .footer-navigation-item {
@@ -198,12 +172,34 @@
     font-style: normal;
 }
 
-@media (max-width: 480px) {
-    .footer-text-wrapper-2{
-        font-size: 10vw;
+@media (max-width: 900px) {
+    .footer-navigation {
+        flex-direction: column;
+        gap: 30px;
     }
+}
 
-    .footer-text-wrapper-3 {
-        font-size: 5vw;
+/* Responsive styles for frames within the footer */
+@media (max-width: 768px) {
+    .footer {
+        padding: 60px 0;
+        gap: 30px   ;
+    }
+    .footer-frame {
+        gap: 20px;
+        padding: 6px 8px;
+    }
+    .footer-text-wrapper-2{
+        font-size: 30px;
+    }
+    .footer-text-wrapper-3{
+        font-size: 15px;
+    }
+}
+
+/* Responsive design for navigation items at smaller viewport widths */
+@media (max-width: 600px) {
+    .footer-frame {
+        padding: 0.5rem;
     }
 }

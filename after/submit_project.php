@@ -22,38 +22,44 @@
 <!-- Navigation Bar after-->
 <nav>
     <div class="navbar-toggle">
-        <div class="navbar-logo"><a href="index.html"><img src="../asset/logo/logo_2.png" alt=""></a></div>
+        <div class="navbar-logo"><a href="index.php"><img src="../asset/logo/logo_2.png" alt=""></a></div>
         <button class="navbar-toggle-button" onclick="toggleColor()">☰</button>
     </div>
     <div class="navbar">
         <div class="navbar-menu">
-            <a href="index.html" class="navbar-item "><span class="navbar-text">Home</span></a>
-            <a href="about.html" class="navbar-item"><span class="navbar-text">About</span></a>
-            <a href="pricing.html" class="navbar-item"><span class="navbar-text">Pricing</span></a>
+            <a href="profil.php" class="my-profil"><span class="navbar-text">My Profil</span></a>
+            <a href="index.php" class="navbar-item"><span class="navbar-text">Home</span></a>
+            <a href="about.php" class="navbar-item"><span class="navbar-text">About</span></a>
+            <a href="pricing.php" class="navbar-item"><span class="navbar-text">Pricing</span></a>
         </div>
-        <div class="navbar-logo"><a href="index.html"><img src="../asset/logo/logo_2.png" alt=""></a></div>
+        <div class="navbar-logo"><a href="index.php"><img src="../asset/logo/logo_2.png" alt=""></a></div>
         <div class="navbar-actions">
-            <a href="submit_project.html" class="navbar-button-alt"><div class="navbar-button-text-alt">Submit Project</div></a>
-
+            <a href="submit_project.php" class="navbar-button-alt"><div class="navbar-button-text-alt">Submit Project</div></a>
+            <a href="../php/php-log-out.php" class="navbar-button-logout"><div class="navbar-button-text-alt">logout</div></a>    
             <div class="button-dropdown">
-                <div class="button-dropdown-1">
-                    <div class="foto-profil" style="background-image: url('../asset/pp.png');"></div>
+                <div class="button-dropdown-1 margin-auto">
+                    <!-- <div class="foto-profil" style="background-image: url('../asset/pp.png');"></div> -->
+                    <div class="foto-profil" style="<?php 
+                    if ($rows["profilePicture"] == ""){
+                        echo "background-image:url('../asset/users/user/default-profil.jpg');";
+                    } else {
+                        echo "background-image:url('../asset/users/user/".$rows["profilePicture"]."');";
+                    }
+                    ?>"></div>
                 </div>
-                <label for="" class="bold nama-profil" >Leonardo</label>
-                <div class="button-dropdown-2">
+                <label for="" class="bold nama-profil" ><?php echo $rows['firstName']; ?></label>
+                <div class="button-dropdown-2 margin-auto">
                     <img src="../asset/chevron-down.png" alt="" class="button-contained-img">
                 </div>
                 <div class="dropdown-content">
-                    <a href="profil.html"><div class="List-dropdown">
+                    <a href="profil.php"><div class="List-dropdown">
                         <div class="style-svg" style="background-image: url('../asset/svg/person.svg');"></div>
                         <label for="" class="bold List-dropdown-label">My Profil</label>
-                    </div>
-                </a>
-                    <a href="../about.html"><div class="List-dropdown">
+                    </div></a>
+                    <a href="../php/php-log-out.php"><div class="List-dropdown">
                         <div class="style-svg" style="background-image: url('../asset/svg/box-arrow-right.svg');"></div>
                         <label for="" class="bold List-dropdown-label">Logout</label>
-                    </div>
-                </a>
+                    </div></a>
                 </div>
             </div>
         </div>
@@ -66,7 +72,7 @@
 <script src="../javascript/submit.js"></script>
 <div class="content">
     <div class="side-navigation">
-        <a id="back1" href="index.html" class="button-contained" onclick="goBack1()""><img src="../asset/chevron-left.png">Back to Home</a>
+        <a id="back1" href="index.php" class="button-contained" onclick="goBack1()""><img src="../asset/chevron-left.png">Back to Home</a>
         <button id="back2"class="button-contained" type="button"  onclick="goBack2()" style="display: none;"><img src="../asset/chevron-left.png">Back</button>
         <button id="back3" class="button-contained" type="button"  onclick="goBack3()" style="display: none;"><img src="../asset/chevron-left.png">Back</button>
         <div class="navigation">
@@ -100,7 +106,7 @@
             <label for="application">Application</label><br><br>
 
             <div class="div-footer">
-                <button id="cancel1" class="button-1 bold2" onclick="goToPage('index.html')">Cancel</button>
+                <button id="cancel1" class="button-1 bold2" onclick="goToPage('index.php')">Cancel</button>
                 <button class="button-2 bold2" onclick="nextStep1()">Next</button>
             </div>
 
@@ -121,7 +127,7 @@
 
 
             <div class="div-footer">
-                <button id="cancel2" class="button-1 bold2" onclick="goToPage('index.html')">Cancel</button>
+                <button id="cancel2" class="button-1 bold2" onclick="goToPage('index.php')">Cancel</button>
                 <button class="button-2 bold2" onclick="nextStep2()">Next</button>
             </div>
         </div>
@@ -132,7 +138,7 @@
             <input type="text" class="input-link" placeholder="Click Here....."><br><br>
 
             <div class="div-footer">
-                <button id="cancel3" class="button-1 bold2" onclick="goToPage('index.html')">Cancel</button>
+                <button id="cancel3" class="button-1 bold2" onclick="goToPage('index.php')">Cancel</button>
                 <button id="next1" class="button-2 bold2" onclick="nextStep3()">Publish Now</button>
             </div>
         </div>
@@ -141,7 +147,7 @@
             <img src="../asset/centang.png" alt=""><br>
             <label for="" class="font-succes">Project Anda</label><br>
             <label for="" class="font-succes">Berhasil diupload</label><br><br><br>
-            <a href="index.html" class="button-back-home">Finish</a><br><br>
+            <a href="index.php" class="button-back-home">Finish</a><br><br>
         </div>
     </div>
 </div>
@@ -149,10 +155,10 @@
 <footer class="footer">
     <div class="footer-navigation">
         <div class="footer-navigation-item">
-            <a href="index.html" class="footer-frame"><div class="footer-text-wrapper-1">Home</div></a>
-            <a href="about.html" class="footer-frame"><div class="footer-text-wrapper-1">About</div></a>
-            <a href="pricing.html" class="footer-frame"><div class="footer-text-wrapper-1">Pricing</div></a>
-            <a href="faqs.html" class="footer-frame"><div class="footer-text-wrapper-1">FAQs</div></a>
+            <a href="index.php" class="footer-frame"><div class="footer-text-wrapper-1">Home</div></a>
+            <a href="about.php" class="footer-frame"><div class="footer-text-wrapper-1">About</div></a>
+            <a href="pricing.php" class="footer-frame"><div class="footer-text-wrapper-1">Pricing</div></a>
+            <a href="faqs.php" class="footer-frame"><div class="footer-text-wrapper-1">FAQs</div></a>
         </div>
         <div class="footer-navigation-button">
             <a href="https://instagram.com" class="footer-social-button" target="_blank" rel="noopener" title="Follow us on Instagram">

@@ -34,7 +34,7 @@ include '../../php/read-users.php';
     <!-- Navigation Bar after-->
     <nav>
         <div class="navbar-toggle">
-            <div class="navbar-logo"><a href="index.html"><img src="../../asset/logo/logo_2.png" alt=""></a></div>
+            <div class="navbar-logo"><a href="index.php"><img src="../../asset/logo/logo_2.png" alt=""></a></div>
             <button class="navbar-toggle-button" onclick="toggleColor()">☰</button>
         </div>
         <div class="navbar">
@@ -45,7 +45,7 @@ include '../../php/read-users.php';
             </div>
             <div class="navbar-logo"><a href="../index.php"><img src="../../asset/logo/logo_2.png" alt=""></a></div>
             <div class="navbar-actions">
-                <a href="../submit_project.html" class="navbar-button-alt"><div class="navbar-button-text-alt">Submit Project</div></a>
+                <a href="../submit_project.php" class="navbar-button-alt"><div class="navbar-button-text-alt">Submit Project</div></a>
         
                 <div class="button-dropdown">
                     <div class="button-dropdown-1 margin-auto">
@@ -133,16 +133,16 @@ include '../../php/read-users.php';
     <footer class="footer">
         <div class="footer-navigation">
             <div class="footer-navigation-item margin-auto">
-                <a href="index.html" class="footer-frame">
+                <a href="index.php" class="footer-frame">
                     <div class="footer-text-wrapper-1">Home</div>
                 </a>
-                <a href="about.html" class="footer-frame">
+                <a href="about.php" class="footer-frame">
                     <div class="footer-text-wrapper-1">About</div>
                 </a>
-                <a href="pricing.html" class="footer-frame">
+                <a href="pricing.php" class="footer-frame">
                     <div class="footer-text-wrapper-1">Pricing</div>
                 </a>
-                <a href="faqs.html" class="footer-frame">
+                <a href="faqs.php" class="footer-frame">
                     <div class="footer-text-wrapper-1">FAQs</div>
                 </a>
             </div>

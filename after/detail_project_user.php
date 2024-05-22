@@ -45,31 +45,23 @@ $rows_project_detail = mysqli_fetch_assoc($query);
     <body>
         <!-- Navigation Bar after-->
         <nav>
-            <div class="navbar-toggle">
-                <div class="navbar-logo">
-                    <a href="index.html"><img src="../asset/logo/logo_2.png" alt=""></a>
-                </div>
-                <button class="navbar-toggle-button" onclick="toggleColor()">☰</button>
-            </div>
-            <div class="navbar">
-                <div class="navbar-menu">
-                    <a href="index.html" class="navbar-item active">
-                        <span class="navbar-text">Home</span></a>
-                    <a href="about.html" class="navbar-item">
-                        <span class="navbar-text">About</span></a>
-                    <a href="pricing.html" class="navbar-item">
-                        <span class="navbar-text">Pricing</span></a>
-                </div>
-                <div class="navbar-logo">
-                    <a href="index.html"><img src="../asset/logo/logo_2.png" alt=""></a>
-                </div>
-                <div class="navbar-actions">
-                    <a href="submit_project.html" class="navbar-button-alt">
-                        <div class="navbar-button-text-alt">Submit Project</div>
-                    </a>
-
-                    <div class="button-dropdown">
-                    <div class="button-dropdown-1">
+    <div class="navbar-toggle">
+        <div class="navbar-logo"><a href="index.php"><img src="../asset/logo/logo_2.png" alt=""></a></div>
+        <button class="navbar-toggle-button" onclick="toggleColor()">☰</button>
+    </div>
+    <div class="navbar">
+        <div class="navbar-menu">
+            <a href="profil.php" class="my-profil"><span class="navbar-text">My Profil</span></a>
+            <a href="index.php" class="navbar-item"><span class="navbar-text">Home</span></a>
+            <a href="about.php" class="navbar-item"><span class="navbar-text">About</span></a>
+            <a href="pricing.php" class="navbar-item"><span class="navbar-text">Pricing</span></a>
+        </div>
+        <div class="navbar-logo"><a href="index.php"><img src="../asset/logo/logo_2.png" alt=""></a></div>
+        <div class="navbar-actions">
+            <a href="submit_project.php" class="navbar-button-alt"><div class="navbar-button-text-alt">Submit Project</div></a>
+            <a href="../php/php-log-out.php" class="navbar-button-logout"><div class="navbar-button-text-alt">logout</div></a>    
+            <div class="button-dropdown">
+                <div class="button-dropdown-1 margin-auto">
                     <!-- <div class="foto-profil" style="background-image: url('../asset/pp.png');"></div> -->
                     <div class="foto-profil" style="<?php 
                     if ($rows["profilePicture"] == ""){
@@ -80,34 +72,26 @@ $rows_project_detail = mysqli_fetch_assoc($query);
                     ?>"></div>
                 </div>
                 <label for="" class="bold nama-profil" ><?php echo $rows['firstName']; ?></label>
-                        <div class="button-dropdown-2">
-                            <img src="../asset/chevron-down.png" alt="" class="button-contained-img">
-                        </div>
-                        <div class="dropdown-content">
-                            <a href="profil.php">
-                                <div class="List-dropdown">
-                                    <div
-                                        class="style-svg"
-                                        style="background-image: url('../asset/svg/person.svg');"></div>
-                                    <label for="" class="bold List-dropdown-label">My Profil</label>
-                                </div>
-                            </a>
-                            <a href="../index.php">
-                                <div class="List-dropdown">
-                                    <div
-                                        class="style-svg"
-                                        style="background-image: url('../asset/svg/box-arrow-right.svg');"></div>
-                                    <label for="" class="bold List-dropdown-label">Logout</label>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                <div class="button-dropdown-2 margin-auto">
+                    <img src="../asset/chevron-down.png" alt="" class="button-contained-img">
+                </div>
+                <div class="dropdown-content">
+                    <a href="profil.php"><div class="List-dropdown">
+                        <div class="style-svg" style="background-image: url('../asset/svg/person.svg');"></div>
+                        <label for="" class="bold List-dropdown-label">My Profil</label>
+                    </div></a>
+                    <a href="../php/php-log-out.php"><div class="List-dropdown">
+                        <div class="style-svg" style="background-image: url('../asset/svg/box-arrow-right.svg');"></div>
+                        <label for="" class="bold List-dropdown-label">Logout</label>
+                    </div></a>
                 </div>
             </div>
-            <script src="../javascript/navbar.js"></script>
-        </nav>
+        </div>
+    </div>
+    <script src="../javascript/navbar.js"></script>
+</nav>
         <!-- button edit -->
-        <a href="edit_project.html" class="button_edit">
+        <a href="edit_project.php" class="button_edit">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 30 30">
                 <path d="M24,11l2.414-2.414c0.781-0.781,0.781-2.047,0-2.828l-2.172-2.172c-0.781-0.781-2.047-0.781-2.828,0L19,6L24,11z M17,8	L5.26,19.74c0,0,0.918-0.082,1.26,0.26c0.342,0.342,0.06,2.58,0.48,3s2.644,0.124,2.963,0.443c0.319,0.319,0.297,1.297,0.297,1.297	L22,13L17,8z M4.328,26.944l-0.015-0.007C4.213,26.97,4.111,27,4,27c-0.552,0-1-0.448-1-1c0-0.111,0.03-0.213,0.063-0.313	l-0.007-0.015L4,23l1.5,1.5L7,26L4.328,26.944z"></path>
             </svg>
@@ -218,10 +202,10 @@ $rows_project_detail = mysqli_fetch_assoc($query);
     <footer class="footer">
         <div class="footer-navigation">
             <div class="footer-navigation-item">
-                <a href="index.html" class="footer-frame"><div class="footer-text-wrapper-1">Home</div></a>
-                <a href="about.html" class="footer-frame"><div class="footer-text-wrapper-1">About</div></a>
-                <a href="pricing.html" class="footer-frame"><div class="footer-text-wrapper-1">Pricing</div></a>
-                <a href="faqs.html" class="footer-frame"><div class="footer-text-wrapper-1">FAQs</div></a>
+                <a href="index.php" class="footer-frame"><div class="footer-text-wrapper-1">Home</div></a>
+                <a href="about.php" class="footer-frame"><div class="footer-text-wrapper-1">About</div></a>
+                <a href="pricing.php" class="footer-frame"><div class="footer-text-wrapper-1">Pricing</div></a>
+                <a href="faqs.php" class="footer-frame"><div class="footer-text-wrapper-1">FAQs</div></a>
             </div>
             <div class="footer-navigation-button">
                 <a href="https://instagram.com" class="footer-social-button" target="_blank" rel="noopener" title="Follow us on Instagram">

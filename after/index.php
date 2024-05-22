@@ -7,6 +7,8 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] != "login") {
 }
 include '../php/read-users.php'; 
 include '../php/read-project.php';  
+
+$sql_bar = mysqli_query($conn,"SELECT * FROM tag");
 ?>
 
 <!DOCTYPE html>
@@ -34,19 +36,20 @@ include '../php/read-project.php';
 <!-- Navigation Bar after-->
 <nav>
     <div class="navbar-toggle">
-        <div class="navbar-logo"><a href="index.html"><img src="../asset/logo/logo_2.png" alt=""></a></div>
+        <div class="navbar-logo"><a href="index.php"><img src="../asset/logo/logo_2.png" alt=""></a></div>
         <button class="navbar-toggle-button" onclick="toggleColor()">☰</button>
     </div>
     <div class="navbar">
         <div class="navbar-menu">
+            <a href="profil.php" class="my-profil"><span class="navbar-text">My Profil</span></a>
             <a href="index.php" class="navbar-item active"><span class="navbar-text">Home</span></a>
             <a href="about.php" class="navbar-item"><span class="navbar-text">About</span></a>
             <a href="pricing.php" class="navbar-item"><span class="navbar-text">Pricing</span></a>
         </div>
-        <div class="navbar-logo"><a href="index.html"><img src="../asset/logo/logo_2.png" alt=""></a></div>
+        <div class="navbar-logo"><a href="index.php"><img src="../asset/logo/logo_2.png" alt=""></a></div>
         <div class="navbar-actions">
-            <a href="submit_project.html" class="navbar-button-alt"><div class="navbar-button-text-alt">Submit Project</div></a>
-    
+            <a href="submit_project.php" class="navbar-button-alt"><div class="navbar-button-text-alt">Submit Project</div></a>
+            <a href="../php/php-log-out.php" class="navbar-button-logout"><div class="navbar-button-text-alt">logout</div></a>    
             <div class="button-dropdown">
                 <div class="button-dropdown-1 margin-auto">
                     <!-- <div class="foto-profil" style="background-image: url('../asset/pp.png');"></div> -->
@@ -86,8 +89,25 @@ include '../php/read-project.php';
     </div>
     <input type="text" id="search" class="text-field-icon" placeholder="Search">
 </div>
-    
-    
+<!-- bar menu    -->
+<div class="div-filter">
+    <div class="div-bar">
+            <div class="div-daftar">
+                    <label>On Fire</label>
+            </div>
+        <?php while ($rows_bar = mysqli_fetch_assoc($sql_bar)):?>
+            <div class="div-daftar">
+                    <label><?=  $rows_bar["nama"]?></label>
+            </div>
+        <?php endwhile ;?>
+    </div>
+    <div class="btn-sorted">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 7.5 7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5" />
+        </svg>
+        <label for="">sorted by Date</label>
+    </div>
+</div>   
 <!-- List Card -->
 <div class="content_card">
     <?php while ($rows_project2 = mysqli_fetch_assoc($sqlp_2)) : ?>
@@ -116,10 +136,10 @@ include '../php/read-project.php';
 <footer class="footer">
     <div class="footer-navigation">
         <div class="footer-navigation-item">
-            <a href="index.html" class="footer-frame"><div class="footer-text-wrapper-1">Home</div></a>
-            <a href="about.html" class="footer-frame"><div class="footer-text-wrapper-1">About</div></a>
-            <a href="pricing.html" class="footer-frame"><div class="footer-text-wrapper-1">Pricing</div></a>
-            <a href="faqs.html" class="footer-frame"><div class="footer-text-wrapper-1">FAQs</div></a>
+            <a href="index.php" class="footer-frame"><div class="footer-text-wrapper-1">Home</div></a>
+            <a href="about.php" class="footer-frame"><div class="footer-text-wrapper-1">About</div></a>
+            <a href="pricing.php" class="footer-frame"><div class="footer-text-wrapper-1">Pricing</div></a>
+            <a href="faqs.php" class="footer-frame"><div class="footer-text-wrapper-1">FAQs</div></a>
         </div>
         <div class="footer-navigation-button">
             <a href="https://instagram.com" class="footer-social-button" target="_blank" rel="noopener" title="Follow us on Instagram">
