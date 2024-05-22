@@ -5,7 +5,8 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] != "login") {
     header("Location: ../sign-in.php?pesan=belum_login");
     exit();
 }
-include '../php/read-users.php';    
+include '../php/read-users.php'; 
+include '../php/read-project.php';  
 ?>
 
 <!DOCTYPE html>
@@ -47,18 +48,18 @@ include '../php/read-users.php';
             <a href="submit_project.html" class="navbar-button-alt"><div class="navbar-button-text-alt">Submit Project</div></a>
     
             <div class="button-dropdown">
-                <div class="button-dropdown-1">
+                <div class="button-dropdown-1 margin-auto">
                     <!-- <div class="foto-profil" style="background-image: url('../asset/pp.png');"></div> -->
                     <div class="foto-profil" style="<?php 
                     if ($rows["profilePicture"] == ""){
-                        echo "background-image:url('../asset/default-profil.jpg');";
+                        echo "background-image:url('../asset/users/user/default-profil.jpg');";
                     } else {
-                        echo "background-image:url('../asset/".$rows["profilePicture"]."');";
+                        echo "background-image:url('../asset/users/user/".$rows["profilePicture"]."');";
                     }
                     ?>"></div>
                 </div>
                 <label for="" class="bold nama-profil" ><?php echo $rows['firstName']; ?></label>
-                <div class="button-dropdown-2">
+                <div class="button-dropdown-2 margin-auto">
                     <img src="../asset/chevron-down.png" alt="" class="button-contained-img">
                 </div>
                 <div class="dropdown-content">
@@ -89,60 +90,25 @@ include '../php/read-users.php';
     
 <!-- List Card -->
 <div class="content_card">
-    <a href="detail_project_user.html"><div class="card">
-        <div class="card_image" style="background-image: url('../asset/card/card3.png');">
-        <div class="card_image_hover"></div></div>
-        <h3 class="roboto bold">Dashboard Universitas Budi Luhur</h3>
-        <label for="" class="roboto ">by Leonardo Santos</label>
-    </div></a>
-    <a href="detail_project_bsafe.html"><div class="card">
-        <div class="card_image" style="background-image: url('../asset/card/Poster-Bsafe.jpg');">
-        <div class="card_image_hover"></div></div>
-        <h3 class="roboto bold">Bsafe</h3>
-        <label for="" class="roboto ">by Bsafe Team</label>
-    </div></a>
-    <a href=""><div class="card">
-        <div class="card_image" style="background-image: url('../asset/card/card2.png');">
-        <div class="card_image_hover"></div></div>
-        <h3 class="roboto bold">Health Care</h3>
-        <label for="" class="roboto ">by Mariska Tutuli</label>
-    </div></a>
-    <a href=""><div class="card">
-        <div class="card_image" style="background-image: url('../asset/card/card5.png');">
-        <div class="card_image_hover"></div></div>
-        <h3 class="roboto bold">Delish Catering Apps</h3>
-        <label for="" class="roboto ">by Indah Mulyani</label>
-    </div></a>
-    <a href=""><div class="card">
-        <div class="card_image" style="background-image: url('../asset/card/card7.png');">
-        <div class="card_image_hover"></div></div>
-        <h3 class="roboto bold">Can-In Food Delivery App</h3>
-        <label for="" class="roboto ">by Giorgino Romeo</label>
-    </div></a>
-    <a href="detail_project_viewer.html"><div class="card">
-        <div class="card_image" style="background-image: url('../asset/card/card6.png');">
-        <div class="card_image_hover"></div></div>
-        <h3 class="roboto bold">Jaws.ai</h3>
-        <label for="" class="roboto ">by Nadia Aqmarina</label>
-    </div></a>
-    <a href=""><div class="card">
-        <div class="card_image" style="background-image: url('../asset/card/card10.png');">
-        <div class="card_image_hover"></div></div>
-        <h3 class="roboto bold">Money Management Dashboard</h3>
-        <label for="" class="roboto ">by Clara Pedrora</label>
-    </div></a>
-    <a href=""><div class="card">
-        <div class="card_image" style="background-image: url('../asset/card/card8.png');">
-        <div class="card_image_hover"></div></div>
-        <h3 class="roboto bold">Landing Page Toba Geopark</h3>
-        <label for="" class="roboto ">by Nita Laura</label>
-    </div></a>
-    <a href=""><div class="card">
-        <div class="card_image" style="background-image: url('../asset/card/card9.png');">
-        <div class="card_image_hover"></div></div>
-        <h3 class="roboto bold">Mobile Logbook</h3>
-        <label for="" class="roboto ">by Yuni Baskara</label>
-    </div></a>
+    <?php while ($rows_project2 = mysqli_fetch_assoc($sqlp_2)) : ?>
+        <!-- seleksi kondisi apakah yang membuka project user atau viewer -->
+        <a href=" <?php 
+            if($userId == $rows_project2["id_user"]){
+                echo 'detail_project_user.php?idproject='.$rows_project2["id_project"];
+            }else{
+                echo 'detail_project_viewer.php?idproject='.$rows_project2["id_project"];
+            }
+            ?>"><div class="card">
+            <!-- <div class="card_image" style="background-image: url('../asset/card/card3.png');"> -->
+            <div class="card_image" style="background-image: url('../asset/users/project/halaman/<?php echo $rows_project2["foto_project"];?>')">
+                <div class="card_image_hover"></div>
+            </div>
+            <div class="div-label">
+                <label class="roboto bold"><?php echo $rows_project2["nama_project"];?></label><br>
+                <label for=""class="roboto">by <?php echo $rows_project2["nama_lengkap_2"];?></label>
+            </div>
+        </div></a>
+    <?php endwhile ;?>
 </div>
 <br>
     

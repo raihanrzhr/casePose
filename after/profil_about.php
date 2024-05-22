@@ -49,17 +49,17 @@ include '../php/read-users.php';
                 <a href="submit_project.html" class="navbar-button-alt"><div class="navbar-button-text-alt">Submit Project</div></a>
         
                 <div class="button-dropdown">
-                    <div class="button-dropdown-1 margin-auto-2">
+                    <div class="button-dropdown-1 margin-auto">
                     <div class="foto-profil" style="<?php 
                     if ($rows["profilePicture"] == ""){
-                        echo "background-image:url('../asset/default-profil.jpg');";
+                        echo "background-image:url('../asset/users/user/default-profil.jpg');";
                     } else {
-                        echo "background-image:url('../asset/".$rows["profilePicture"]."');";
+                        echo "background-image:url('../asset/users/user/".$rows["profilePicture"]."');";
                     }
                     ?>"></div>
                 </div>
                 <label for="" class="bold nama-profil" ><?php echo $rows['firstName']; ?></label>
-                    <div class="button-dropdown-2 margin-auto-2">
+                    <div class="button-dropdown-2 margin-auto">
                         <img src="../asset/chevron-down.png" alt="" class="button-contained-img">
                     </div>
                     <div class="dropdown-content">
@@ -82,9 +82,9 @@ include '../php/read-users.php';
         <div class="profil_2">
             <div class="profil_foto" style="<?php 
                     if ($rows["profilePicture"] == ""){
-                        echo "background-image:url('../asset/default-profil.jpg');";
+                        echo "background-image:url('../asset/users/user/default-profil.jpg');";
                     } else {
-                        echo "background-image:url('../asset/".$rows["profilePicture"]."');";
+                        echo "background-image:url('../asset/users/user/".$rows["profilePicture"]."');";
                     }
                     ?>">
             </div>
