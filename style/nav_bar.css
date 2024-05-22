@@ -1,5 +1,6 @@
 * {
     font-family: roboto !important;
+    box-sizing: border-box;
 }
 
 .navbar {

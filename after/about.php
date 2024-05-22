@@ -1,11 +1,11 @@
 <?php
 session_start();
-include '../php/connection.php';
+include '../php/connection.php'; 
 if (!isset($_SESSION['status']) || $_SESSION['status'] != "login") {
     header("Location: ../sign-in.php?pesan=belum_login");
     exit();
-}
-include '../php/read-users.php';    
+}  
+include '../php/read-users.php'; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,12 +19,10 @@ include '../php/read-users.php';
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <!-- Link Style CSS -->
     <link rel="stylesheet" href="../style/nav_bar.css">
-    <link rel="stylesheet" href="../style/globals.css">
+    <link rel="stylesheet" href="../style/global.css">
     <link rel="stylesheet" href="../style/style_about.css">
     <link rel="stylesheet" href="../style/footer.css">
     <link rel="stylesheet" href="../style/card.css">
-    <link rel="stylesheet" href="../style/style.css">
-    <link rel="stylesheet" href="../style/style_2.css">
     <!-- Title -->
     <link rel="icon" href="../asset/logo/logo_1.png">
     <title>About</title>
@@ -41,25 +39,25 @@ include '../php/read-users.php';
         <div class="navbar-menu">
             <a href="index.php" class="navbar-item "><span class="navbar-text">Home</span></a>
             <a href="about.php" class="navbar-item active"><span class="navbar-text">About</span></a>
-            <a href="pricing.php" class="navbar-item"><span class="navbar-text">Pricing</span></a>
+            <a href="pricing.php" class="navbar-item "><span class="navbar-text">Pricing</span></a>
         </div>
         <div class="navbar-logo"><a href="index.html"><img src="../asset/logo/logo_2.png" alt=""></a></div>
         <div class="navbar-actions">
             <a href="submit_project.html" class="navbar-button-alt"><div class="navbar-button-text-alt">Submit Project</div></a>
     
             <div class="button-dropdown">
-                <div class="button-dropdown-1">
+                <div class="button-dropdown-1 margin-auto">
                     <!-- <div class="foto-profil" style="background-image: url('../asset/pp.png');"></div> -->
                     <div class="foto-profil" style="<?php 
                     if ($rows["profilePicture"] == ""){
-                        echo "background-image:url('../asset/default-profil.jpg');";
+                        echo "background-image:url('../asset/users/user/default-profil.jpg');";
                     } else {
-                        echo "background-image:url('../asset/".$rows["profilePicture"]."');";
+                        echo "background-image:url('../asset/users/user/".$rows["profilePicture"]."');";
                     }
                     ?>"></div>
                 </div>
                 <label for="" class="bold nama-profil" ><?php echo $rows['firstName']; ?></label>
-                <div class="button-dropdown-2">
+                <div class="button-dropdown-2 margin-auto">
                     <img src="../asset/chevron-down.png" alt="" class="button-contained-img">
                 </div>
                 <div class="dropdown-content">

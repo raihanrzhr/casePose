@@ -53,9 +53,9 @@ include '../php/read-users.php';
                     <!-- <div class="foto-profil" style="background-image: url('../asset/pp.png');"></div> -->
                     <div class="foto-profil" style="<?php 
                     if ($rows["profilePicture"] == ""){
-                        echo "background-image:url('../asset/default-profil.jpg');";
+                        echo "background-image:url('../asset/users/user/default-profil.jpg');";
                     } else {
-                        echo "background-image:url('../asset/".$rows["profilePicture"]."');";
+                        echo "background-image:url('../asset/users/user/".$rows["profilePicture"]."');";
                     }
                     ?>"></div>
                 </div>

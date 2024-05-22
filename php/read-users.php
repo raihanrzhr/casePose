@@ -19,4 +19,5 @@ $sql_3_5 = mysqli_query($conn,"SELECT CONCAT('...',RIGHT(medium, 15) ) AS link_m
 $link_mdm= mysqli_fetch_assoc($sql_3_5);
 $sql_3_6 = mysqli_query($conn,"SELECT CONCAT('...',RIGHT(x, 15) ) AS link_x FROM user WHERE userId = '$userId'");
 $link_x= mysqli_fetch_assoc($sql_3_6);
+
 ?>

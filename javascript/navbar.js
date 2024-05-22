@@ -13,3 +13,4 @@ function toggleColor() {
         button.classList.remove('clicked');
     }
 }
+
