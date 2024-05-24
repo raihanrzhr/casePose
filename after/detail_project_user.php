@@ -103,20 +103,38 @@ $rows_project_detail = mysqli_fetch_assoc($query);
             <div class="content-detail-desc ">
                 <div class="content-detail-desc-head">
                     <div class="content-detail-desc-head-left">
+
                         <div class="content-detail-desc-head-title">
                             <label class="label_1 bold2"><?php echo $rows_project_detail["projectName"];?></label>
                         </div>
-                        <div class="content-detail-desc-head-line"><img src="../asset/svg/Line.png" alt=""></div>
-                        <div class="content-detail-desc-head-type">
-                            <label class="label_2"><?php echo $rows_project_detail["projectType"];?></label>
+
+                        <div class="svg-type">
+                            <div class="content-detail-desc-head-line">
+                                <img src="../asset/svg/Line.png" alt="">
+                            </div>
+                            
+                            <div class="content-detail-desc-head-type">
+                                <label class="label_2"><?php echo $rows_project_detail["projectType"];?></label>
+                            </div>
                         </div>
+
                     </div>
+                    
                     <div class="content-detail-desc-head-right">
-                        <?php 
+                        <a href="
+                        <?php
                         if($rows_project_detail["projectLink"] != "") {
-                            echo '<a href="'.$rows_project_detail["projectLink"].'" class="open-project-button">Open Project</a>';
+                            echo $rows_project_detail["projectLink"];
                         }
                         ?>
+                        " class="open-project-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                            </svg>
+                            <label for="">
+                                Open Project
+                            </label>
+                        </a>
                         
                     </div>
                 </div>
@@ -174,7 +192,7 @@ $rows_project_detail = mysqli_fetch_assoc($query);
                     <label class="more-project-label bold">PROJECT
                         <br></h1>
                 </div>
-                <div class="more-project-2">
+                <div class="content_card">
                     <?php while ($rows_project2 = mysqli_fetch_assoc($sqlp_2)) : ?>
                         <!-- seleksi kondisi apakah yang membuka project user atau viewer -->
                         <a href=" <?php 
@@ -184,7 +202,7 @@ $rows_project_detail = mysqli_fetch_assoc($query);
                                 echo 'detail_project_viewer.php?idproject='.$rows_project2["id_project"];
                             }
                             ?>"><div class="card">
-                            <!-- <div class="card_image" style="background-image: url('../asset/card/card3.png');"> -->
+                            <!-- <div class="card_image" style="background-image: url('asset/card/card3.png');"> -->
                             <div class="card_image" style="background-image: url('../asset/users/project/halaman/<?php echo $rows_project2["foto_project"];?>')">
                                 <div class="card_image_hover"></div>
                             </div>

@@ -118,12 +118,8 @@ body {
     padding: 20px 0px;
     border-bottom: 3px solid rgba(3, 7, 18, 1);
 }
-.head-1 img {
-    width: 30px;
-    margin: 0px 15px 5px 0px;
-}
-.head-2 img {
-    width: 30px;
+.head-1 img, .head-2 img{
+    width: 20px;
     margin: 0px 15px 5px 0px;
 }
 .list-sosmed {
@@ -140,9 +136,8 @@ body {
     align-self: stretch;
 }
 .list-sosmed-1-left{
-    line-height: 140%;
     float: left;
-    width: 100px;
+    margin: auto 0 auto 20px;
     margin-left: 20px;
 }
 .list-sosmed-1-1{
@@ -152,9 +147,8 @@ body {
     background-color: rgba(39, 115, 255, 0.315);
     float: left;
 }
-.list-sosmed-1-2{
-    line-height: 140%;
-    float: left;
+.list-sosmed-1-2 a img{
+    margin: auto 0;
 }
 .list-sosmed-1-2 img{
     width: 30px;

@@ -1,8 +1,9 @@
 <?php
 include 'php/connection.php';
 
-$sqlp_2 = mysqli_query($conn,"SELECT p.projectPicture AS foto_project,p.projectName AS nama_project, CONCAT(u.firstName,' ',u.lastName) AS nama_lengkap_2 FROM project p JOIN user u ON p.userId = u.userId");
+$sqlp_2 = mysqli_query($conn,"SELECT p.*,u.*,p.projectPicture AS foto_project,p.projectName AS nama_project, CONCAT(u.firstName,' ',u.lastName) AS nama_lengkap_2 FROM project p JOIN user u ON p.userId = u.userId");
 
+$sql_bar = mysqli_query($conn,"SELECT * FROM tag");
 
 ?>
 <!DOCTYPE html>
@@ -28,6 +29,7 @@ $sqlp_2 = mysqli_query($conn,"SELECT p.projectPicture AS foto_project,p.projectN
         <!-- Link Style CSS -->
         <link rel="stylesheet" href="style/nav_bar.css">
         <link rel="stylesheet" href="style/footer.css">
+        <link rel="stylesheet" href="style/global.css">
         <link rel="stylesheet" href="style/style-index.css">
         <link rel="stylesheet" href="style/card.css">
 
@@ -77,12 +79,30 @@ $sqlp_2 = mysqli_query($conn,"SELECT p.projectPicture AS foto_project,p.projectN
     </div>
     <input type="text" id="search" class="text-field-icon" placeholder="Search">
 </div>
-    
+<!-- bar menu    -->
+<div class="div-filter">
+    <div class="div-bar">
+            <div class="div-daftar">
+                    <label>On Fire</label>
+            </div>
+        <?php while ($rows_bar = mysqli_fetch_assoc($sql_bar)):?>
+            <div class="div-daftar">
+                    <label><?=  $rows_bar["nama"]?></label>
+            </div>
+        <?php endwhile ;?>
+    </div>
+    <div class="btn-sorted">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 7.5 7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5" />
+        </svg>
+        <label for="">sorted by Date</label>
+    </div>
+</div>      
     
 <!-- List Card -->
 <div class="content_card">
     <?php while ($rows_project2 = mysqli_fetch_assoc($sqlp_2)) : ?>
-        <a href="detail_project_user.html"><div class="card">
+        <a href="<?php echo 'detail_project_viewer.php?idproject='.$rows_project2["projectId"];?>"><div class="card">
             <!-- <div class="card_image" style="background-image: url('asset/card/card3.png');"> -->
             <div class="card_image" style="background-image: url('asset/users/project/halaman/<?php echo $rows_project2["foto_project"];?>')">
                 <div class="card_image_hover"></div>

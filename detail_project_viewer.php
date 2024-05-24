@@ -1,14 +1,8 @@
 <?php
 session_start();
-include '../php/connection.php';
-if (!isset($_SESSION['status']) || $_SESSION['status'] != "login") {
-    header("Location: ../sign-in.php?pesan=belum_login");
-    exit();
-}
-include '../php/read-project.php';
-include '../php/read-users.php';
-
+include 'php/connection.php';
 $id_project = $_GET["idproject"];
+$sqlp_2 = mysqli_query($conn,"SELECT p.userId AS id_user, p.projectId AS id_project, p.projectPicture AS foto_project,p.projectName AS nama_project, CONCAT(u.firstName,' ',u.lastName) AS nama_lengkap_2 FROM project p JOIN user u ON p.userId = u.userId");
 
 $query = mysqli_query($conn,"SELECT project.*,user.* ,user.userId,CONCAT(user.firstName,' ',user.lastName)AS nama_lengkap FROM project JOIN user ON project.userId = user.userId AND project.projectId = '$id_project'");
 $rows_project_detail = mysqli_fetch_assoc($query);
@@ -31,68 +25,55 @@ $rows_project_detail = mysqli_fetch_assoc($query);
             href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
             rel="stylesheet">
         <!-- Link Style CSS -->
-        <link rel="stylesheet" href="../style/nav_bar.css">
-        <link rel="stylesheet" href="../style/style-detail-project.css">
-        <link rel="stylesheet" href="../style/footer.css"/>
-        <link rel="stylesheet" href="../style/card.css">
-        <link rel="stylesheet" href="../style/global.css">
+        <link rel="stylesheet" href="style/nav_bar.css">
+        <link rel="stylesheet" href="style/style-detail-project.css">
+        <link rel="stylesheet" href="style/footer.css"/>
+        <link rel="stylesheet" href="style/card.css">
+        <link rel="stylesheet" href="style/global.css">
 
         <!-- Title -->
-        <link rel="icon" href="../asset/logo/logo_1.png">
+        <link rel="icon" href="asset/logo/logo_1.png">
         <title>Detail Project</title>
     </head>
 
     <body>
         <!-- Navigation Bar after-->
         <nav>
-    <div class="navbar-toggle">
-        <div class="navbar-logo"><a href="index.php"><img src="../asset/logo/logo_2.png" alt=""></a></div>
-        <button class="navbar-toggle-button" onclick="toggleColor()">☰</button>
-    </div>
-    <div class="navbar">
-        <div class="navbar-menu">
-            <a href="profil.php" class="my-profil"><span class="navbar-text">My Profil</span></a>
-            <a href="index.php" class="navbar-item "><span class="navbar-text">Home</span></a>
-            <a href="about.php" class="navbar-item"><span class="navbar-text">About</span></a>
-            <a href="pricing.php" class="navbar-item"><span class="navbar-text">Pricing</span></a>
-        </div>
-        <div class="navbar-logo"><a href="index.php"><img src="../asset/logo/logo_2.png" alt=""></a></div>
-        <div class="navbar-actions">
-            <a href="submit_project.php" class="navbar-button-alt"><div class="navbar-button-text-alt">Submit Project</div></a>
-            <a href="../php/php-log-out.php" class="navbar-button-logout"><div class="navbar-button-text-alt">logout</div></a>    
-            <div class="button-dropdown">
-                <div class="button-dropdown-1 margin-auto">
-                    <!-- <div class="foto-profil" style="background-image: url('../asset/pp.png');"></div> -->
-                    <div class="foto-profil" style="<?php 
-                    if ($rows["profilePicture"] == ""){
-                        echo "background-image:url('../asset/users/user/default-profil.jpg');";
-                    } else {
-                        echo "background-image:url('../asset/users/user/".$rows["profilePicture"]."');";
-                    }
-                    ?>"></div>
+            <div class="navbar-toggle">
+                <div class="navbar-logo">
+                    <a href="index.php"><img src="asset/logo/logo_2.png" alt="" /></a>
                 </div>
-                <label for="" class="bold nama-profil" ><?php echo $rows['firstName']; ?></label>
-                <div class="button-dropdown-2 margin-auto">
-                    <img src="../asset/chevron-down.png" alt="" class="button-contained-img">
+                <button class="navbar-toggle-button" onclick="toggleColor()">☰</button>
+            </div>
+            <div class="navbar">
+                <div class="navbar-menu">
+                    <a href="index.php" class="navbar-item"
+                        ><span class="navbar-text">Home </span></a
+                    >
+                    <a href="about.php" class="navbar-item"
+                        ><span class="navbar-text">About</span></a
+                    >
+                    <a href="pricing.php" class="navbar-item "
+                        ><span class="navbar-text">Pricing</span></a
+                    >
                 </div>
-                <div class="dropdown-content">
-                    <a href="profil.php"><div class="List-dropdown">
-                        <div class="style-svg" style="background-image: url('../asset/svg/person.svg');"></div>
-                        <label for="" class="bold List-dropdown-label">My Profil</label>
-                    </div></a>
-                    <a href="../php/php-log-out.php"><div class="List-dropdown">
-                        <div class="style-svg" style="background-image: url('../asset/svg/box-arrow-right.svg');"></div>
-                        <label for="" class="bold List-dropdown-label">Logout</label>
-                    </div></a>
+                <div class="navbar-logo">
+                    <a href="index.php"><img src="asset/logo/logo_2.png" alt="" /></a>
+                </div>
+                <div class="navbar-actions">
+                    <a href="sign-in.php" class="navbar-button">
+                        <div class="navbar-button-text">Sign In</div>
+                    </a>
+                    <a href="sign-in.php" class="navbar-button-alt">
+                        <div class="navbar-button-text-alt">Submit Project</div>
+                    </a>
                 </div>
             </div>
-        </div>
-    </div>
-    <script src="../javascript/navbar.js"></script>
-</nav>    
+            <script src="javascript/navbar.js"></script>
+        </nav>    
         <!-- content -->
         <div class="content-detail">
-            <div class="content-detail-1" style="background-image: url('../asset/users/project/halaman/<?php echo $rows_project_detail["projectPicture"];?>');"></div>
+            <div class="content-detail-1" style="background-image: url('asset/users/project/halaman/<?php echo $rows_project_detail["projectPicture"];?>');"></div>
             <div class="content-detail-desc ">
                 <div class="content-detail-desc-head">
                     <div class="content-detail-desc-head-left">
@@ -103,7 +84,7 @@ $rows_project_detail = mysqli_fetch_assoc($query);
 
                         <div class="svg-type">
                             <div class="content-detail-desc-head-line">
-                                <img src="../asset/svg/Line.png" alt="">
+                                <img src="asset/svg/Line.png" alt="">
                             </div>
                             
                             <div class="content-detail-desc-head-type">
@@ -140,7 +121,7 @@ $rows_project_detail = mysqli_fetch_assoc($query);
                 <div class="content-detail-more-head bold2">
                     <div class="content-detail-more-head-left">
                         <div class="content-detail-desc-head-line">
-                            <img src="../asset/svg/Line.png" alt="">
+                            <img src="asset/svg/Line.png" alt="">
                         </div>
                         <div class="content-detail-desc-title">
                             <label class="label_1">MORE ABOUT PROJECT</label>
@@ -196,7 +177,7 @@ $rows_project_detail = mysqli_fetch_assoc($query);
                             }
                             ?>"><div class="card">
                             <!-- <div class="card_image" style="background-image: url('asset/card/card3.png');"> -->
-                            <div class="card_image" style="background-image: url('../asset/users/project/halaman/<?php echo $rows_project2["foto_project"];?>')">
+                            <div class="card_image" style="background-image: url('asset/users/project/halaman/<?php echo $rows_project2["foto_project"];?>')">
                                 <div class="card_image_hover"></div>
                             </div>
                             <div class="div-label">

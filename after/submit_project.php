@@ -113,19 +113,14 @@
         </div>
         <div id="content-side-bar-2" class="content-side-bar" style="display: none;">
             <label for="fileInput" class="bold">Upload Project</label>
-<div class="div-upload" onclick="triggerFileInput()">
-    <img src="../asset/svg/document-arrow-up.png" alt=""><br>
-    <label for="fileInput" class="blue bold">Upload a file</label><label for="fileInput" class="bold"> or drag and drop</label><br>
-    <label for="fileInput" class="grey bold">PNG and JPG up to 10MB</label>
-    <input type="file" id="fileInput" style="display: none;" onchange="handleFileInputChange(event)">
-</div>
-
-
+        <div class="div-upload" onclick="triggerFileInput()">
+            <img src="../asset/svg/document-arrow-up.png" alt=""><br>
+            <label for="fileInput" class="blue bold">Upload a file</label><label for="fileInput" class="bold"> or drag and drop</label><br>
+            <label for="fileInput" class="grey bold">PNG and JPG up to 10MB</label>
+            <input type="file" id="fileInput" style="display: none;" onchange="handleFileInputChange(event)">
+        </div>
             <label for="" class="bold" > Link Project</label><br>
             <input type="text" class="input-link" placeholder="Click Here....."><br><br>
-
-
-
             <div class="div-footer">
                 <button id="cancel2" class="button-1 bold2" onclick="goToPage('index.php')">Cancel</button>
                 <button class="button-2 bold2" onclick="nextStep2()">Next</button>
