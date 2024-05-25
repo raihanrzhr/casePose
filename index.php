@@ -97,8 +97,8 @@ $sql_bar = mysqli_query($conn,"SELECT * FROM tag");
         </svg>
         <label for="">sorted by Date</label>
     </div>
-</div>      
-    
+</div>
+
 <!-- List Card -->
 <div class="content_card">
     <?php while ($rows_project2 = mysqli_fetch_assoc($sqlp_2)) : ?>
@@ -116,7 +116,7 @@ $sql_bar = mysqli_query($conn,"SELECT * FROM tag");
 </div>
 
 <br>
-        
+
         <!-- Footer -->
         <footer class="footer">
             <div class="footer-navigation">
