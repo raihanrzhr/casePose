@@ -21,8 +21,9 @@ include '../../php/read-users.php';
         rel="stylesheet">
     <!-- Link Style CSS -->
     <link rel="stylesheet" href="../../style/nav_bar.css">
-    <link rel="stylesheet" href="../../style/footer.css" />
+    <link rel="stylesheet" href="../../style/footer.css">
     <link rel="stylesheet" href="../../style/style.css">
+    <link rel="stylesheet" href="../../style/style-submit-project.css">
     <link rel="stylesheet" href="../../style/global.css">
     <link rel="stylesheet" href="../../style/style_edit_profil.css">
     <!-- Title -->
@@ -79,6 +80,8 @@ include '../../php/read-users.php';
     </nav>
     <br><br><br>
     <!-- content -->
+    <!-- JavaScript untuk notifikasi sukses -->
+    <script src="../../javascript/edit-profile.js"></script>
     <div class="content">
         <div class="side-navigation">
             <button class="button-contained" type="button" onclick="location.href='../profil.php'"><img
@@ -101,51 +104,64 @@ include '../../php/read-users.php';
             </div>
         </div>
         
-        <div class="container-form">
-            <div class="profile-picture">
-                    <img src="<?php 
-                    if ($rows["profilePicture"] == ""){
-                        echo "../../asset/users/user/default-profil.jpg";
-                    } else {
-                        echo "../../asset/users/user/".$rows["profilePicture"];
-                    }
-                    ?>" />
-                <div class="cta-profile">
-                    <a href="" class="btn-primary-medium">Change Picture</a>
-                    <a href="" class="btn-secondary-medium">Remove</a>
+        <form action="../../php/proses-edit-profile.php" method="post">
+            <input type="hidden" name="id" value="<?= $rows['userId'] ?>">
+            <div class="container-form">
+                <div class="profile-picture">
+                        <img src="<?php 
+                        if ($rows["profilePicture"] == ""){
+                            echo "../../asset/users/user/default-profil.jpg";
+                        } else {
+                            echo "../../asset/users/user/".$rows["profilePicture"];
+                        }
+                        ?>" />
+                    <div class="cta-profile">
+                        <input type="submit" class="btn-primary-medium" value="Change Picture">
+                        <input type="submit" class="btn-secondary-medium" value="Remove">
+                    </div>
+                </div>
+                <div class="form">
+                    <div class="name">
+                        <div class="container-input">
+                            <div class="label">
+                                <label class="text">First Name</label>
+                                <label class="asterix">*</label>
+                            </div>
+                            <input type="text" name="firstName" value="<?php echo $rows["firstName"]?>">
+                        </div>
+                        <div class="container-input">
+                            <div class="label">
+                                <label class="text">Last Name</label>
+                                <label class="asterix">*</label>
+                            </div>
+                            <input type="text" name="lastName" value="<?php echo $rows["lastName"]?>">
+                        </div>
+                    </div>
+                    <div class="container-input">
+                        <div class="label">
+                            <label class="text">Email</label>
+                            <label class="asterix">*</label>
+                        </div>
+                        <input type="text" name="email" value="<?php echo $rows["email"]?>">
+                    </div>
+                    <div class="container-input">
+                        <div class="label">
+                            <label class="text">About</label>
+                        </div>
+                        <textarea cols="50" name="about" rows="4"><?php echo $rows['about_me']?></textarea>
+                    </div>
+                    <input type="submit" class="btn-primary-xlarge" value="Save Changes">
+                    <!-- onclick="notifikasiEditSucces()" -->
                 </div>
             </div>
-            <div class="form">
-                <form class="name">
-                    <div class="container-input">
-                        <div class="label">
-                            <label class="text">First Name</label>
-                            <label class="asterix">*</label>
-                        </div>
-                        <input type="text" value="<?php echo $rows["firstName"]?>">
-                    </div>
-                    <div class="container-input">
-                        <div class="label">
-                            <label class="text">Last Name</label>
-                            <label class="asterix">*</label>
-                        </div>
-                        <input type="text" value="<?php echo $rows["lastName"]?>">
-                    </div>
-                </form>
-                <div class="container-input">
-                    <div class="label">
-                        <label class="text">Email</label>
-                        <label class="asterix">*</label>
-                    </div>
-                    <input type="text" value="<?php echo $rows["email"]?>">
-                </div>
-                <div class="container-input">
-                    <div class="label">
-                        <label class="text">About</label>
-                    </div>
-                    <textarea cols="50" rows="4">value="<?php echo $rows["about_me"]?>"</textarea>
-                </div>
-                <a href="" class="btn-primary-xlarge">Save Changes</a>
+        </form>
+        <!-- UI Pop-Up Notifikasi Sukses Edit Profile -->
+        <div class="bg-notif-edit" id="notification-edit" style="display: none;">
+            <div class="content-side-bar succes-upload notif-edit" >
+                <img src="../../asset/centang.png" alt=""><br>
+                <label for="" class="font-succes">Your profile has been</label><br>
+                <label for="" class="font-succes">successfully updated</label><br><br><br>
+                <a href="" class="button-back-home" onclick="notifikasiEditSuccesBack()">Back</a>
             </div>
         </div>
     </div>
