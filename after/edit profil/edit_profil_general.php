@@ -104,7 +104,7 @@ include '../../php/read-users.php';
             </div>
         </div>
         
-        <form action="../../php/proses-edit-profile.php" method="post">
+        <form action="../../php/php-edit-profile.php" method="post">
             <input type="hidden" name="id" value="<?= $rows['userId'] ?>">
             <div class="container-form">
                 <div class="profile-picture">
