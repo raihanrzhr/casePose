@@ -140,8 +140,9 @@ a{
 }
 .div-upload {
     padding: 100px;
+    background-size: cover;
     margin: 10px 0px;
-    width: 100%;
+    height: 500px;
     border: 1px solid rgba(233, 233, 235, 1);
     border-radius: 6px;
 }
@@ -176,6 +177,7 @@ a{
 .button-1{
     background-color: rgba(233, 233, 235, 1);
     border-radius: 6px;
+    text-align: center;
     border: 1px solid rgba(233, 233, 235, 1);
     padding: 12px;
     width: 50%;
@@ -234,18 +236,20 @@ a{
     z-index: 100;
 }
 .notif-edit{
-    background-color: rgba(233, 233, 235, 1);
-    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    padding: 40px 40px 80px;
 }
 .succes-upload img {
     width: 200px;
+    height: 200px;
 }
 .font-succes{
-    font-size: 35px;
-    font-weight: bold;
+    font-size: 25px;
 }
 .button-back-home{
-    padding: 10px 40px;
+    width: 200px;
+    padding: 10px 0;
     border-radius: 8px;
     font-weight: 700;
     background-color: rgba(3, 7, 18, 1);
@@ -259,6 +263,30 @@ a{
     color: rgba(3, 7, 18, 1);
     border-color: rgba(3, 7, 18, 1);
 }
+.button-notif{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.button-back-cancel{
+    width: 200px;
+    padding: 10px 0;
+    border-radius: 8px;
+    font-weight: 700;
+    background-color: rgba(233, 233, 235, 1);
+    color: rgba(3, 7, 18, 1);
+    transition-duration: 0.5s;
+    text-decoration: none;
+    border: 2px solid rgba(233, 233, 235, 1);
+}
+.button-back-cancel:hover{
+    background-color: rgba(3, 7, 18, 1) ;
+    color: rgba(233, 233, 235, 1);
+    border-color: rgba(233, 233, 235, 1);
+}
+
 .button-back-home-2{
     padding: 10px 40px;
     border-radius: 8px;
@@ -276,4 +304,22 @@ a{
 }
 .margin-auto {
     margin: 0 auto;
+}
+select {
+    width: 713px;
+    margin: 10px 0px 20px;
+    padding: 12px;
+    border: 1px solid rgba(233, 233, 235, 1);
+    border-radius: 6px;
+}
+.option {
+    height: 20px;
+}
+.word-box {
+    background-color: white;
+    border-radius: 6px;
+    display: inline-block;
+    border: 1px solid rgb(184, 184, 184);
+    padding: 2px 9px;
+    margin: 5px;
 }

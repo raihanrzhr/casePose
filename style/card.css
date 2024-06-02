@@ -58,13 +58,17 @@ body{
 }
 .div-label {
     padding: 5px 10px;
+    width: 80vv;
 }
 @media (max-width: 1120px) {
     .content_card {
         width: 810px;
     }
-    .card_image,.div-label,.card {
+    .card_image,.card {
         width: 250px;
+    }
+    .div-label{
+        width: 18vw;
     }
     .div-label label {
         font-size: 15px;
@@ -74,9 +78,16 @@ body{
     .content_card {
         width: 630px;
     }
-    .card_image,.div-label,.card {
+    .card_image,.card {
         width: 300px;
     }
+    .div-label{
+        width: 29.7vw;
+    }
+    .div-label label {
+        font-size: 1.6vw;
+    }
+
 }
 
 @media (max-width: 700px) {
@@ -84,11 +95,8 @@ body{
         width:83vw;
         gap: 3vw;
         }
-    .card_image,.div-label,.card {
+    .card_image,.card {
         width: 40vw;
-    }
-    .div-label label {
-        font-size: 15px;
     }
 }
 
@@ -97,11 +105,24 @@ body{
         width:83vw;
         gap: 3vw;
     }
-    .card_image,.div-label,.card {
+    .card_image,.card-footer,.div-label,.card {
         width: 83vw;
+    }
+    .card-footer {
+        margin-top: 5px;
     }
     .card_image {
         max-width: 83vw;
+    }
+    .div-label{
+        width: 65vw;
+    }
+    .div-label label {
+        font-size: 3vw;
+    }
+    .card:hover{
+        transition-duration: none;
+        transform: none;
     }
 }
 /* @media (width <= 480px) {

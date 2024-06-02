@@ -119,6 +119,17 @@ body{
     font-weight: 600;
     line-height: 100%; 
 }
+.card-footer {
+    display: flex;
+    flex-wrap: wrap;
+}
+.card-foto-profil {
+    margin: 5px;
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    border-radius: 50px;
+}
 
 @media (max-width:1120px) {
     .div-filter{
