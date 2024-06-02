@@ -138,15 +138,15 @@ include '../../php/read-users.php';
                         <label for="" class="bold">Tipe Project</label><br>
                         <select name="projectType" id="" >
                             <option value=""selected disabled>Click Here......</option>
-                            <option value="Website">WEBSITE</option>
-                            <option value="Application">DESKTOP</option>
-                            <option value="Application">MOBILE</option>
-                            <option value="Game">GAME</option>
-                            <option value="Mobile">VR/AR</option>
-                            <option value="Mobile">SOCIAL MEDIA</option>
-                            <option value="Mobile">E-COMMERCE</option>
-                            <option value="Mobile">KOMUNICATION</option>
-                            <option value="Mobile">IoT</option>
+                            <option value="WEBSITE">WEBSITE</option>
+                            <option value="DESKTOP">DESKTOP</option>
+                            <option value="MOBILE">MOBILE</option>
+                            <option value="GAME">GAME</option>
+                            <option value="VR/AR">VR/AR</option>
+                            <option value="SOCIAL MEDIA">SOCIAL MEDIA</option>
+                            <option value="E-COMMERCE">E-COMMERCE</option>
+                            <option value="KOMUNICATION">KOMUNICATION</option>
+                            <option value="IoT">IoT</option>
                         </select>
 
                         <label class="roboto bold red">

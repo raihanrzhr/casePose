@@ -1,8 +1,7 @@
 <?php
 include 'php/connection.php';
 
-$sqlp_2 = mysqli_query($conn,"SELECT p.*,u.*,p.projectPicture AS foto_project,p.projectName AS nama_project, CONCAT(u.firstName,' ',u.lastName) AS nama_lengkap_2 FROM project p JOIN user u ON p.userId = u.userId");
-
+$sqlp_2 = mysqli_query($conn,"SELECT u.userId AS id_user,u.profilePicture AS foto_profil,p.userId AS id_user, p.projectId AS id_project, p.projectPicture AS foto_project,p.projectName AS nama_project, CONCAT(u.firstName,' ',u.lastName) AS nama_lengkap_2 FROM project p JOIN user u ON p.userId = u.userId");
 $sql_bar = mysqli_query($conn,"SELECT * FROM tag");
 
 ?>
@@ -102,15 +101,27 @@ $sql_bar = mysqli_query($conn,"SELECT * FROM tag");
 <!-- List Card -->
 <div class="content_card">
     <?php while ($rows_project2 = mysqli_fetch_assoc($sqlp_2)) : ?>
-        <a href="<?php echo 'detail_project_viewer.php?idproject='.$rows_project2["projectId"];?>"><div class="card">
-            <!-- <div class="card_image" style="background-image: url('asset/card/card3.png');"> -->
+        <!-- seleksi kondisi apakah yang membuka project user atau viewer -->
+        <a href=" <?php echo 'detail_project_viewer.php?idproject='.$rows_project2["id_project"];?>">
+        <div class="card">
+            <!-- <div class="card_image" style="background-image: url('../asset/card/card3.png');"> -->
             <div class="card_image" style="background-image: url('asset/users/project/halaman/<?php echo $rows_project2["foto_project"];?>')">
                 <div class="card_image_hover"></div>
             </div>
-            <div class="div-label">
-                <label class="roboto bold"><?php echo $rows_project2["nama_project"];?></label><br>
-                <label for=""class="roboto">by <?php echo $rows_project2["nama_lengkap_2"];?></label>
+            <div class="card-footer">
+                <div class="card-foto-profil"  style="<?php 
+                    if ($rows_project2["foto_profil"] == ""){
+                        echo "background-image:url('asset/users/user/default-profil.jpg');";
+                    } else {
+                        echo "background-image:url('asset/users/user/".$rows_project2["foto_profil"]."');";
+                    }
+                    ?>"></div>
+                <div class="div-label">
+                    <label class="roboto bold"><?php echo $rows_project2["nama_project"];?></label><br>
+                    <label for=""class="roboto">by <?php echo $rows_project2["nama_lengkap_2"];?></label>
+                </div>
             </div>
+            
         </div></a>
     <?php endwhile ;?>
 </div>
