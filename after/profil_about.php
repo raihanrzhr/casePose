@@ -57,7 +57,7 @@ include '../php/read-users.php';
                     <a href="index.php"><img src="../asset/logo/logo_2.png" alt=""></a>
                 </div>
                 <div class="navbar-actions">
-                    <a href="submit_project.php" class="navbar-button-alt">
+                    <a href="submit-project/submit-project-1.php" class="navbar-button-alt">
                         <div class="navbar-button-text-alt">Submit Project</div>
                     </a>
                     <a href="../php/php-log-out.php" class="navbar-button-logout">

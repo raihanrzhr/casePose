@@ -48,7 +48,7 @@ $sql_bar = mysqli_query($conn,"SELECT * FROM tag");
         </div>
         <div class="navbar-logo"><a href="index.php"><img src="../asset/logo/logo_2.png" alt=""></a></div>
         <div class="navbar-actions">
-            <a href="submit_project.php" class="navbar-button-alt"><div class="navbar-button-text-alt">Submit Project</div></a>
+            <a href="submit-project-1.php" class="navbar-button-alt"><div class="navbar-button-text-alt">Submit Project</div></a>
             <a href="../php/php-log-out.php" class="navbar-button-logout"><div class="navbar-button-text-alt">logout</div></a>    
             <div class="button-dropdown">
                 <div class="button-dropdown-1 margin-auto">
@@ -123,10 +123,20 @@ $sql_bar = mysqli_query($conn,"SELECT * FROM tag");
             <div class="card_image" style="background-image: url('../asset/users/project/halaman/<?php echo $rows_project2["foto_project"];?>')">
                 <div class="card_image_hover"></div>
             </div>
-            <div class="div-label">
-                <label class="roboto bold"><?php echo $rows_project2["nama_project"];?></label><br>
-                <label for=""class="roboto">by <?php echo $rows_project2["nama_lengkap_2"];?></label>
+            <div class="card-footer">
+                <div class="card-foto-profil"  style="<?php 
+                    if ($rows_project2["foto_profil"] == ""){
+                        echo "background-image:url('../asset/users/user/default-profil.jpg');";
+                    } else {
+                        echo "background-image:url('../asset/users/user/".$rows_project2["foto_profil"]."');";
+                    }
+                    ?>"></div>
+                <div class="div-label">
+                    <label class="roboto bold"><?php echo $rows_project2["nama_project"];?></label><br>
+                    <label for=""class="roboto">by <?php echo $rows_project2["nama_lengkap_2"];?></label>
+                </div>
             </div>
+            
         </div></a>
     <?php endwhile ;?>
 </div>
