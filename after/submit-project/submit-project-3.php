@@ -53,23 +53,23 @@ $name_file = $_GET["projectPicture"];
             </div>
             <div class="navbar">
                 <div class="navbar-menu">
-                    <a href="../profil.php" class="my-profil">
+                    <a class="my-profil" onclick="notifikasiBackProfil()">
                         <span class="navbar-text">My Profil</span></a>
-                    <a href="../index.php" class="navbar-item">
+                    <a class="navbar-item" onclick="notifikasiBack()">
                         <span class="navbar-text">Home</span></a>
-                    <a href="../about.php" class="navbar-item">
+                    <a class="navbar-item" onclick="notifikasiBackAbout()">
                         <span class="navbar-text">About</span></a>
-                    <a href="../pricing.php" class="navbar-item">
+                    <a class="navbar-item" onclick="notifikasiBackPricing()">
                         <span class="navbar-text">Pricing</span></a>
                 </div>
                 <div class="navbar-logo">
-                    <a href="../index.php"><img src="../../asset/logo/logo_2.png" alt=""></a>
+                    <a onclick="notifikasiBack()"><img src="../../asset/logo/logo_2.png" alt=""></a>
                 </div>
                 <div class="navbar-actions">
-                    <a href="submit-project-1.php" class="navbar-button-alt">
+                    <a class="navbar-button-alt" onclick="notifikasiBackSubmit()">
                         <div class="navbar-button-text-alt">Submit Project</div>
                     </a>
-                    <a href="../../php/php-log-out.php" class="navbar-button-logout">
+                    <a  class="navbar-button-logout" onclick="notifikasiBackLogout()">
                         <div class="navbar-button-text-alt">logout</div>
                     </a>
                     <div class="button-dropdown">
@@ -91,7 +91,7 @@ $name_file = $_GET["projectPicture"];
                             <img src="../../asset/chevron-down.png" alt="" class="button-contained-img">
                         </div>
                         <div class="dropdown-content">
-                            <a href="../profil.php">
+                            <a onclick="notifikasiBackProfil()">
                                 <div class="List-dropdown">
                                     <div
                                         class="style-svg"
@@ -99,7 +99,7 @@ $name_file = $_GET["projectPicture"];
                                     <label for="" class="bold List-dropdown-label">My Profil</label>
                                 </div>
                             </a>
-                            <a href="../../php/php-log-out.php">
+                            <a onclick="notifikasiBackLogout()">
                                 <div class="List-dropdown">
                                     <div
                                         class="style-svg"
@@ -139,6 +139,7 @@ $name_file = $_GET["projectPicture"];
                     <select name="projectType" id="" hidden>
                             <option value="<?php echo $projectType?>" selected><?php echo $projectType?></option>
                     </select>
+                    <input type="text" class="input-link" name="projectPicture" value="<?php echo $name_file?>" hidden>
                      <button id="back1" type="submit" class="button-contained" ><img src="../../asset/chevron-left.png">Back</button>
                 </form>                
                 
@@ -149,14 +150,107 @@ $name_file = $_GET["projectPicture"];
                         <label for="" class="font-succes grey ">The data you created will be deleted</label><br><br><br>
                         
                         <div class="button-notif">
-                            <a onclick="cancelBack()" ><div class="button-back-cancel">Back</div></a>
+                            <a onclick="cancelBack('notification-back')" ><div class="button-back-cancel">Back</div></a>
                             <form action="../../php/php-delete-foto.php" method="post">
+                                <?php ?>
+                                <input type="text" name="halaman" value="../after/index.php" hidden>
                                 <input type="text" value="<?php echo $name_file?>" name="name_file" hidden>
                                 <button class="button-back-home" name="hapus-img">Cancel this Form</button>
                             </form>   
                         </div>
                     </div>
                 </div>
+
+                <div class="bg-notif-edit" id="notification-back-about" style="display: none;">
+                    <div class="content-side-bar succes-upload notif-edit" >
+                        <img src="../../asset/tanda-tanya.png" alt=""><br><br><br>
+                        <label for="" class="font-succes bold">Are you sure you want to cancel this form?</label><br>
+                        <label for="" class="font-succes grey ">The data you created will be deleted</label><br><br><br>
+                        
+                        <div class="button-notif">
+                            <a onclick="cancelBack('notification-back-about')" ><div class="button-back-cancel">Back</div></a>
+                            <form action="../../php/php-delete-foto.php" method="post">
+                                <?php ?>
+                                <input type="text" name="halaman" value="../after/about.php" hidden>
+                                <input type="text" value="<?php echo $name_file?>" name="name_file" hidden>
+                                <button class="button-back-home" name="hapus-img">Cancel this Form</button>
+                            </form>   
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-notif-edit" id="notification-back-pricing" style="display: none;">
+                    <div class="content-side-bar succes-upload notif-edit" >
+                        <img src="../../asset/tanda-tanya.png" alt=""><br><br><br>
+                        <label for="" class="font-succes bold">Are you sure you want to cancel this form?</label><br>
+                        <label for="" class="font-succes grey ">The data you created will be deleted</label><br><br><br>
+                        
+                        <div class="button-notif">
+                            <a onclick="cancelBack('notification-back-pricing')" ><div class="button-back-cancel">Back</div></a>
+                            <form action="../../php/php-delete-foto.php" method="post">
+                                <?php ?>
+                                <input type="text" name="halaman" value="../after/pricing.php" hidden>
+                                <input type="text" value="<?php echo $name_file?>" name="name_file" hidden>
+                                <button class="button-back-home" name="hapus-img">Cancel this Form</button>
+                            </form>   
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-notif-edit" id="notification-back-my-profil" style="display: none;">
+                    <div class="content-side-bar succes-upload notif-edit" >
+                        <img src="../../asset/tanda-tanya.png" alt=""><br><br><br>
+                        <label for="" class="font-succes bold">Are you sure you want to cancel this form?</label><br>
+                        <label for="" class="font-succes grey ">The data you created will be deleted</label><br><br><br>
+                        
+                        <div class="button-notif">
+                            <a onclick="cancelBack('notification-back-my-profil')" ><div class="button-back-cancel">Back</div></a>
+                            <form action="../../php/php-delete-foto.php" method="post">
+                                <?php ?>
+                                <input type="text" name="halaman" value="../after/profil.php" hidden>
+                                <input type="text" value="<?php echo $name_file?>" name="name_file" hidden>
+                                <button class="button-back-home" name="hapus-img">Cancel this Form</button>
+                            </form>   
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-notif-edit" id="notification-back-submit" style="display: none;">
+                    <div class="content-side-bar succes-upload notif-edit" >
+                        <img src="../../asset/tanda-tanya.png" alt=""><br><br><br>
+                        <label for="" class="font-succes bold">Are you sure you want to cancel this form?</label><br>
+                        <label for="" class="font-succes grey ">The data you created will be deleted</label><br><br><br>
+                        
+                        <div class="button-notif">
+                            <a onclick="cancelBack('notification-back-submit')" ><div class="button-back-cancel">Back</div></a>
+                            <form action="../../php/php-delete-foto.php" method="post">
+                                <?php ?>
+                                <input type="text" name="halaman" value="../after/submit-project/submit-project-1.php" hidden>
+                                <input type="text" value="<?php echo $name_file?>" name="name_file" hidden>
+                                <button class="button-back-home" name="hapus-img">Cancel this Form</button>
+                            </form>   
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-notif-edit" id="notification-back-logout" style="display: none;">
+                    <div class="content-side-bar succes-upload notif-edit" >
+                        <img src="../../asset/tanda-tanya.png" alt=""><br><br><br>
+                        <label for="" class="font-succes bold">Are you sure you want to cancel this form?</label><br>
+                        <label for="" class="font-succes grey ">The data you created will be deleted</label><br><br><br>
+                        
+                        <div class="button-notif">
+                            <a onclick="cancelBack('notification-back-logout')" ><div class="button-back-cancel">Back</div></a>
+                            <form action="../../php/php-delete-foto.php" method="post">
+                                <?php ?>
+                                <input type="text" name="halaman" value="php-log-out.php" hidden>
+                                <input type="text" value="<?php echo $name_file?>" name="name_file" hidden>
+                                <button class="button-back-home" name="hapus-img">Cancel this Form</button>
+                            </form>   
+                        </div>
+                    </div>
+                </div>
+
             </div>
         <!-- form -->
         <form method="POST" action="../../php/submit-project/proses-submit-3.php" >

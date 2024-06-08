@@ -6,8 +6,11 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] != "login") {
     exit();
 }
 include '../php/read-users.php';
+include '../php/read-project.php';  
 
-
+$paket = $_GET["paket"];
+$i = 1;
+$f = 1;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,88 +87,140 @@ include '../php/read-users.php';
 </nav>
         <br><br><br>
         <!-- content -->
-        <div class="pricing">
-            <script src="../javascript/pricing.js"></script>
-            <div id="paket1" class="list-pricing" onclick="triggerButton('submit-1')">
-                <div class="head-list-pricing">
-                    <h2>Package 1</h2><br>
-                    <label class="">Rp.39.000.-</label><br>
-                    <label class="">/Month</label>
-                </div>
-                <div class="content-list-pricing">
-                    <div class="benefit">
-                        <img src="../asset/svg/check.svg" alt="">
-                        <label for="">promote your project for 1 month</label>
+        <div class="pricing-2">
+            <div class="pricing-2-1">
+                <div class="tabel">
+                    <div class="head-tabel">
+                        <img src="../asset/svg/Line.png" alt=""><h2 for="">Your Project</h2>
                     </div>
-                    <div class="benefit">
-                        <img src="../asset/svg/check.svg" alt="">   
-                        <label for="">show in project recommendations</label>
+                    <div class="div-tabel"><br>
+                        <table class="tabel-1">
+                            <thead>
+                                <tr>
+                                    <th class="th-no"><div class="div-th">No</div></th>
+                                    <th class="th-project-id"><div class="div-th">Project Id</div></th>
+                                    <th class="th-title"><div class="div-th">Project Title</div></th>
+                                    <th class="th-promote"><div class="div-th">Promote</div></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                
+                                while($rows = mysqli_fetch_assoc($sql_pricing)) : ?>
+                                <tr>
+                                    <td><div class="div-th"><?php echo $f++?></div></td>
+                                    <td><div class="div-th"><?php echo $rows["projectId"]?></div></td>
+                                    <td><div class="div-th"><?php echo $rows["projectName"]?></div></td>
+                                    <td><button class="btn-promote">Promote</button></td>
+                                </tr>
+                                <?php endwhile ;?>
+                                <!-- Tambahkan lebih banyak baris sesuai kebutuhan -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <form action="../php/proses-pricing.php" method="post">
-                    <input type="text" name="paket" value="1" hidden>
-                    <button id="submit-1" type="submit" hidden></button>
-                </form>   
+                <div class="tabel">
+                    <div class="head-tabel">
+                    <img src="../asset/svg/Line.png" alt=""><h2 for="">Successfully Promoted</h2>
+                    </div>
+                    <div class="div-tabel">
+                        <table class="tabel-1">
+                            <thead>
+                                <tr>
+                                    <th class="th-no"><div class="div-th">No</div></th>
+                                    <th class="th-project-id"><div class="div-th">Project Id</div></th>
+                                    <th class="th-title"><div class="div-th">Project Title</div></th>
+                                    <th class="th-promote"><div class="div-th">Promote</div></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                
+                                while($rows_2 = mysqli_fetch_assoc($sql_pricing_2)) : ?>
+                                <tr>
+                                    <td><div class="div-th"><?php echo $i++?></div></td>
+                                    <td><div class="div-th"><?php echo $rows_2["projectId"]?></div></td>
+                                    <td><div class="div-th"><?php echo $rows_2["projectName"]?></div></td>
+                                    <td><button class="btn-promote">Promote</button></td>
+                                </tr>
+                                <?php endwhile ;?>
+                                <!-- Tambahkan lebih banyak baris sesuai kebutuhan -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
-            <div class="list-pricing" onclick="triggerButton('submit-2')">
-                <div class="head-list-pricing" >
-                    <h2>Package 2</h2><br>
-                    <label class="">Rp.59.000.-</label><br>
-                    <label class="">/Month</label>
-                </div>
-                <div class="content-list-pricing">
-                    <div class="benefit">
-                        <img src="../asset/svg/check.svg" alt="">
-                        <label for="">promote your project for 1 month</label>
-                    </div>
-                    <div class="benefit">
-                        <img src="../asset/svg/check.svg" alt="">
-                        <label for="">show in project recommendations</label>
-                    </div>
-                    <div class="benefit">
-                        <img src="../asset/svg/check.svg" alt="">
-                        <label for="">show in top 3 homepage</label>
-                    </div>
-                    <form action="../php/proses-pricing.php" method="post">
-                    <input type="text" name="paket" value="2" hidden>
-                    <button id="submit-2" type="submit" hidden></button>
-                </form>   
-                </div>   
-            </div>
+            <div class="pricing-2-2">
 
-            <div class="list-pricing" onclick="triggerButton('submit-3')">
-                <div class="head-list-pricing">
-                    <h2>Package 3</h2><br>
-                    <label class="">Rp.159.000.-</label><br>
-                    <label class="">/Month</label>
+                <?php if ($paket == '1'){?>
+                <div id="paket1" class="list-pricing">
+                    <div class="head-list-pricing">
+                        <h2>Package 1</h2><br>
+                        <label class="">Rp.39.000.-</label><br>
+                        <label class="">/Month</label>
+                    </div>
+                    <div class="content-list-pricing">
+                        <div class="benefit">
+                            <img src="../asset/svg/check.svg" alt="">
+                            <label for="">promote your project for 1 month</label>
+                        </div>
+                        <div class="benefit">
+                            <img src="../asset/svg/check.svg" alt="">   
+                            <label for="">show in project recommendations</label>
+                        </div>
+                    </div>
                 </div>
-                <div class="content-list-pricing">
-                    <div class="benefit">
-                        <img src="../asset/svg/check.svg" alt="">
-                        <label for="">promote your project for 1 Years</label>
+                <?php }?>
+
+                <?php if ($paket == '2'){?>
+                <div class="list-pricing margin-auto">
+                    <div class="head-list-pricing" >
+                        <h2>Package 2</h2><br>
+                        <label class="">Rp.59.000.-</label><br>
+                        <label class="">/Month</label>
                     </div>
-                    <div class="benefit">
-                        <img src="../asset/svg/check.svg" alt="">
-                        <label for="">show in project recommendations</label>
+                    <div class="content-list-pricing">
+                        <div class="benefit">
+                            <img src="../asset/svg/check.svg" alt="">
+                            <label for="">promote your project for 1 Years</label>
+                        </div>
+                        <div class="benefit">
+                            <img src="../asset/svg/check.svg" alt="">
+                            <label for="">show in project recommendations</label>
+                        </div>
+                        <div class="benefit">
+                            <img src="../asset/svg/check.svg" alt="">
+                            <label for="">show in top 3 homepage</label>
+                        </div>  
+                    </div>   
+                </div>
+                <?php }?>
+
+                <?php if ($paket == '3'){?>
+                <div class="list-pricing">
+                    <div class="head-list-pricing">
+                        <h2>Package 3</h2><br>
+                        <label class="">Rp.159.000.-</label><br>
+                        <label class="">/Month</label>
                     </div>
-                    <div class="benefit">
-                        <img src="../asset/svg/check.svg" alt="">
-                        <label for="">show in top 3 homepage</label>
-                    </div>
-                    <form action="../php/proses-pricing.php" method="post">
-                        <input type="text" name="paket" value="3" hidden>
-                        <button id="submit-3" type="submit" hidden></button>
-                    </form>   
-                </div>   
+                    <div class="content-list-pricing">
+                        <div class="benefit">
+                            <img src="../asset/svg/check.svg" alt="">
+                            <label for="">promote your project for 1 month</label>
+                        </div>
+                        <div class="benefit">
+                            <img src="../asset/svg/check.svg" alt="">
+                            <label for="">show in project recommendations</label>
+                        </div>
+                    </div>   
+                 </div>
+                <?php }?>
+
+
+
             </div>
         </div>
-        <!-- alertt -->
-        <!-- <div class="alert1">
-            <img src="../asset/alert1.png" alt=""><br>
-            <label for="" class="roboto bold" style="font-size: 35px;">This Page</label><br>
-            <label for="" class="roboto bold" style="font-size: 35px;">Still Processing...</label>
-        </div> -->
         <!-- Footer -->
         <footer class="footer">
             <div class="footer-navigation">

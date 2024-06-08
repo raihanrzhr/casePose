@@ -49,23 +49,23 @@ $projectType = $_GET["projectType"];
             </div>
             <div class="navbar">
                 <div class="navbar-menu">
-                    <a href="../profil.php" class="my-profil">
+                    <a onclick="notifikasiBackProfil()" class="my-profil">
                         <span class="navbar-text">My Profil</span></a>
-                    <a href="../index.php" class="navbar-item">
+                    <a onclick="notifikasiBack()" class="navbar-item">
                         <span class="navbar-text">Home</span></a>
-                    <a href="../about.php" class="navbar-item">
+                    <a onclick="notifikasiBackAbout()" class="navbar-item">
                         <span class="navbar-text">About</span></a>
-                    <a href="../pricing.php" class="navbar-item">
+                    <a onclick="notifikasiBackPricing()" class="navbar-item">
                         <span class="navbar-text">Pricing</span></a>
                 </div>
                 <div class="navbar-logo">
-                    <a href="../index.php"><img src="../../asset/logo/logo_2.png" alt=""></a>
+                    <a onclick="notifikasiBack()"><img src="../../asset/logo/logo_2.png" alt=""></a>
                 </div>
                 <div class="navbar-actions">
-                    <a href="submit-project-1.php" class="navbar-button-alt">
+                    <a onclick="notifikasiBackSubmit()" class="navbar-button-alt">
                         <div class="navbar-button-text-alt">Submit Project</div>
                     </a>
-                    <a href="../../php/php-log-out.php" class="navbar-button-logout">
+                    <a onclick="notifikasiBackLogout()" class="navbar-button-logout">
                         <div class="navbar-button-text-alt">logout</div>
                     </a>
                     <div class="button-dropdown">
@@ -87,7 +87,7 @@ $projectType = $_GET["projectType"];
                             <img src="../../asset/chevron-down.png" alt="" class="button-contained-img">
                         </div>
                         <div class="dropdown-content">
-                            <a href="../profil.php">
+                            <a onclick="notifikasiBackProfil()">
                                 <div class="List-dropdown">
                                     <div
                                         class="style-svg"
@@ -95,7 +95,7 @@ $projectType = $_GET["projectType"];
                                     <label for="" class="bold List-dropdown-label">My Profil</label>
                                 </div>
                             </a>
-                            <a href="../../php/php-log-out.php">
+                            <a onclick="notifikasiBackLogout()">
                                 <div class="List-dropdown">
                                     <div
                                         class="style-svg"
@@ -129,7 +129,7 @@ $projectType = $_GET["projectType"];
                         <img src="../..//asset/svg/check.svg" alt="">
                     </div>
                 </div>
-                <a href="submit-project-1.php"><button id="back1"  class="button-contained" ><img src="../../asset/chevron-left.png">Back </button></a>
+                <button id="back1"  class="button-contained" onclick="goBack()"><img src="../../asset/chevron-left.png">Back </button>
                 
                 <div class="bg-notif-edit" id="notification-back" style="display: none;">
                     <div class="content-side-bar succes-upload notif-edit" >
@@ -138,12 +138,78 @@ $projectType = $_GET["projectType"];
                         <label for="" class="font-succes grey ">The data you created will be deleted</label><br><br><br>
                         
                         <div class="button-notif">
-                            <a onclick="cancelBack()" ><div class="button-back-cancel">Back</div></a>
+                            <a onclick="cancelBack('notification-back')" ><div class="button-back-cancel">Back</div></a>
                             <a href="../index.php" ><div class="button-back-home">Cancel this Form</div></a>
                         </div>
                     </div>
                 </div>
 
+                <div class="bg-notif-edit" id="notification-back-about" style="display: none;">
+                    <div class="content-side-bar succes-upload notif-edit" >
+                        <img src="../../asset/tanda-tanya.png" alt=""><br><br><br>
+                        <label for="" class="font-succes bold">Are you sure you want to cancel this form?</label><br>
+                        <label for="" class="font-succes grey ">The data you created will be deleted</label><br><br><br>
+                        
+                        <div class="button-notif">
+                            <a onclick="cancelBack('notification-back-about')" ><div class="button-back-cancel">Back</div></a>
+                            <a href="../about.php" ><div class="button-back-home">Cancel this Form</div></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-notif-edit" id="notification-back-pricing" style="display: none;">
+                    <div class="content-side-bar succes-upload notif-edit" >
+                        <img src="../../asset/tanda-tanya.png" alt=""><br><br><br>
+                        <label for="" class="font-succes bold">Are you sure you want to cancel this form?</label><br>
+                        <label for="" class="font-succes grey ">The data you created will be deleted</label><br><br><br>
+                        
+                        <div class="button-notif">
+                            <a onclick="cancelBack('notification-back-pricing')" ><div class="button-back-cancel">Back</div></a>
+                            <a href="../pricing.php" ><div class="button-back-home">Cancel this Form</div></a>  
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-notif-edit" id="notification-back-my-profil" style="display: none;">
+                    <div class="content-side-bar succes-upload notif-edit" >
+                        <img src="../../asset/tanda-tanya.png" alt=""><br><br><br>
+                        <label for="" class="font-succes bold">Are you sure you want to cancel this form?</label><br>
+                        <label for="" class="font-succes grey ">The data you created will be deleted</label><br><br><br>
+                        
+                        <div class="button-notif">
+                            <a onclick="cancelBack('notification-back-my-profil')" ><div class="button-back-cancel">Back</div></a>
+                            <a href="../profil.php" ><div class="button-back-home">Cancel this Form</div></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-notif-edit" id="notification-back-submit" style="display: none;">
+                    <div class="content-side-bar succes-upload notif-edit" >
+                        <img src="../../asset/tanda-tanya.png" alt=""><br><br><br>
+                        <label for="" class="font-succes bold">Are you sure you want to cancel this form?</label><br>
+                        <label for="" class="font-succes grey ">The data you created will be deleted</label><br><br><br>
+                        
+                        <div class="button-notif">
+                            <a onclick="cancelBack('notification-back-submit')" ><div class="button-back-cancel">Back</div></a>
+                            <a href="../submit-project/submit-project-1.php" ><div class="button-back-home">Cancel this Form</div></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-notif-edit" id="notification-back-logout" style="display: none;">
+                    <div class="content-side-bar succes-upload notif-edit" >
+                        <img src="../../asset/tanda-tanya.png" alt=""><br><br><br>
+                        <label for="" class="font-succes bold">Are you sure you want to cancel this form?</label><br>
+                        <label for="" class="font-succes grey ">The data you created will be deleted</label><br><br><br>
+                        
+                        <div class="button-notif">
+                            <a onclick="cancelBack('notification-back-logout')" ><div class="button-back-cancel">Back</div></a>
+                            <a href="../../php/php-log-out.php" ><div class="button-back-home">Cancel this Form</div></a>
+                        </div>
+                    </div>
+                </div>
+
+                    
             </div>
             
         <!-- form -->

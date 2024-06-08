@@ -1,4 +1,7 @@
 <?php
+
+$halaman = $_POST["halaman"];
+
 if (isset($_POST["hapus-img"])) {
     // Ambil nama file dari input POST
     if (isset($_POST['name_file'])) {
@@ -23,7 +26,7 @@ if (isset($_POST["hapus-img"])) {
 
                     echo "File berhasil dihapus.<br>";
 
-                    header("Location: ../after/index.php");
+                    header("Location: $halaman");
                     exit; // Hentikan eksekusi skrip lebih lanjut
                 } else {
                     // Debugging: Terjadi kesalahan saat menghapus file
@@ -36,6 +39,7 @@ if (isset($_POST["hapus-img"])) {
         } else {
             // Debugging: File tidak ditemukan
             echo "File '$filename' tidak ditemukan.<br>";
+            header("Location: $halaman");
         }
     } else {
         // Debugging: name_file tidak ada dalam POST

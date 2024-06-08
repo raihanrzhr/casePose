@@ -59,11 +59,12 @@ if(empty($projectName) || empty($projectDescription) || empty($projectType) || e
                 }else{
                     
                     // ALTER TABLE `project` ADD `projectTag` VARCHAR(255) NOT NULL AFTER `projectStatus`;
-                    $sqll = "SELECT MAX(projectId) AS last_id FROM project";
+                    $sqll = "SELECT MAX(CAST(projectId AS INTEGER)) AS last_id FROM project";
                     
                     $hasil = mysqli_query($conn,$sqll);
                     $rows = mysqli_fetch_assoc($hasil);
                     $new_id = $rows["last_id"] + 1;
+                    echo $rows["last_id"];
 
                     $sql = "INSERT INTO project (projectId,projectName, projectType, projectDescription, projectLink, projectPicture, uploadDate, projectStatus, projectTag, userId) 
                     VALUES ('$new_id','$projectName', '$projectType', '$projectDescription', '$projectLink', '$name_file', '$projectDate', '$projectStatus', '$projectTag', '$userId')";
