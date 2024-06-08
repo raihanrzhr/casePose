@@ -1,12 +1,16 @@
 <?php
 session_start();
-include '../php/connection.php'; 
+include '../php/connection.php';
 if (!isset($_SESSION['status']) || $_SESSION['status'] != "login") {
     header("Location: ../sign-in.php?pesan=belum_login");
     exit();
-}  
+}
 include '../php/read-users.php'; 
+include '../php/read-project.php';  
+
+$sql_bar = mysqli_query($conn,"SELECT * FROM tag");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,13 +23,14 @@ include '../php/read-users.php';
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <!-- Link Style CSS -->
     <link rel="stylesheet" href="../style/nav_bar.css">
-    <link rel="stylesheet" href="../style/global.css">
-    <link rel="stylesheet" href="../style/style_about.css">
     <link rel="stylesheet" href="../style/footer.css">
     <link rel="stylesheet" href="../style/card.css">
+    <link rel="stylesheet" href="../style/global.css">
+    <link rel="stylesheet" href="../style/style-index.css">
+    <link rel="stylesheet" href="../style/style-detail-project.css">
     <!-- Title -->
     <link rel="icon" href="../asset/logo/logo_1.png">
-    <title>About</title>
+    <title>Log Activity</title>
 </head>
 
 <body>
@@ -62,7 +67,7 @@ include '../php/read-users.php';
                 <div class="button-dropdown-2 margin-auto">
                     <img src="../asset/chevron-down.png" alt="" class="button-contained-img">
                 </div>
-                                
+                
                 <div class="dropdown-content">
                     <a href="profil.php"><div class="List-dropdown">
                         <label for="" class="List-dropdown-label">My Profile</label>
@@ -76,7 +81,7 @@ include '../php/read-users.php';
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M6 0.75C4.55025 0.75 3.375 1.92525 3.375 3.375V4.875C2.54657 4.875 1.875 5.54657 1.875 6.375V9.75C1.875 10.5784 2.54657 11.25 3.375 11.25H8.625C9.45343 11.25 10.125 10.5784 10.125 9.75V6.375C10.125 5.54657 9.45343 4.875 8.625 4.875V3.375C8.625 1.92525 7.44975 0.75 6 0.75ZM7.875 4.875V3.375C7.875 2.33947 7.03553 1.5 6 1.5C4.96447 1.5 4.125 2.33947 4.125 3.375V4.875H7.875Z" fill="#6B7280"/>
                         </svg>
                     </div></a>
-                    <a href="logactivity.php"><div class="List-dropdown">
+                    <a href="logactivity.php"><div class="List-dropdown dd-act">
                         <label for="" class="List-dropdown-label">LogActivity</label>
                     </div></a>
                     <a href="../php/php-log-out.php"><div class="List-dropdown-logout">
@@ -93,79 +98,10 @@ include '../php/read-users.php';
     </div>
     <script src="../javascript/navbar.js"></script>
 </nav>
+<br><br><br>
 <!-- content -->
-<div class="about">
-    <div class="card-section">
-        <div class="card-content">
-            <div class="card-title">casePose</div>
-            <div class="card-details">
-                <div class="card-details-group">
-                    <div class="card-subtitle">casePose</div>
-                    <div class="card-year">© 2024</div>
-                </div>
-                <p class="card-description">
-                    <span class="card-description-span">
-                        IS ONE OF PORTFOLIO WEBSITE AND IT’S DESIGN FOR SOFTWARE ENGINEERING STUDENTS AT<br/>
-                    </span>
-                    <span class="card-university">UNIVERSITAS PENDIDIKAN INDONESIA</span>
-                </p>
-            </div>
-        </div>
-    </div>   
-    <div class="message-section">
-        <div class="message-section-inner">
-            <div class="message-section-title">SAY HI TO</div>
-            <div class="message-section-subtitle">Our Lovely Team</div>
-        </div>
-        <p class="message-section-paragraph">
-            We are students of software engineering at Universitas Pendidikan Indonesia, Bandung, Indonesia. This website
-            is built using HTML, CSS and Javascript. It is also used for one of the course assignments of
-            Website Programming and Database Technology. Here’s an introduction to Pose's Team.
-        </p>
-    </div>  
-    <div class="team-container">
-        <div class="team-section">
-            <div class="team-member">
-                <div class="team-image">
-                    <img src="../asset/member/farhan.jpg" alt="Team Image">
-                </div>  
-                <div class="team-info">
-                    <div class="member-name">Farhan Angga Riyanto<br>(2209226)</div>
-                    <div class="member-role">as Leader</div>
-                </div>
-            </div>
-            <div class="team-member">
-                <div class="team-image">
-                    <img src="../asset/member/raya.jpg" alt="Team Image">
-                </div>                        
-                <div class="team-info">
-                    <div class="member-name">Mohammad Raya Satriatama<br>(2206418)</div>
-                    <div class="member-role">as Member</div>
-                </div>
-            </div>
-        </div>
-        <div class="team-section">
-            <div class="team-member">
-                <div class="team-image">
-                    <img src="../asset/member/nadia.PNG" alt="Team Image">
-                </div>  
-                <div class="team-info">
-                    <div class="member-name">Nadia Aqmarina Ghaisany<br>(2202012)</div>
-                    <div class="member-role">as Member</div>
-                </div>
-            </div>
-            <div class="team-member">
-                <div class="team-image">
-                    <img src="../asset/member/akmal.jpg" alt="Team Image">
-                </div>  
-                <div class="team-info">
-                    <div class="member-name">Akmal Hadi Syaputra<br>(2200457)</div>
-                    <div class="member-role">as Member</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+
 <!-- Footer -->
 <footer class="footer">
     <div class="footer-navigation">

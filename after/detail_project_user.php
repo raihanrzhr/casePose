@@ -50,12 +50,13 @@ $rows_project_detail = mysqli_fetch_assoc($query);
         <button class="navbar-toggle-button" onclick="toggleColor()">☰</button>
     </div>
     <div class="navbar">
-        <div class="navbar-menu">
-            <a href="profil.php" class="my-profil"><span class="navbar-text">My Profil</span></a>
-            <a href="index.php" class="navbar-item"><span class="navbar-text">Home</span></a>
-            <a href="about.php" class="navbar-item"><span class="navbar-text">About</span></a>
-            <a href="pricing.php" class="navbar-item"><span class="navbar-text">Pricing</span></a>
-        </div>
+            <div class="navbar-menu">
+                <a href="profil.php" class="my-profil"><span class="navbar-text">My Profil</span></a>
+                <a href="index.php" class="navbar-item "><span class="navbar-text">Home</span></a>
+                <a href="about.php" class="navbar-item"><span class="navbar-text">About</span></a>
+                <a href="pricing.php" class="navbar-item"><span class="navbar-text">Pricing</span></a>
+                <a href="logactivity.php" class="logactivity" ><span class="navbar-text">Log Activity</span></a>
+            </div>
         <div class="navbar-logo"><a href="index.php"><img src="../asset/logo/logo_2.png" alt=""></a></div>
         <div class="navbar-actions">
             <a href="submit-project/submit-project-1.php" class="navbar-button-alt"><div class="navbar-button-text-alt">Submit Project</div></a>
