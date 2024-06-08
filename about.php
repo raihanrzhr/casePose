@@ -1,54 +1,26 @@
-<?php
-include 'php/connection.php';
-
-$sqlp_2 = mysqli_query($conn,"SELECT u.userId AS id_user,u.profilePicture AS foto_profil
-,p.userId AS id_user, p.projectId AS id_project, p.projectPicture AS foto_project
-,p.projectName AS nama_project, CONCAT(u.firstName,' ',u.lastName) AS nama_lengkap_2 
-FROM project p JOIN user u ON p.userId = u.userId ORDER BY RAND() LIMIT 9;");
-$sql_bar = mysqli_query($conn,"SELECT * FROM tag");
-
-$rekomendasi_project = mysqli_query($conn,"SELECT u.userId AS id_user,u.profilePicture AS foto_profil
-,p.userId AS id_user, p.projectId AS id_project, p.projectPicture AS foto_project
-,p.projectName AS nama_project, CONCAT(u.firstName,' ',u.lastName) AS nama_lengkap_2 
-FROM project p JOIN user u  ON p.userId = u.userId JOIN pricing pr ON p.projectId = pr.projectId 
-ORDER BY RAND() LIMIT 3;");
-
-$top_3 = mysqli_query($conn,"SELECT u.userId AS id_user,u.profilePicture AS foto_profil
-,p.userId AS id_user, p.projectId AS id_project, p.projectPicture AS foto_project
-,p.projectName AS nama_project, CONCAT(u.firstName,' ',u.lastName) AS nama_lengkap_2 
-FROM project p JOIN user u  ON p.userId = u.userId JOIN pricing pr ON p.projectId = pr.projectId WHERE pr.pricingPackage != 1
-ORDER BY RAND() LIMIT 3;");
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- Title -->
-        <link rel="icon" href="asset/logo/logo_1.png" />
-        <title>Home</title>
-        <link rel="stylesheet" href="style/style_pricing.css" />
         <!-- Google Fonts Roboto -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossorigin="crossorigin"
-        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
             rel="stylesheet"
         />
         <!-- Link Style CSS -->
-        <link rel="stylesheet" href="style/nav_bar.css">
-        <link rel="stylesheet" href="style/footer.css">
-        <link rel="stylesheet" href="style/global.css">
-        <link rel="stylesheet" href="style/style-index.css">
-        <link rel="stylesheet" href="style/card.css">
-        <link rel="stylesheet" href="style/style-detail-project.css">
-
+        <link rel="stylesheet" href="style/nav_bar.css" />
+        <link rel="stylesheet" href="style/style_about.css" />
+        <link rel="stylesheet" href="style/footer.css" />
+        <link rel="stylesheet" href="style/card.css" />
+        <link rel="stylesheet" href="style/style.css" />
+        <link rel="stylesheet" href="style/style_2.css" />
+        <!-- Title -->
+        <link rel="icon" href="asset/logo/logo_1.png" />
+        <title>About</title>
     </head>
-
     <body>
         <!-- Navigation Bar -->
         <nav>
@@ -60,15 +32,15 @@ ORDER BY RAND() LIMIT 3;");
             </div>
             <div class="navbar">
                 <div class="navbar-menu">
-                    <a href="index.php" class="navbar-item active"
-                        ><span class="navbar-text">Home</span></a
-                    >
-                    <a href="about.php" class="navbar-item"
-                        ><span class="navbar-text">About</span></a
-                    >
-                    <a href="pricing.php" class="navbar-item "
-                        ><span class="navbar-text">Pricing</span></a
-                    >
+                    <a href="index.php" class="navbar-item">
+                        <span class="navbar-text">Home</span>
+                    </a>
+                    <a href="about.php" class="navbar-item active">
+                        <span class="navbar-text">About</span>
+                    </a>
+                    <a href="pricing.php" class="navbar-item">
+                        <span class="navbar-text">Pricing</span>
+                    </a>
                 </div>
                 <div class="navbar-logo">
                     <a href="index.php"><img src="asset/logo/logo_2.png" alt="" /></a>
@@ -84,133 +56,88 @@ ORDER BY RAND() LIMIT 3;");
             </div>
             <script src="javascript/navbar.js"></script>
         </nav>
-        <br><br><br>
-<!-- Header -->
-<div class="header-home">
-    <div id="text">
-      <p class="subtitle">INTRODUCTION TO</p>
-      <p class="title">Our Galery of <br/>Software Engineering’s Portfolio</p>
-    </div>
-    <input type="text" id="search" class="text-field-icon" placeholder="Search">
-</div>
-<!-- pricing paket 2 dan 3  -->
-<div class="content_card">
-    <?php while ($rows_project2 = mysqli_fetch_assoc($top_3)) : ?>
-        <!-- seleksi kondisi apakah yang membuka project user atau viewer -->
-        <a href=" <?php echo 'detail_project_viewer.php?idproject='.$rows_project2["id_project"];?>">
-        <div class="card">
-            <!-- <div class="card_image" style="background-image: url('../asset/card/card3.png');"> -->
-            <div class="card_image" style="background-image: url('asset/users/project/halaman/<?php echo $rows_project2["foto_project"];?>')">
-                <div class="card_image_hover">
-                    <div class="card_sponsor">
-                        <label for="">Sponsor</label>
+        <!-- content -->
+        <div class="about">
+            <div class="card-section">
+                <div class="card-content">
+                    <div class="card-title">casePose</div>
+                    <div class="card-details">
+                        <div class="card-details-group">
+                            <div class="card-subtitle">casePose</div>
+                            <div class="card-year">© 2024</div>
+                        </div>
+                        <p class="card-description">
+                            <span class="card-description-span">
+                                IS ONE OF PORTFOLIO WEBSITE AND IT’S DESIGN FOR SOFTWARE
+                                ENGINEERING STUDENTS AT<br />
+                            </span>
+                            <span class="card-university"
+                                >UNIVERSITAS PENDIDIKAN INDONESIA</span
+                            >
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="card-footer">
-                <div class="card-foto-profil"  style="<?php 
-                    if ($rows_project2["foto_profil"] == ""){
-                        echo "background-image:url('asset/users/user/default-profil.jpg');";
-                    } else {
-                        echo "background-image:url('asset/users/user/".$rows_project2["foto_profil"]."');";
-                    }
-                    ?>"></div>
-                <div class="div-label">
-                    <label class="roboto bold"><?php echo $rows_project2["nama_project"];?></label><br>
-                    <label for=""class="roboto">by <?php echo $rows_project2["nama_lengkap_2"];?></label>
+            <div class="message-section">
+                <div class="message-section-inner">
+                    <div class="message-section-title">SAY HI TO</div>
+                    <div class="message-section-subtitle">Our Lovely Team</div>
                 </div>
-            </div> 
-        </div></a>
-    <?php endwhile ;?>
-</div>   
-<!-- bar menu    -->
-<div class="div-filter">
-    <div class="div-bar">
-            <div class="div-daftar">
-                    <label>On Fire</label>
+                <p class="message-section-paragraph">
+                    We are students of software engineering at Universitas Pendidikan
+                    Indonesia, Bandung, Indonesia. This website is built using HTML, CSS
+                    and Javascript. It is also used for one of the course assignments of
+                    Website Programming and Database Technology. Here’s an introduction to
+                    Pose's Team.
+                </p>
             </div>
-        <?php while ($rows_bar = mysqli_fetch_assoc($sql_bar)):?>
-            <div class="div-daftar">
-                    <label><?=  $rows_bar["nama"]?></label>
-            </div>
-        <?php endwhile ;?>
-    </div>
-    <div class="btn-sorted">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M3 7.5 7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5" />
-        </svg>
-        <label for="">sorted by Date</label>
-    </div>
-</div>
-<!-- List Card -->
-<div class="content_card">
-    <?php while ($rows_project2 = mysqli_fetch_assoc($sqlp_2)) : ?>
-        <!-- seleksi kondisi apakah yang membuka project user atau viewer -->
-        <a href=" <?php echo 'detail_project_viewer.php?idproject='.$rows_project2["id_project"];?>">
-        <div class="card">
-            <!-- <div class="card_image" style="background-image: url('../asset/card/card3.png');"> -->
-            <div class="card_image" style="background-image: url('asset/users/project/halaman/<?php echo $rows_project2["foto_project"];?>')">
-                <div class="card_image_hover"></div>
-            </div>
-            <div class="card-footer">
-                <div class="card-foto-profil"  style="<?php 
-                    if ($rows_project2["foto_profil"] == ""){
-                        echo "background-image:url('asset/users/user/default-profil.jpg');";
-                    } else {
-                        echo "background-image:url('asset/users/user/".$rows_project2["foto_profil"]."');";
-                    }
-                    ?>"></div>
-                <div class="div-label">
-                    <label class="roboto bold"><?php echo $rows_project2["nama_project"];?></label><br>
-                    <label for=""class="roboto">by <?php echo $rows_project2["nama_lengkap_2"];?></label>
-                </div>
-            </div> 
-        </div></a>
-    <?php endwhile ;?>
-</div>
-
-<br>
-<!-- rekomendasi more project -->
-            <div class="more-project">
-                <div class="more-project-1">
-                    <label class="more-project-label">LET’S EXPLORE
-                        <br></label>
-                    <label class="more-project-label bold">RECOMMENDATION PROJECT
-                        <br></h1>
-                    <label class="more-project-label bold">FOR YOU
-                        <br></h1>
-                </div>
-                <div class="content_card">
-                    <?php while ($rows_project2 = mysqli_fetch_assoc($rekomendasi_project)) : ?>
-                        <!-- seleksi kondisi apakah yang membuka project user atau viewer -->
-                        <a href=" <?php 
-                            if($userId == $rows_project2["id_user"]){
-                                echo 'detail_project_user.php?idproject='.$rows_project2["id_project"];
-                            }else{
-                                echo 'detail_project_viewer.php?idproject='.$rows_project2["id_project"];
-                            }
-                            ?>"><div class="card">
-                            <!-- <div class="card_image" style="background-image: url('asset/card/card3.png');"> -->
-                            <div class="card_image" style="background-image: url('  asset/users/project/halaman/<?php echo $rows_project2["foto_project"];?>')">
-                                <div class="card_image_hover"></div>
+            <div class="team-container">
+                <div class="team-section">
+                    <div class="team-member">
+                        <div class="team-image">
+                            <img src="asset/member/farhan.jpg" alt="Team Image" />
+                        </div>
+                        <div class="team-info">
+                            <div class="member-name">Farhan Angga Riyanto<br />(2209226)</div>
+                            <div class="member-role">as Leader</div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-image">
+                            <img src="asset/member/raya.jpg" alt="Team Image" />
+                        </div>
+                        <div class="team-info">
+                            <div class="member-name">
+                                Mohammad Raya Satriatama<br />(2206418)
                             </div>
-                            <div class="card-footer">
-                                <div class="card-foto-profil"  style="<?php 
-                                    if ($rows_project2["foto_profil"] == ""){
-                                        echo "background-image:url('asset/users/user/default-profil.jpg');";
-                                    } else {
-                                        echo "background-image:url('asset/users/user/".$rows_project2["foto_profil"]."');";
-                                    }
-                                    ?>"></div>
-                                <div class="div-label">
-                                    <label class="roboto bold"><?php echo $rows_project2["nama_project"];?></label><br>
-                                    <label for=""class="roboto">by <?php echo $rows_project2["nama_lengkap_2"];?></label>
-                                </div>
-                            </div>
-                        </div></a>
-                    <?php endwhile ;?>
+                            <div class="member-role">as Member</div>
+                        </div>
+                    </div>
                 </div>
-            </div>  
+                <div class="team-section">
+                    <div class="team-member">
+                        <div class="team-image">
+                            <img src="asset/member/nadia.PNG" alt="Team Image" />
+                        </div>
+                        <div class="team-info">
+                            <div class="member-name">
+                                Nadia Aqmarina Ghaisany<br />(2202012)
+                            </div>
+                            <div class="member-role">as Member</div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-image">
+                            <img src="asset/member/akmal.jpg" alt="Team Image" />
+                        </div>
+                        <div class="team-info">
+                            <div class="member-name">Akmal Hadi Syaputra<br />(2200457)</div>
+                            <div class="member-role">as Member</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Footer -->
         <footer class="footer">
             <div class="footer-navigation">

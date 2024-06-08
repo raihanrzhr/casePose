@@ -2,7 +2,12 @@
 session_start();
 include 'php/connection.php';
 $id_project = $_GET["idproject"];
-$sqlp_2 = mysqli_query($conn,"SELECT p.userId AS id_user, p.projectId AS id_project, p.projectPicture AS foto_project,p.projectName AS nama_project, CONCAT(u.firstName,' ',u.lastName) AS nama_lengkap_2 FROM project p JOIN user u ON p.userId = u.userId");
+
+$rekomendasi_project = mysqli_query($conn,"SELECT u.userId AS id_user,u.profilePicture AS foto_profil
+,p.userId AS id_user, p.projectId AS id_project, p.projectPicture AS foto_project
+,p.projectName AS nama_project, CONCAT(u.firstName,' ',u.lastName) AS nama_lengkap_2 
+FROM project p JOIN user u  ON p.userId = u.userId JOIN pricing pr ON p.projectId = pr.projectId 
+ORDER BY RAND() LIMIT 3;");
 
 $query = mysqli_query($conn,"SELECT project.*,user.* ,user.userId,CONCAT(user.firstName,' ',user.lastName)AS nama_lengkap FROM project JOIN user ON project.userId = user.userId AND project.projectId = '$id_project'");
 $rows_project_detail = mysqli_fetch_assoc($query);
@@ -167,7 +172,7 @@ $rows_project_detail = mysqli_fetch_assoc($query);
                         <br></h1>
                 </div>
                 <div class="content_card">
-                    <?php while ($rows_project2 = mysqli_fetch_assoc($sqlp_2)) : ?>
+                    <?php while ($rows_project2 = mysqli_fetch_assoc($rekomendasi_project)) : ?>
                         <!-- seleksi kondisi apakah yang membuka project user atau viewer -->
                         <a href=" <?php 
                             if($userId == $rows_project2["id_user"]){

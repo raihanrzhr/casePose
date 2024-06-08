@@ -1,24 +1,3 @@
-<?php
-include 'php/connection.php';
-
-$sqlp_2 = mysqli_query($conn,"SELECT u.userId AS id_user,u.profilePicture AS foto_profil
-,p.userId AS id_user, p.projectId AS id_project, p.projectPicture AS foto_project
-,p.projectName AS nama_project, CONCAT(u.firstName,' ',u.lastName) AS nama_lengkap_2 
-FROM project p JOIN user u ON p.userId = u.userId ORDER BY RAND() LIMIT 9;");
-$sql_bar = mysqli_query($conn,"SELECT * FROM tag");
-
-$rekomendasi_project = mysqli_query($conn,"SELECT u.userId AS id_user,u.profilePicture AS foto_profil
-,p.userId AS id_user, p.projectId AS id_project, p.projectPicture AS foto_project
-,p.projectName AS nama_project, CONCAT(u.firstName,' ',u.lastName) AS nama_lengkap_2 
-FROM project p JOIN user u  ON p.userId = u.userId JOIN pricing pr ON p.projectId = pr.projectId 
-ORDER BY RAND() LIMIT 3;");
-
-$top_3 = mysqli_query($conn,"SELECT u.userId AS id_user,u.profilePicture AS foto_profil
-,p.userId AS id_user, p.projectId AS id_project, p.projectPicture AS foto_project
-,p.projectName AS nama_project, CONCAT(u.firstName,' ',u.lastName) AS nama_lengkap_2 
-FROM project p JOIN user u  ON p.userId = u.userId JOIN pricing pr ON p.projectId = pr.projectId WHERE pr.pricingPackage != 1
-ORDER BY RAND() LIMIT 3;");
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -26,7 +5,7 @@ ORDER BY RAND() LIMIT 3;");
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Title -->
         <link rel="icon" href="asset/logo/logo_1.png" />
-        <title>Home</title>
+        <title>Pricing</title>
         <link rel="stylesheet" href="style/style_pricing.css" />
         <!-- Google Fonts Roboto -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -40,13 +19,10 @@ ORDER BY RAND() LIMIT 3;");
             rel="stylesheet"
         />
         <!-- Link Style CSS -->
-        <link rel="stylesheet" href="style/nav_bar.css">
-        <link rel="stylesheet" href="style/footer.css">
+        <link rel="stylesheet" href="style/nav_bar.css" />
+        <link rel="stylesheet" href="style/footer.css" />
+        <link rel="stylesheet" href="style/style.css">
         <link rel="stylesheet" href="style/global.css">
-        <link rel="stylesheet" href="style/style-index.css">
-        <link rel="stylesheet" href="style/card.css">
-        <link rel="stylesheet" href="style/style-detail-project.css">
-
     </head>
 
     <body>
@@ -60,13 +36,13 @@ ORDER BY RAND() LIMIT 3;");
             </div>
             <div class="navbar">
                 <div class="navbar-menu">
-                    <a href="index.php" class="navbar-item active"
+                    <a href="index.php" class="navbar-item"
                         ><span class="navbar-text">Home</span></a
                     >
                     <a href="about.php" class="navbar-item"
                         ><span class="navbar-text">About</span></a
                     >
-                    <a href="pricing.php" class="navbar-item "
+                    <a href="pricing.php" class="navbar-item active"
                         ><span class="navbar-text">Pricing</span></a
                     >
                 </div>
@@ -83,138 +59,96 @@ ORDER BY RAND() LIMIT 3;");
                 </div>
             </div>
             <script src="javascript/navbar.js"></script>
-        </nav>
-        <br><br><br>
-<!-- Header -->
-<div class="header-home">
-    <div id="text">
-      <p class="subtitle">INTRODUCTION TO</p>
-      <p class="title">Our Galery of <br/>Software Engineering’s Portfolio</p>
-    </div>
-    <input type="text" id="search" class="text-field-icon" placeholder="Search">
-</div>
-<!-- pricing paket 2 dan 3  -->
-<div class="content_card">
-    <?php while ($rows_project2 = mysqli_fetch_assoc($top_3)) : ?>
-        <!-- seleksi kondisi apakah yang membuka project user atau viewer -->
-        <a href=" <?php echo 'detail_project_viewer.php?idproject='.$rows_project2["id_project"];?>">
-        <div class="card">
-            <!-- <div class="card_image" style="background-image: url('../asset/card/card3.png');"> -->
-            <div class="card_image" style="background-image: url('asset/users/project/halaman/<?php echo $rows_project2["foto_project"];?>')">
-                <div class="card_image_hover">
-                    <div class="card_sponsor">
-                        <label for="">Sponsor</label>
+        </nav><br><br><br>
+        <!-- Content -->
+        <div class="pricing">
+            <script src="javascript/pricing.js"></script>
+            <div id="paket1" class="list-pricing" onclick="triggerButton('submit-1')">
+                <div class="head-list-pricing">
+                    <h2>Package 1</h2><br>
+                    <label class="">Rp.39.000.-</label><br>
+                    <label class="">/Month</label>
+                </div>
+                <div class="content-list-pricing">
+                    <div class="benefit">
+                        <img src="asset/svg/check.svg" alt="">
+                        <label for="">promote your project for 1 month</label>
+                    </div>
+                    <div class="benefit">
+                        <img src="asset/svg/check.svg" alt="">   
+                        <label for="">show in project recommendations</label>
                     </div>
                 </div>
+                <form action="php/proses-pricing.php" method="post">
+                    <input type="text" name="paket" value="1" hidden>
+                    <button id="submit-1" type="submit" hidden></button>
+                </form>   
             </div>
-            <div class="card-footer">
-                <div class="card-foto-profil"  style="<?php 
-                    if ($rows_project2["foto_profil"] == ""){
-                        echo "background-image:url('asset/users/user/default-profil.jpg');";
-                    } else {
-                        echo "background-image:url('asset/users/user/".$rows_project2["foto_profil"]."');";
-                    }
-                    ?>"></div>
-                <div class="div-label">
-                    <label class="roboto bold"><?php echo $rows_project2["nama_project"];?></label><br>
-                    <label for=""class="roboto">by <?php echo $rows_project2["nama_lengkap_2"];?></label>
-                </div>
-            </div> 
-        </div></a>
-    <?php endwhile ;?>
-</div>   
-<!-- bar menu    -->
-<div class="div-filter">
-    <div class="div-bar">
-            <div class="div-daftar">
-                    <label>On Fire</label>
-            </div>
-        <?php while ($rows_bar = mysqli_fetch_assoc($sql_bar)):?>
-            <div class="div-daftar">
-                    <label><?=  $rows_bar["nama"]?></label>
-            </div>
-        <?php endwhile ;?>
-    </div>
-    <div class="btn-sorted">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M3 7.5 7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5" />
-        </svg>
-        <label for="">sorted by Date</label>
-    </div>
-</div>
-<!-- List Card -->
-<div class="content_card">
-    <?php while ($rows_project2 = mysqli_fetch_assoc($sqlp_2)) : ?>
-        <!-- seleksi kondisi apakah yang membuka project user atau viewer -->
-        <a href=" <?php echo 'detail_project_viewer.php?idproject='.$rows_project2["id_project"];?>">
-        <div class="card">
-            <!-- <div class="card_image" style="background-image: url('../asset/card/card3.png');"> -->
-            <div class="card_image" style="background-image: url('asset/users/project/halaman/<?php echo $rows_project2["foto_project"];?>')">
-                <div class="card_image_hover"></div>
-            </div>
-            <div class="card-footer">
-                <div class="card-foto-profil"  style="<?php 
-                    if ($rows_project2["foto_profil"] == ""){
-                        echo "background-image:url('asset/users/user/default-profil.jpg');";
-                    } else {
-                        echo "background-image:url('asset/users/user/".$rows_project2["foto_profil"]."');";
-                    }
-                    ?>"></div>
-                <div class="div-label">
-                    <label class="roboto bold"><?php echo $rows_project2["nama_project"];?></label><br>
-                    <label for=""class="roboto">by <?php echo $rows_project2["nama_lengkap_2"];?></label>
-                </div>
-            </div> 
-        </div></a>
-    <?php endwhile ;?>
-</div>
 
-<br>
-<!-- rekomendasi more project -->
-            <div class="more-project">
-                <div class="more-project-1">
-                    <label class="more-project-label">LET’S EXPLORE
-                        <br></label>
-                    <label class="more-project-label bold">RECOMMENDATION PROJECT
-                        <br></h1>
-                    <label class="more-project-label bold">FOR YOU
-                        <br></h1>
+            <div class="list-pricing" onclick="triggerButton('submit-2')">
+                <div class="head-list-pricing" >
+                    <h2>Package 2</h2><br>
+                    <label class="">Rp.59.000.-</label><br>
+                    <label class="">/Month</label>
                 </div>
-                <div class="content_card">
-                    <?php while ($rows_project2 = mysqli_fetch_assoc($rekomendasi_project)) : ?>
-                        <!-- seleksi kondisi apakah yang membuka project user atau viewer -->
-                        <a href=" <?php 
-                            if($userId == $rows_project2["id_user"]){
-                                echo 'detail_project_user.php?idproject='.$rows_project2["id_project"];
-                            }else{
-                                echo 'detail_project_viewer.php?idproject='.$rows_project2["id_project"];
-                            }
-                            ?>"><div class="card">
-                            <!-- <div class="card_image" style="background-image: url('asset/card/card3.png');"> -->
-                            <div class="card_image" style="background-image: url('  asset/users/project/halaman/<?php echo $rows_project2["foto_project"];?>')">
-                                <div class="card_image_hover"></div>
-                            </div>
-                            <div class="card-footer">
-                                <div class="card-foto-profil"  style="<?php 
-                                    if ($rows_project2["foto_profil"] == ""){
-                                        echo "background-image:url('asset/users/user/default-profil.jpg');";
-                                    } else {
-                                        echo "background-image:url('asset/users/user/".$rows_project2["foto_profil"]."');";
-                                    }
-                                    ?>"></div>
-                                <div class="div-label">
-                                    <label class="roboto bold"><?php echo $rows_project2["nama_project"];?></label><br>
-                                    <label for=""class="roboto">by <?php echo $rows_project2["nama_lengkap_2"];?></label>
-                                </div>
-                            </div>
-                        </div></a>
-                    <?php endwhile ;?>
+                <div class="content-list-pricing">
+                    <div class="benefit">
+                        <img src="asset/svg/check.svg" alt="">
+                        <label for="">promote your project for 1 month</label>
+                    </div>
+                    <div class="benefit">
+                        <img src="asset/svg/check.svg" alt="">
+                        <label for="">show in project recommendations</label>
+                    </div>
+                    <div class="benefit">
+                        <img src="asset/svg/check.svg" alt="">
+                        <label for="">show in top 3 homepage</label>
+                    </div>
+                    <div class="benefit">
+                        <img src="asset/svg/check.svg" alt="">
+                        <label for="">label sponsor</label>
+                    </div>
+                    <form action="php/proses-pricing.php" method="post">
+                    <input type="text" name="paket" value="2" hidden>
+                    <button id="submit-2" type="submit" hidden></button>
+                </form>   
+                </div>   
+            </div>
+
+            <div class="list-pricing" onclick="triggerButton('submit-3')">
+                <div class="head-list-pricing">
+                    <h2>Package 3</h2><br>
+                    <label class="">Rp.159.000.-</label><br>
+                    <label class="">/Month</label>
                 </div>
-            </div>  
+                <div class="content-list-pricing">
+                    <div class="benefit">
+                        <img src="asset/svg/check.svg" alt="">
+                        <label for="">promote your project for 1 Years</label>
+                    </div>
+                    <div class="benefit">
+                        <img src="asset/svg/check.svg" alt="">
+                        <label for="">show in project recommendations</label>
+                    </div>
+                    <div class="benefit">
+                        <img src="asset/svg/check.svg" alt="">
+                        <label for="">show in top 3 homepage</label>
+                    </div>
+                    <div class="benefit">
+                        <img src="asset/svg/check.svg" alt="">
+                        <label for="">label sponsor</label>
+                    </div>
+                    <form action="php/proses-pricing.php" method="post">
+                        <input type="text" name="paket" value="3" hidden>
+                        <button id="submit-3" type="submit" hidden></button>
+                    </form>   
+                </div>   
+            </div>
+        </div>
         <!-- Footer -->
         <footer class="footer">
             <div class="footer-navigation">
-                <div class="footer-navigation-item">
+                <div class="footer-navigation-item margin-auto">
                     <a href="index.php" class="footer-frame">
                         <div class="footer-text-wrapper-1">Home</div>
                     </a>
@@ -228,7 +162,7 @@ ORDER BY RAND() LIMIT 3;");
                         <div class="footer-text-wrapper-1">FAQs</div>
                     </a>
                 </div>
-                <div class="footer-navigation-button">
+                <div class="footer-navigation-button margin-auto">
                     <a
                         href="https://instagram.com"
                         class="footer-social-button"
