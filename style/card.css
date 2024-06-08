@@ -13,7 +13,7 @@ body{
     
 }
 .content_card {
-    margin: 30px auto 300px;
+    margin: 30px auto 100px;
     width: 1080px; 
     max-width: 1100px;
     display: flex;
@@ -60,6 +60,23 @@ body{
     padding: 5px 10px;
     width: 80vv;
 }
+.card_sponsor {
+    padding: 5px 10px;
+    background-color: #ffd43a;
+    width: 5.7vw;
+    border-radius: 10px 0px 10px 0px;
+}
+.card-foto-profil {
+    margin: 5px;
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    border-radius: 50px;
+}
+.card-footer {
+    display: flex;
+    flex-wrap: wrap;
+}
 @media (max-width: 1120px) {
     .content_card {
         width: 810px;
@@ -68,10 +85,10 @@ body{
         width: 250px;
     }
     .div-label{
-        width: 18vw;
+        width: 21vw;
     }
     .div-label label {
-        font-size: 15px;
+        font-size: 11px;
     }
 }
 @media (max-width: 870px) {

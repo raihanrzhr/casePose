@@ -43,7 +43,7 @@
     border-bottom: 2px solid #0F172A;
     font-weight: 700;
 }
-.my-profil{
+.my-profil,.logactivity{
     background-color: transparent;
     border-bottom: 2px solid transparent;
     color: rgba(17, 24, 39, 1);
@@ -234,7 +234,7 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.1);
     z-index: 1;
     border-radius: 0px 0px 7px 7px;
-    padding-bottom: 20px;
+    padding: 20px 0px;
     right: 0;
 }
 
@@ -253,7 +253,49 @@
 
 .List-dropdown {
     padding: 10px 20px;
+    margin: 10px;
+    border-radius: 6px;
     color: rgba(3, 7, 18, 1);
+}
+
+.List-dropdown:hover{
+    background-color: #F1F5F9;
+    transition-duration: 0.1s;
+}
+
+
+.dd-act {
+    background-color: #F1F5F9;
+    font-weight: 700;
+}
+.billing {
+    color: rgb(196, 196, 196);
+    pointer-events: none;
+    cursor: not-allowed;
+}
+.billing svg {
+    width: 12px;
+    height: 12px;
+    color: rgb(196, 196, 196);
+}
+.List-dropdown-logout {
+    padding: 10px 20px;
+    background-color: #FFF1F2;
+    margin: 10px;
+    border-radius: 6px;
+    color: rgba(3, 7, 18, 1);
+}
+.List-dropdown-logout:hover {
+    background-color: #f2cdcf;
+    transition-duration: 0.5s;
+}
+.List-dropdown-logout svg {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+}
+.List-dropdown-logout label {
+    color: rgb(199, 10, 10);
 }
 
 .List-dropdown:hover{
@@ -304,7 +346,7 @@
     .navbar-button-logout{
         display: inline-flex;
     }
-    .my-profil {
+    .my-profil ,.logactivity{
         display: block;
         font-size: 16px;
     }
