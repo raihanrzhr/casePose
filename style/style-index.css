@@ -5,27 +5,27 @@ body{
     margin: 0;
 }
 .subtitle{
-    text-align: center; 
-    color: #9CA3AF; 
-    font-size: 14px; 
-    font-family: Roboto; 
-    font-weight: 400; 
-    line-height: 19.60px; 
+    text-align: center;
+    color: #9CA3AF;
+    font-size: 14px;
+    font-family: Roboto;
+    font-weight: 400;
+    line-height: 19.60px;
     word-wrap: break-word;
     margin-bottom: 12px;
 }
 .header-home {
     margin: 40px auto;
-    
+
     text-align: center;
 }
 .title{
-    text-align: center; 
-    color: #111827; 
+    text-align: center;
+    color: #111827;
     font-size: 32px;
-    font-family: Roboto; 
-    font-weight: 500; 
-    line-height: 44.80px; 
+    font-family: Roboto;
+    font-weight: 500;
+    line-height: 44.80px;
     word-wrap: break-word
 }
 .text-field-icon{
@@ -40,33 +40,38 @@ body{
     background-position: 20px 50%;
 }
 #text{
-    flex-direction: column; 
-    justify-content: flex-start; 
-    align-items: center; 
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     gap: 8px;
     margin-bottom: 32px;
 }
 .div-filter{
     display: flex;
     margin: 60px auto 0px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     width: 71vw;
     justify-content: space-between;
     align-items: center;
 }
+.div-bar::-webkit-scrollbar {
+    width: 1px;
+    height: 1px;
+}
+.div-bar::-webkit-scrollbar-button {
+    width: 1px;
+    height: 1px;
+}
 .div-bar{
+    overflow-x: scroll;
     display: flex;
-    overflow-x: auto;
     white-space: nowrap;
-    scrollbar-width: none; 
     align-items: flex-start;
     gap: 12px;
     align-self: stretch;
 }
 .div-daftar{
     display: flex;
-    
-    width: 110px;
     padding: 8px 12px;
     justify-content: center;
     align-items: center;
@@ -74,10 +79,15 @@ body{
     align-self: stretch;
     border-radius: 6px;
     background: #F1F5F9;
+    color: black;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 100%;
 }
 .btn-sorted{
     display: flex;
-    
+
     height: 38px;
     padding: 10px 20px;
     justify-content: center;
@@ -98,26 +108,21 @@ body{
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
-    line-height: 100%; 
+    line-height: 100%;
 }
 .div-daftar:hover {
     background-color: black;
-    
     transition-duration: 0.5s;
-}
-.div-daftar label:hover{
     color: white;
+    cursor:pointer;
 }
+
 .dm-active {
     background-color: black;
     color: white;
 }
 .div-daftar label{
-    color: black;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 100%; 
+
 }
 
 @media (max-width:1120px) {
@@ -160,9 +165,9 @@ body{
     .header-home {
         height: 200px;
     }
-    
+
     .header-home .title {
-        font-size: 32px; 
+        font-size: 32px;
     }
 }
 
