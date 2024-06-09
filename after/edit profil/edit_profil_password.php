@@ -23,6 +23,7 @@ include '../../php/read-users.php';
     <link rel="stylesheet" href="../../style/nav_bar.css">
     <link rel="stylesheet" href="../../style/footer.css" />
     <link rel="stylesheet" href="../../style/style.css">
+    <link rel="stylesheet" href="../../style/style-submit-project.css">
     <link rel="stylesheet" href="../../style/global.css">
     <link rel="stylesheet" href="../../style/style_edit_profil.css">
     <!-- Title -->
@@ -96,7 +97,10 @@ include '../../php/read-users.php';
     </nav>
     <br><br><br>
     <!-- content -->
+     
     <div class="content">
+
+    <script src="../../javascript/edit-profile.js"></script>
         <div class="side-navigation">
             <button class="button-contained" type="button" onclick="location.href='../profil.php'"><img
                     src="../../asset/chevron-left.png">Back</button>
@@ -109,43 +113,84 @@ include '../../php/read-users.php';
                     <img src="../../asset/lock-closed.png" style="width: 12px; height: 12px; margin-left: 8px;">
                 </div>
                 <hr>
-                <button class="text-button" type="button" onclick="location.href='../../registrasi.html'">Delete
-                    Account</button>
-                <button class="button-danger" type="button" onclick="location.href='../../login.html'"><img
+                <!-- <button class="text-button" type="button" onclick="location.href='../../registrasi.html'">Delete
+                    Account</button> -->
+                <button class="button-danger" type="button" onclick="location.href='../../php/php-log-out.php'"><img
                         src="../../asset/arrow-left-start-on-rectangle.png">Log Out</button>
             </div>
         </div>
         
-        <div class="container-form">
-            <div class="form">
-                <div class="container-input">
-                    <div class="label">
-                        <label class="text">Old Password</label>
-                        <label class="asterix">*</label>
+        <form method="post" action="../../php/edit-profile/proses-change-password.php">
+            <div class="container-form">
+                <div class="form">
+                    <div class="container-input">
+                        <div class="label">
+                            <label class="text">Old Password</label>
+                            <label class="asterix">*</label>
+                        </div>
+                        <input type="password" name="old-pw">
                     </div>
-                    <input type="password">
-                </div>
-                <div style="margin: 0; width: 100%; height: 100%; padding-top: 8px; padding-bottom: 8px; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
-                    <div style="margin: 0; width: 15px; height: 0px; transform: rotate(15deg); transform-origin: 0 0; border: 1.5px #6B7280 solid"></div>
-                    <h4 style="margin: 0;">NEW PASSWORD</h4>
-                </div>
-                <div class="container-input">
-                    <div class="label">
-                        <label class="text">New Password</label>
-                        <label class="asterix">*</label>
+                    <div style="margin: 0; width: 100%; height: 100%; padding-top: 8px; padding-bottom: 8px; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
+                        <div style="margin: 0; width: 15px; height: 0px; transform: rotate(15deg); transform-origin: 0 0; border: 1.5px #6B7280 solid"></div>
+                        <h4 style="margin: 0;">NEW PASSWORD</h4>
                     </div>
-                    <input type="password">
-                </div>
-                <div class="container-input">
-                    <div class="label">
-                        <label class="text">Confirm Password</label>
-                        <label class="asterix">*</label>
+                    <div class="container-input">
+                        <div class="label">
+                            <label class="text">New Password</label>
+                            <label class="asterix">*</label>
+                        </div>
+                        <input type="password" name="new-pw">
                     </div>
-                    <input type="password">
+                    <div class="container-input">
+                        <div class="label">
+                            <label class="text">Confirm Password</label>
+                            <label class="asterix">*</label>
+                        </div>
+                        <input type="password" name="confirm-pw">
+                    </div>
+
+                    <label class="roboto bold red" >
+                        <?php
+                        if(isset($_GET['pesan'])){
+                            if($_GET['pesan'] == "kosong"){
+                                echo "Make sure the input data is filled in completely";
+                            }else if($_GET['pesan'] == "wrong_pw"){
+                                echo "your password is wrong";
+                            }else if($_GET['pesan'] == "pw_tdk_sama"){
+                                echo "your new password doesnt match";
+                            }             
+                        }
+                        ?>
+                    </label>
+                    <label class="roboto bold green" >
+                        <?php
+                        if(isset($_GET['pesan'])){
+                            if($_GET['pesan'] == "pw_berhasil_diubah"){
+                                echo "Your password has been successfully changed";
+                            }                   
+                        }
+                        ?>
+                    </label>
+
+                    <div onclick="notifikasiEditSucces()" class="btn-primary-xlarge">save change</div>
+
+                    <div class="bg-notif-edit" id="notification-edit" style="display: none;">
+                        <div class="content-side-bar succes-upload notif-edit" >
+                            <img src="../../asset/tanda-tanya.png" alt=""><br><br><br>
+                            <label for="" class="font-succes bold">Are you sure you want to</label><br>
+                            <label for="" class="font-succes grey ">Change your Password?</label><br><br><br>
+                            
+                            <div class="button-notif">
+                                <a onclick="notifikasiEditSuccesBack('notification-edit')" ><div class="button-back-cancel">Back</div></a>
+                                <button type="submit"  class="button-back-home" onclick="">change</button> 
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
-                <a href="" class="btn-primary-xlarge">Save Changes</a>
             </div>
-        </div>
+        </form>
     </div>
     <!-- Footer -->
     <footer class="footer">

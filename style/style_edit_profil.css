@@ -296,6 +296,10 @@ textarea{
     font-weight: 600;
     line-height: 14px;
 }
+.btn-secondary-medium:hover{ 
+    background-color: rgb(242, 242, 242);
+    transition-duration: 0.1s;
+}
 
 .form{
     width: 772px; 
@@ -303,7 +307,6 @@ textarea{
     padding: 16px; 
     flex-direction: column; 
     justify-content: center; 
-    align-items: flex-end; 
     gap: 16px; 
     display: flex;
 }
