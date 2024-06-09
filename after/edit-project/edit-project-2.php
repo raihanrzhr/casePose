@@ -5,7 +5,12 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] != "login") {
     header("Location: ../../sign-in.php?pesan=belum_login");
     exit();
 }
-include '../../php/read-users.php';    
+include '../../php/read-users.php';
+
+$id_project = $_GET["idproject"];
+
+$edit_p = mysqli_query($conn,"SELECT * FROM project WHERE projectId = '$id_project'");
+$rows_edit_p = mysqli_fetch_assoc($edit_p)
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +27,9 @@ include '../../php/read-users.php';
     <link rel="stylesheet" href="../../style/style-submit-project.css">
     <link rel="stylesheet" href="../../style/footer.css" />
     <link rel="stylesheet" href="../../style/style.css">
+    <link rel="stylesheet" href="../../style/global.css">
+    <link rel="stylesheet" href="../../style/style_edit_profil.css">
+
     <!-- Title -->
     <link rel="icon" href="../../asset/logo/logo_1.png">
     <title>Edit Project</title>
@@ -30,24 +38,24 @@ include '../../php/read-users.php';
 <body>
 <!-- Navigation Bar after-->
 <nav>
-    <div class="navbar-toggle">
-        <div class="navbar-logo"><a href="index.php"><img src="../../asset/logo/logo_2.png" alt=""></a></div>
-        <button class="navbar-toggle-button" onclick="toggleColor()">☰</button>
-    </div>
-    <div class="navbar">
-        <div class="navbar-menu">
-            <a href="profil.php" class="my-profil"><span class="navbar-text">My Profil</span></a>
-            <a href="index.php" class="navbar-item"><span class="navbar-text">Home</span></a>
-            <a href="about.php" class="navbar-item"><span class="navbar-text">About</span></a>
-            <a href="pricing.php" class="navbar-item"><span class="navbar-text">Pricing</span></a>
+        <div class="navbar-toggle">
+            <div class="navbar-logo"><a href="../index.php"><img src="../../asset/logo/logo_2.png" alt=""></a></div>
+            <button class="navbar-toggle-button" onclick="toggleColor()">☰</button>
         </div>
-        <div class="navbar-logo"><a href="index.php"><img src="../../asset/logo/logo_2.png" alt=""></a></div>
-        <div class="navbar-actions">
-            <a href="submit-project/submit-project-1.php" class="navbar-button-alt"><div class="navbar-button-text-alt">Submit Project</div></a><br>
-            <a href="../php/php-log-out.php" class="navbar-button-logout"><div class="navbar-button-text-alt">logout</div></a>    
-            <div class="button-dropdown">
-                <div class="button-dropdown-1 margin-auto">
-                    <!-- <div class="foto-profil" style="background-image: url('../asset/pp.png');"></div> -->
+        <div class="navbar">
+            <div class="navbar-menu">
+                <a href="../profil.php" class="my-profil"><span class="navbar-text">My Profil</span></a>
+                <a href="../index.php" class="navbar-item "><span class="navbar-text">Home</span></a>
+                <a href="../about.php" class="navbar-item"><span class="navbar-text">About</span></a>
+                <a href="../pricing.php" class="navbar-item"><span class="navbar-text">Pricing</span></a>
+                <a href="../logactivity.php" class="logactivity" ><span class="navbar-text">Log Activity</span></a>
+            </div>
+            <div class="navbar-logo"><a href="../index.php"><img src="../../asset/logo/logo_2.png" alt=""></a></div>
+            <div class="navbar-actions">
+                <a href="../submit-project/submit-project-1.php" class="navbar-button-alt"><div class="navbar-button-text-alt">Submit Project</div></a>
+                <a href="../../php/php-log-out.php" class="navbar-button-logout"><div class="navbar-button-text-alt">logout</div></a>
+                <div class="button-dropdown">
+                    <div class="button-dropdown-1 margin-auto">
                     <div class="foto-profil" style="<?php 
                     if ($rows["profilePicture"] == ""){
                         echo "background-image:url('../../asset/users/user/default-profil.jpg');";
@@ -57,109 +65,128 @@ include '../../php/read-users.php';
                     ?>"></div>
                 </div>
                 <label for="" class="bold nama-profil" ><?php echo $rows['firstName']; ?></label>
-                <div class="button-dropdown-2 margin-auto">
-                    <img src="../asset/chevron-down.png" alt="" class="button-contained-img">
-                </div>
-                <div class="dropdown-content">
-                    <a href="profil.php"><div class="List-dropdown">
-                        <div class="style-svg" style="background-image: url('../../asset/svg/person.svg');"></div>
-                        <label for="" class="bold List-dropdown-label">My Profil</label>
-                    </div></a>
-                    <a href="../php/php-log-out.php"><div class="List-dropdown">
-                        <div class="style-svg" style="background-image: url('../../asset/svg/box-arrow-right.svg');"></div>
-                        <label for="" class="bold List-dropdown-label">Logout</label>
-                    </div></a>
+                    <div class="button-dropdown-2 margin-auto">
+                        <img src="../../asset/chevron-down.png" alt="" class="button-contained-img">
+                    </div>
+
+                    <div class="dropdown-content">
+                        <a href="../profil.php"><div class="List-dropdown">
+                            <label for="" class="List-dropdown-label">My Profile</label>
+                        </div></a>
+                        <a href="edit_profil_general.php"><div class="List-dropdown dd-act">
+                            <label for="" class="List-dropdown-label">Edit Profile</label>
+                        </div></a>
+                        <a ><div class="List-dropdown billing ">
+                            <label for="" class="List-dropdown-label">Billing</label>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M6 0.75C4.55025 0.75 3.375 1.92525 3.375 3.375V4.875C2.54657 4.875 1.875 5.54657 1.875 6.375V9.75C1.875 10.5784 2.54657 11.25 3.375 11.25H8.625C9.45343 11.25 10.125 10.5784 10.125 9.75V6.375C10.125 5.54657 9.45343 4.875 8.625 4.875V3.375C8.625 1.92525 7.44975 0.75 6 0.75ZM7.875 4.875V3.375C7.875 2.33947 7.03553 1.5 6 1.5C4.96447 1.5 4.125 2.33947 4.125 3.375V4.875H7.875Z" fill="#6B7280"/>
+                            </svg>
+                        </div></a>
+                        <a href="../logactivity.php"><div class="List-dropdown">
+                            <label for="" class="List-dropdown-label">LogActivity</label>
+                        </div></a>
+                        <a href="../../php/php-log-out.php"><div class="List-dropdown-logout">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M17 4.25C17 3.00736 15.9926 2 14.75 2H9.25C8.00736 2 7 3.00736 7 4.25V6.25C7 6.66421 7.33579 7 7.75 7C8.16421 7 8.5 6.66421 8.5 6.25V4.25C8.5 3.83579 8.83579 3.5 9.25 3.5H14.75C15.1642 3.5 15.5 3.83579 15.5 4.25V15.75C15.5 16.1642 15.1642 16.5 14.75 16.5H9.25C8.83579 16.5 8.5 16.1642 8.5 15.75V13.75C8.5 13.3358 8.16421 13 7.75 13C7.33579 13 7 13.3358 7 13.75V15.75C7 16.9926 8.00736 18 9.25 18H14.75C15.9926 18 17 16.9926 17 15.75V4.25Z" fill="#B91C1C"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14 10C14 9.58579 13.6642 9.25 13.25 9.25H3.70447L4.75172 8.30747C5.05961 8.03038 5.08457 7.55616 4.80747 7.24828C4.53038 6.94039 4.05616 6.91543 3.74828 7.19253L1.24828 9.44253C1.09024 9.58476 1 9.78738 1 10C1 10.2126 1.09024 10.4152 1.24828 10.5575L3.74828 12.8075C4.05616 13.0846 4.53038 13.0596 4.80747 12.7517C5.08457 12.4438 5.05961 11.9696 4.75172 11.6925L3.70447 10.75H13.25C13.6642 10.75 14 10.4142 14 10Z" fill="#B91C1C"/>
+                        </svg>
+                            <label for="" class="bold List-dropdown-label">Logout</label>
+                        </div></a>
+                    </div>
+
                 </div>
             </div>
         </div>
-    </div>
-    <script src="../javascript/navbar.js"></script>
-</nav>
+        <script src="../../javascript/navbar.js"></script>
+    </nav>
 <br><br><br>
 
 <!-- content -->
 <script src="../../javascript/edit-project.js"></script>
 <div class="content">
     <div class="side-navigation">
-        <a id="back1" href="index.php" class="button-contained" ><img src="../../asset/chevron-left.png">Back</a>
         <div class="navigation">
-            <div id="PI" class="active" onclick="nextStep1()">
+            <a href="<?php echo 'edit-project-1.php?idproject='.$id_project;?>" class="inactive inact-hover"><div>
                 <label for="" >Project Information</label>
                 <img src="../../asset/svg/check.svg"  alt="">
-            </div>
-            <div id="UP" class="inactive inact-hover" onclick="nextStep2()">
+            </div></a>
+            <a href="<?php echo 'edit-project-2.php?idproject='.$id_project;?>" class="active "><div>
                 <label for="">Upload Project</label>
                 <img src="../../asset/svg/check.svg" alt="">
-            </div>
-            <div id="ADD" class="inactive inact-hover" onclick="nextStep3()">
+            </div></a>
+            <a href="<?php echo 'edit-project-3.php?idproject='.$id_project;?>" class="inactive inact-hover"><div  >
                 <label for="">Additional</label>
                 <img src="../..//asset/svg/check.svg" alt="">
-            </div>  
+            </div></a>  
         </div>
+        <a id="back1" href="../index.php" class="button-contained" ><img src="../../asset/chevron-left.png">Back</a>
     </div>
+    <!-- form -->
+    <form method="POST" action="../../php/edit-project/edit-project-2.php" enctype="multipart/form-data">
+                <div id="content-side-bar-2" class="content-side-bar">
+                    <label for="fileInput" class="bold">Project Picture</label>
+                    <div class="div-upload" style="background-image: url('../../asset/users/project/halaman/<?php echo $rows_edit_p["projectPicture"]?>');"></div>
 
-    <div class="content-side">
-        
-        <div id="content-side-bar-1" class="content-side-bar" >
-            <label for="" class="bold">Project Title</label><br>
-            <input id="edit-project-title" type="text" class="input-link" placeholder="Click Here....."><br>
-            <label for="" class="bold">Project Description</label><br>
-            <textarea id="edit-project-description" type="text" class="input-desc" placeholder="Click Here....."></textarea><br><br> 
-             
-            <label for="" class="bold"> Tipe Project</label><br>
-            <input type="radio" id="website" name="platform" value="website" checked>
-            <label for="website">Website</label><br>
-            <input type="radio" id="application" name="platform" value="application">
-            <label for="application">Application</label><br><br>
+                    <label for="fileInput" class="bold">Change Project Picture</label>
+                    <input type="file" id="projectPicture" name="projectPicture" class="input-link" >
+                    
+                    <br><br>
 
-            <div class="div-footer">
-                <button id="cancel1" class="button-1 bold2" onclick="goToPage('index.php')">Cancel</button>
-                <button class="button-2 bold2" onclick="notifikasiEditSucces()">Save Change</button>
-            </div>
+                    <label for="" class="bold"> Link Project</label><label for="" class="grey">  (optional) </label><br>
+                    <input type="text" class="input-link" placeholder="Click Here....." id="projectLink" name="projectLink" value="<?php echo $rows_edit_p["projectLink"]?>"><br><br>
+                    
+                    <label class="roboto bold red">
+                        <?php
+                        if(isset($_GET['pesan'])){
+                            if($_GET['pesan'] == "kosong"){
+                                echo "Make sure the input data is filled in completely";
+                            }else if ($_GET['pesan'] == "5mb"){
+                                echo "files should not be more than 5Mb";
+                            }else if ($_GET['pesan'] == "tipe"){
+                                echo "file type must be JPG, JPEG or PNG";
+                            }else if ($_GET['pesan'] == "https"){
+                                echo "The link must start with https://";
+                            }else if ($_GET['pesan'] == "upload"){
+                                echo "file failed to upload";
+                            }
+                        }
+                        ?>
+                    </label>
+                    <label class="roboto bold green" >
+                        <?php
+                        if(isset($_GET['pesan'])){
+                            if($_GET['pesan'] == "sukses"){
+                                echo "Your data has been successfully changed";
+                            }                        
+                        }
+                        ?>
+                    </label>
+                    <br><br>
 
+                    <div class="div-footer">
+                        <div onclick="notifikasiEditSucces()" class="btn-primary-xlarge">save change</div>
+                    </div>
 
-        </div>
-        <div id="content-side-bar-2" class="content-side-bar" style="display: none;">
-            <label for="fileInput" class="bold">Upload Project</label>
-            <div class="div-upload div-upload-edit" onclick="triggerFileInput()" style="background-image:url('../../asset/card/card3.png') ;">
-                <input type="file" id="fileInput" style="display: none;" onchange="handleFileInputChange(event)">
-            </div>
+                    <!-- disembunyikan  -->
+                    <input type="text" name="projectId" value="<?php echo $id_project?>" id="" hidden>
+                    <input type="text" name="old_picture" value="<?php echo $rows_edit_p["projectPicture"]?>" id="" hidden>
 
-            
-            <label for="" class="bold"> Link Project</label><br>
-            <input type="text" class="input-link" placeholder="Click Here....." value="ubul.co.id"><br><br>
-            
-            
-
-            <div class="div-footer">
-                <button id="cancel2" class="button-1 bold2" onclick="goToPage('index.php')">Cancel</button>
-                <button class="button-2 bold2" onclick="notifikasiEditSucces()">Save Change</button>
-            </div>
-        </div>
-        <div id="content-side-bar-3" class="content-side-bar" style="display: none;">
-            <label for="" id="tags" class="bold">tags</label><br>
-            
-            <input type="text" class="input-link" placeholder="Click Here....."><br><br>
-            <label for="" class="bold">Categories</label><br>
-            <input type="text" class="input-link" placeholder="Click Here....."><br><br>
-          
-
-            <div class="div-footer">
-                <button id="cancel3" class="button-1 bold2" onclick="goToPage('index.php')">Cancel</button>
-                <button id="next1" class="button-2 bold2" onclick="notifikasiEditSucces()">Save Change</button>
-            </div>
-        </div>
-
-        <div class="bg-notif-edit" id="notification-edit" style="display: none;">
-            <div class="content-side-bar succes-upload notif-edit" >
-                <img src="../../asset/centang.png" alt=""><br>
-                <label for="" class="font-succes">our project has been</label><br>
-                <label for="" class="font-succes"> successfully updated</label><br><br><br>
-                <a href="" class="button-back-home" onclick="notifikasiEditSuccesBack()">Back</a>
-            </div>
-        </div>
-    </div>
+                    <div class="bg-notif-edit" id="notification-edit" style="display: none;">
+                        <div class="content-side-bar succes-upload notif-edit" >
+                            <img src="../../asset/tanda-tanya.png" alt=""><br><br><br>
+                            <label for="" class="font-succes bold">Are you sure you want to</label><br>
+                            <label for="" class="font-succes grey ">Change your data?</label><br><br><br>
+                            
+                            <div class="button-notif">
+                                <a onclick="notifikasiEditSuccesBack('notification-edit')" ><div class="button-back-cancel">Back</div></a>
+                                <button type="submit"  class="button-back-home" onclick="">change</button> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </form>
 </div>
+
 <!-- Footer -->
 <footer class="footer">
     <div class="footer-navigation">

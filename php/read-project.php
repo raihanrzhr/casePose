@@ -30,8 +30,6 @@ FROM project p
 JOIN user u ON p.userId = u.userId WHERE p.userId = '$userId'
 ");
 
-
-
 $sql_pricing_2 = mysqli_query($conn, "
     SELECT p.projectId, p.projectName, pr.pricingPackage, pr.dateExpired 
     FROM project p 
