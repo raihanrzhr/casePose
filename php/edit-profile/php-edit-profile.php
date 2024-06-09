@@ -35,8 +35,6 @@ if (empty($nama_file)) {
         // Memindahkan file yang diupload ke folder tujuan
         if (move_uploaded_file($tmp_file, $folder_p_picture . $nama_file)) {
 
-            unlink($folder_p_picture.$old_picture);
-
             $updateGeneral = "UPDATE user SET firstName = '$firstName', lastName = '$lastName', 
             email = '$email', about_me = '$about', profilePicture = '$nama_file' WHERE userId = '$userId'";
         } else {
