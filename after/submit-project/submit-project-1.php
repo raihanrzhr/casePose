@@ -5,7 +5,7 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] != "login") {
     header("Location: ../../sign-in.php?pesan=belum_login");
     exit();
 }
-include '../../php/read-users.php';    
+include '../../php/read-users.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,7 +77,7 @@ include '../../php/read-users.php';
                         <div class="button-dropdown-2 margin-auto">
                             <img src="../../asset/chevron-down.png" alt="" class="button-contained-img">
                         </div>
-                        
+
                         <div class="dropdown-content">
                             <a href="../profil.php"><div class="List-dropdown">
                                 <label for="" class="List-dropdown-label">My Profile</label>
@@ -113,7 +113,7 @@ include '../../php/read-users.php';
         <!-- content -->
         <script src="../../javascript/submit.js"></script>
         <div class="content">
-            <div class="side-navigation"> 
+            <div class="side-navigation">
                 <div class="navigation">
                     <div id="PI" class="active">
                         <label for="">Project Information</label>
@@ -150,7 +150,7 @@ include '../../php/read-users.php';
                             <option value="VR/AR">VR/AR</option>
                             <option value="SOCIAL MEDIA">SOCIAL MEDIA</option>
                             <option value="E-COMMERCE">E-COMMERCE</option>
-                            <option value="KOMUNICATION">KOMUNICATION</option>
+                            <option value="COMMUNICATION">COMMUNICATION</option>
                             <option value="IoT">IoT</option>
                             <option value="AI">AI</option>
                         </select>
@@ -176,7 +176,7 @@ include '../../php/read-users.php';
                         </div>
                     </div>
                 </div>
-            </form>     
+            </form>
         </div>
         <!-- Footer -->
         <footer class="footer">
