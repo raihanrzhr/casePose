@@ -25,6 +25,7 @@ include '../../php/read-users.php';
     <link rel="stylesheet" href="../../style/style.css">
     <link rel="stylesheet" href="../../style/global.css">
     <link rel="stylesheet" href="../../style/style_edit_profil.css">
+    <link rel="stylesheet" href="../../style/style-submit-project.css">
     <!-- Title -->
     <link rel="icon" href="../../asset/logo/logo_1.png">
     <title>Edit Profil</title>
@@ -97,6 +98,7 @@ include '../../php/read-users.php';
     <br><br><br>
     <!-- content -->
     <div class="content">
+    <script src="../../javascript/edit-profile.js"></script>
         <div class="side-navigation">
             <button class="button-contained" type="button" onclick="location.href='../profil.php'"><img
                     src="../../asset/chevron-left.png">Back</button>
@@ -111,55 +113,91 @@ include '../../php/read-users.php';
                     <img src="../../asset/lock-closed.png" style="width: 12px; height: 12px; margin-left: 8px;">
                 </div>
                 <hr>
-                <button class="text-button" type="button" onclick="location.href='../../registrasi.html'">Delete
-                    Account</button>
-                <button class="button-danger" type="button" onclick="location.href='../../login.html'"><img
+                <!-- <button class="text-button" type="button" onclick="location.href='../../registrasi.html'">Delete
+                    Account</button> -->
+                <button class="button-danger" type="button" onclick="location.href='../../php/php-log-out.php'"><img
                         src="../../asset/arrow-left-start-on-rectangle.png">Log Out</button>
             </div>
         </div>
-        
-        <div class="container-form">
-            <div class="form">
-                <div class="container-input">
-                    <div class="label">
-                        <label class="text">Personal Website</label>
+        <form action="../../php/edit-profile/proses-edit-sosmed.php" method="POST">
+            <div class="container-form">
+                <div class="form">
+                    <div class="container-input">
+                        <div class="label">
+                            <label class="text">Personal Website</label>
+                        </div>
+                        <input type="text" value="<?php echo $rows["personalWeb"]?>" name="pw" placeholder="https://.....">
+                        <label class="bottom">Build trust with your portfolio or personal website.</label>
                     </div>
-                    <input type="url" value="<?php echo $rows["personalWeb"]?>">
-                    <label class="bottom">Build trust with your portfolio or personal website.</label>
-                </div>
-                <div class="container-input">
-                    <div class="label">
-                        <label class="text">Instagram</label>
+                    <div class="container-input">
+                        <div class="label">
+                            <label class="text">Instagram</label>
+                        </div>
+                        <input type="text" value="<?php echo $rows["instagram"]?>" name="ig" placeholder="https://.....">
                     </div>
-                    <input type="url" value="<?php echo $rows["instagram"]?>">
-                </div>
-                <div class="container-input">
-                    <div class="label">
-                        <label class="text" >LinkedIn</label>
+                    <div class="container-input">
+                        <div class="label">
+                            <label class="text" >LinkedIn</label>
+                        </div>
+                        <input type="text" value="<?php echo $rows["linkedin"]?>" name="ln" placeholder="https://.....">
                     </div>
-                    <input type="url" value="<?php echo $rows["linkedin"]?>">
-                </div>
-                <div class="container-input">
-                    <div class="label">
-                        <label class="text">GitHub</label>
+                    <div class="container-input">
+                        <div class="label">
+                            <label class="text">GitHub</label>
+                        </div>
+                        <input type="text" value="<?php echo $rows["github"]?>" name="gh" placeholder="https://.....">
                     </div>
-                    <input type="url" value="<?php echo $rows["github"]?>">
-                </div>
-                <div class="container-input">
-                    <div class="label">
-                        <label class="text">Medium</label>
+                    <div class="container-input">
+                        <div class="label">
+                            <label class="text">Medium</label>
+                        </div>
+                        <input type="text" value="<?php echo $rows["medium"]?>" name="md" placeholder="https://.....">
                     </div>
-                    <input type="url" value="<?php echo $rows["medium"]?>">
-                </div>
-                <div class="container-input">
-                    <div class="label">
-                        <label class="text" >X</label>
+                    <div class="container-input">
+                        <div class="label">
+                            <label class="text" >X</label>
+                        </div>
+                        <input type="text" value="<?php echo $rows["x"]?>" name="x" placeholder="https://.....">
                     </div>
-                    <input type="url" value="<?php echo $rows["x"]?>">
+
+                    <label class="roboto bold red" >
+                        <?php
+                        if(isset($_GET['pesan'])){
+                            if($_GET['pesan'] == "semua-kosong"){
+                                echo "all data is empty";
+                            }else if($_GET['pesan'] == "https"){
+                                echo "The link must start with https://";
+                            }          
+                        }
+                        ?>
+                    </label>
+                    <label class="roboto bold green" >
+                        <?php
+                        if(isset($_GET['pesan'])){
+                            if($_GET['pesan'] == "sukses"){
+                                echo "Your data has been successfully changed";
+                            }                   
+                        }
+                        ?>
+                    </label>
+
+                    <div onclick="notifikasiEditSucces()" class="btn-primary-xlarge">save change</div>
+
+                        <div class="bg-notif-edit" id="notification-edit" style="display: none;">
+                            <div class="content-side-bar succes-upload notif-edit" >
+                                <img src="../../asset/tanda-tanya.png" alt=""><br><br><br>
+                                <label for="" class="font-succes bold">Are you sure you want to</label><br>
+                                <label for="" class="font-succes grey ">Change your Password?</label><br><br><br>
+                                
+                                <div class="button-notif">
+                                    <a onclick="notifikasiEditSuccesBack('notification-edit')" ><div class="button-back-cancel">Back</div></a>
+                                    <button type="submit"  class="button-back-home" onclick="">change</button> 
+                                </div>
+                            </div>
+                        </div>
                 </div>
-                <a href="" class="btn-primary-xlarge">Save Changes</a>
             </div>
-        </div>
+        </form>
     </div>
     <!-- Footer -->
     <footer class="footer">

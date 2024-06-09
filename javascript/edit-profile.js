@@ -3,8 +3,13 @@ function notifikasiEditSucces() {
     notificationDiv.style.display = "block";
 }
 
-function notifikasiEditSuccesBack() {
-    var notificationDiv = document.getElementById("notification-edit");
+function notifikasiEditRemove() {
+    var notificationDiv = document.getElementById("notification-edit-remove");
+    notificationDiv.style.display = "block";
+}
+
+function notifikasiEditSuccesBack(id) {
+    var notificationDiv = document.getElementById(id);
     notificationDiv.style.display = "none";
 }
 

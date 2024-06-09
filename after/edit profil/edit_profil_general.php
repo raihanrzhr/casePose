@@ -114,14 +114,14 @@ include '../../php/read-users.php';
                     <img src="../../asset/lock-closed.png" style="width: 12px; height: 12px; margin-left: 8px;">
                 </div>
                 <hr>
-                <button class="text-button" type="button" onclick="location.href='../../registrasi.html'">Delete
-                    Account</button>
-                <button class="button-danger" type="button" onclick="location.href='../../login.html'"><img
+                <!-- <button class="text-button" type="button" onclick="location.href='../../registrasi.html'">Delete
+                    Account</button> -->
+                <button class="button-danger" type="button" onclick="location.href='../../php/php-log-out.php'"><img
                         src="../../asset/arrow-left-start-on-rectangle.png">Log Out</button>
             </div>
         </div>
         
-        <form action="../../php/php-edit-profile.php" method="post">
+        <form action="../../php/edit-profile/php-edit-profile.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $rows['userId'] ?>">
             <div class="container-form">
                 <div class="profile-picture">
@@ -133,11 +133,19 @@ include '../../php/read-users.php';
                         }
                         ?>" />
                     <div class="cta-profile">
-                        <input type="submit" class="btn-primary-medium" value="Change Picture">
-                        <input type="submit" class="btn-secondary-medium" value="Remove">
+                        <div type="submit" class="btn-secondary-medium" onclick="notifikasiEditRemove()">Remove</div>
                     </div>
                 </div>
                 <div class="form">
+                    
+                    <div class="container-input">
+                        <div class="label">
+                            <label class="text">New Profil Picture</label>
+                            <label class="asterix">*</label>
+                        </div>
+                        <input type="file" name="profilePicture" >
+                    </div>
+                        
                     <div class="name">
                         <div class="container-input">
                             <div class="label">
@@ -146,6 +154,7 @@ include '../../php/read-users.php';
                             </div>
                             <input type="text" name="firstName" value="<?php echo $rows["firstName"]?>">
                         </div>
+                        
                         <div class="container-input">
                             <div class="label">
                                 <label class="text">Last Name</label>
@@ -154,33 +163,92 @@ include '../../php/read-users.php';
                             <input type="text" name="lastName" value="<?php echo $rows["lastName"]?>">
                         </div>
                     </div>
+
                     <div class="container-input">
                         <div class="label">
                             <label class="text">Email</label>
                             <label class="asterix">*</label>
                         </div>
                         <input type="text" name="email" value="<?php echo $rows["email"]?>">
-                    </div>
+                    </div> 
+
                     <div class="container-input">
                         <div class="label">
                             <label class="text">About</label>
                         </div>
-                        <textarea cols="50" name="about" rows="4"><?php echo $rows['about_me']?></textarea>
+                        <textarea cols="50" name="about_me" rows="4"><?php echo $rows['about_me']?></textarea>
                     </div>
-                    <input type="submit" class="btn-primary-xlarge" value="Save Changes">
-                    <!-- onclick="notifikasiEditSucces()" -->
+                    
+                    <label class="roboto bold red" >
+                        <?php
+                        if(isset($_GET['pesan'])){
+                            if($_GET['pesan'] == "already-removed"){
+                                echo "Your profile photo has been deleted";
+                            }else if ($_GET['pesan'] == "5mb"){
+                                echo "files should not be more than 5Mb";
+                            }else if ($_GET['pesan'] == "tipe"){
+                                echo "file type must be JPG, JPEG or PNG";
+                            }            
+                        }
+                        ?>
+                    </label>
+                    <label class="roboto bold green" >
+                        <?php
+                        if(isset($_GET['pesan'])){
+                            if($_GET['pesan'] == "succes-remove-pp"){
+                                echo "Your profile photo has been deleted";
+                            }else if($_GET['pesan'] == "sukses"){
+                                echo "Your data has been successfully changed";
+                            }                        
+                        }
+                        ?>
+                    </label>
+
+                    <input type="submit" name="submit" id="submit" hidden>
+                    <div href="" onclick="notifikasiEditSucces()" class="btn-primary-xlarge">save change</div>
+
+                    <div class="bg-notif-edit" id="notification-edit" style="display: none;">
+                        <div class="content-side-bar succes-upload notif-edit" >
+                            <img src="../../asset/tanda-tanya.png" alt=""><br><br><br>
+                            <label for="" class="font-succes bold">Are you sure you want to</label><br>
+                            <label for="" class="font-succes grey ">Change this data?</label><br><br><br>
+                            
+                            <div class="button-notif">
+                                <a onclick="notifikasiEditSuccesBack('notification-edit')" ><div class="button-back-cancel">Back</div></a>
+                                <button type="submit"  class="button-back-home" onclick="">change</button> 
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </form>
         <!-- UI Pop-Up Notifikasi Sukses Edit Profile -->
-        <div class="bg-notif-edit" id="notification-edit" style="display: none;">
+        <!-- <div class="bg-notif-edit" id="notification-edit" style="display: none;">
             <div class="content-side-bar succes-upload notif-edit" >
-                <img src="../../asset/centang.png" alt=""><br>
-                <label for="" class="font-succes">Your profile has been</label><br>
-                <label for="" class="font-succes">successfully updated</label><br><br><br>
+                <img src="../../asset/tanda-tanya.png" alt=""><br>
+                <label for="" class="font-succes bold">are you sure want to</label><br>
+                <label for="" class="font-succes">update your profil?</label><br><br><br>
                 <a href="" class="button-back-home" onclick="notifikasiEditSuccesBack()">Back</a>
             </div>
-        </div>
+        </div> -->
+
+                <div class="bg-notif-edit" id="notification-edit-remove" style="display: none;">
+                    <div class="content-side-bar succes-upload notif-edit" >
+                        <img src="../../asset/tanda-tanya.png" alt=""><br><br><br>
+                        <label for="" class="font-succes bold">Are you sure you want to</label><br>
+                        <label for="" class="font-succes grey ">Remove your profil Picture?</label><br><br><br>
+                        
+                        <div class="button-notif">
+                            <a onclick="notifikasiEditSuccesBack('notification-edit-remove')" ><div class="button-back-cancel">Back</div></a>
+                            <form method="POST" action="../../php/edit-profile/remove-pp.php">
+                                <input type="text" value="<?php echo $rows["profilePicture"]?>" name="projectPicture" hidden> 
+                                <button class="button-back-home">Remove</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
     </div>
     <!-- Footer -->
     <footer class="footer">
