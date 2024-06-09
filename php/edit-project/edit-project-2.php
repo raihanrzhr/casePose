@@ -1,15 +1,16 @@
 <?php 
 include '../connection.php';
 
-echo $id_project = $_POST["projectId"];
-
-echo $folder_p_picture = "../../asset/users/project/halaman/";
+$id_project = $_POST["projectId"];
 $old_picture = $_POST["old_picture"];
-echo $name_file = $_FILES['projectPicture']['name'];
-echo $path = $_FILES['projectPicture']['tmp_name'];
-echo $file_size = $_FILES['projectPicture']['size'];
 
-echo $projectLink = $_POST["projectLink"];
+$folder_p_picture = "../../asset/users/project/halaman/";
+
+$name_file = $_FILES['projectPicture']['name'];
+$path = $_FILES['projectPicture']['tmp_name'];
+$file_size = $_FILES['projectPicture']['size'];
+
+$projectLink = $_POST["projectLink"];
 
 
 if (empty($name_file)) {
@@ -18,7 +19,7 @@ if (empty($name_file)) {
         ."pesan=https&idproject=$id_project");
     }else{
         $sql = mysqli_query($conn,"UPDATE project SET projectLink = '$projectLink' WHERE projectId = '$id_project'");
-
+        echo 'no img';
         header('Location: ../../after/edit-project/edit-project-2.php?'
         ."pesan=sukses&idproject=$id_project");
     }
@@ -40,7 +41,6 @@ if (empty($name_file)) {
             }else{
                 // Jika validasi lolos, pindahkan file ke folder tujuan
                 if (move_uploaded_file($path, $folder_p_picture.$name_file)) {
-                
                 unlink($folder_p_picture.$old_picture);
                     
                 $sql = mysqli_query($conn,"UPDATE project SET projectLink = '$projectLink', 
