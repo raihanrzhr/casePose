@@ -14,6 +14,35 @@ $sqlp_2 = mysqli_query($conn, "SELECT u.userId AS id_user,u.profilePicture AS fo
 FROM project p JOIN user u ON p.userId = u.userId ORDER BY RAND() LIMIT 9;");
 $sql_bar = mysqli_query($conn, "SELECT * FROM project_type");
 
+function fetchProjects($conn, $tag = null)
+{
+    if ($tag) {
+        $tag = mysqli_real_escape_string($conn, $tag);
+        $sql = "SELECT u.userId AS id_user, u.profilePicture AS foto_profil, p.userId AS id_user, p.projectId AS id_project, p.projectPicture AS foto_project, p.projectName AS nama_project, CONCAT(u.firstName, ' ', u.lastName) AS nama_lengkap_2
+                FROM project p
+                JOIN user u ON p.userId = u.userId
+                WHERE p.projectType = '$tag'
+                LIMIT 9";
+    } else {
+        $sql = "SELECT u.userId AS id_user, u.profilePicture AS foto_profil, p.userId AS id_user, p.projectId AS id_project, p.projectPicture AS foto_project, p.projectName AS nama_project, CONCAT(u.firstName, ' ', u.lastName) AS nama_lengkap_2
+                FROM project p
+                JOIN user u ON p.userId = u.userId
+                LIMIT 9";
+    }
+
+    $result = mysqli_query($conn, $sql);
+    $projects = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $projects[] = $row;
+    }
+    return $projects;
+}
+
+if (isset($_GET['tag'])) {
+    echo json_encode(fetchProjects($conn, $_GET['tag']));
+    exit();
+}
+
 if(isset($_POST['search'])) {
     // Sanitize the search term
     $searchTerm = mysqli_real_escape_string($conn, $_POST['search']);
@@ -155,13 +184,7 @@ if(isset($_POST['search'])) {
             while ($rows_project2 = mysqli_fetch_assoc($cari)) :
                 // Display search results
         ?>
-                <a href="<?php
-                        if ($userId == $rows_project2["id_user"]) {
-                            echo 'detail_project_user.php?idproject=' . $rows_project2["id_project"];
-                        } else {
-                            echo 'detail_project_viewer.php?idproject=' . $rows_project2["id_project"];
-                        }
-                        ?>">
+                <a href="detail_project_viewer.php?idproject=<?php echo $rows_project2["id_project"]; ?>">
                     <div class="card">
                         <div class="card_image" style="background-image: url('../asset/users/project/halaman/<?php echo $rows_project2["foto_project"]; ?>')">
                             <div class="card_image_hover"></div>
@@ -191,13 +214,7 @@ if(isset($_POST['search'])) {
     <!-- pricing paket 2 dan 3  -->
     <div class="content_card">
         <?php while ($rows_project2 = mysqli_fetch_assoc($top_3)) : ?>
-            <a href="<?php
-                        if ($userId == $rows_project2["id_user"]) {
-                            echo 'detail_project_user.php?idproject=' . $rows_project2["id_project"];
-                        } else {
-                            echo 'detail_project_viewer.php?idproject=' . $rows_project2["id_project"];
-                        }
-                        ?>">
+            <a href=" <?php echo 'detail_project_viewer.php?idproject=' . $rows_project2["id_project"]; ?>">
                 <div class="card">
                     <div class="card_image" style="background-image: url('../asset/users/project/halaman/<?php echo $rows_project2["foto_project"]; ?>')">
                         <div class="card_image_hover">

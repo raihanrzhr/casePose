@@ -20,7 +20,34 @@ FROM project p JOIN user u  ON p.userId = u.userId JOIN pricing pr ON p.projectI
 ORDER BY RAND() LIMIT 3;");
 
 $sql_bar = mysqli_query($conn, "SELECT * FROM project_type");
+function fetchProjects($conn, $tag = null)
+{
+    if ($tag) {
+        $tag = mysqli_real_escape_string($conn, $tag);
+        $sql = "SELECT u.userId AS id_user, u.profilePicture AS foto_profil, p.userId AS id_user, p.projectId AS id_project, p.projectPicture AS foto_project, p.projectName AS nama_project, CONCAT(u.firstName, ' ', u.lastName) AS nama_lengkap_2
+                FROM project p
+                JOIN user u ON p.userId = u.userId
+                WHERE p.projectType = '$tag'
+                LIMIT 9";
+    } else {
+        $sql = "SELECT u.userId AS id_user, u.profilePicture AS foto_profil, p.userId AS id_user, p.projectId AS id_project, p.projectPicture AS foto_project, p.projectName AS nama_project, CONCAT(u.firstName, ' ', u.lastName) AS nama_lengkap_2
+                FROM project p
+                JOIN user u ON p.userId = u.userId
+                LIMIT 9";
+    }
 
+    $result = mysqli_query($conn, $sql);
+    $projects = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $projects[] = $row;
+    }
+    return $projects;
+}
+
+if (isset($_GET['tag'])) {
+    echo json_encode(fetchProjects($conn, $_GET['tag']));
+    exit();
+}
 if(isset($_POST['search'])) {
     // Sanitize the search term
     $searchTerm = mysqli_real_escape_string($conn, $_POST['search']);
