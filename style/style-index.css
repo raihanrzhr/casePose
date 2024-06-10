@@ -33,7 +33,7 @@ body{
     box-sizing: border-box;
     padding: 12px 32px 12px 52px;
     border: 1px solid rgb(206, 206, 206);
-    border-radius: 8px;
+    border-radius: 10px 0px 0px 10px;
     background-color: rgba(255, 255, 255, 1);
     background: url('../asset/magnifying-glass.png') no-repeat;
     background-size: 20px;
@@ -121,7 +121,17 @@ body{
     background-color: black;
     color: white;
 }
-
+.btn-cari{
+    background-color: black;
+    color: white;
+    height: 54px;
+    width: 100px;
+    border-radius: 0px 10px 10px 0px;
+}
+.btn-cari:hover {
+    background-color: rgb(24, 24, 24);
+    transition-duration: 0.5s;
+}
 @media (max-width:1120px) {
     .div-filter{
         width: 810px;

@@ -37,6 +37,7 @@ if (empty($nama_file)) {
 
             $updateGeneral = "UPDATE user SET firstName = '$firstName', lastName = '$lastName', 
             email = '$email', about_me = '$about', profilePicture = '$nama_file' WHERE userId = '$userId'";
+            
         } else {
             die("Upload file gagal");
         }
@@ -53,6 +54,12 @@ if (empty($nama_file)) {
 }
 
 if (mysqli_query($conn, $updateGeneral)) {
+
+    $sql = mysqli_query($conn, "SELECT MAX(id) AS last_id FROM logactivity");
+    $hasil = mysqli_fetch_assoc($sql);
+    echo$last_id = $hasil["last_id"];
+    $trigger = mysqli_query($conn,"UPDATE logactivity SET userId = '$userId' WHERE id = '$last_id'");
+
     header("Location: ../../after/edit profil/edit_profil_general.php?pesan=sukses");
 } else {
     die("Update database gagal: " . mysqli_error($conn));

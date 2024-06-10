@@ -1,5 +1,7 @@
 <?php
 include 'connection.php';
+session_start();
+$userId = $_SESSION["userId"];
 
 $projectId = $_POST["projectId"];
 
@@ -16,6 +18,11 @@ if ($result_check_pricing) {
         $sql_delete_pricing = "DELETE FROM pricing WHERE projectId = '$projectId'";
         $result_delete_pricing = mysqli_query($conn, $sql_delete_pricing);
 
+        $sql2 = mysqli_query($conn, "SELECT MAX(id) AS last_id FROM logactivity");
+        $hasil = mysqli_fetch_assoc($sql2);
+        echo$last_id = $hasil["last_id"];
+        $trigger = mysqli_query($conn,"UPDATE logactivity SET userId = '$userId' WHERE id = '$last_id'");
+
         if (!$result_delete_pricing) {
             // Handle error if deletion from pricing table fails
             echo "Error deleting entries from pricing table: " . mysqli_error($conn);
@@ -26,6 +33,11 @@ if ($result_check_pricing) {
     // Setelah menghapus entri-entri pricing yang berkaitan, hapus proyek dari tabel project
     $sql_delete_project = "DELETE FROM project WHERE projectId = '$projectId'";
     $result_delete_project = mysqli_query($conn, $sql_delete_project);
+
+    $sql2 = mysqli_query($conn, "SELECT MAX(id) AS last_id FROM logactivity");
+        $hasil = mysqli_fetch_assoc($sql2);
+        echo$last_id = $hasil["last_id"];
+        $trigger = mysqli_query($conn,"UPDATE logactivity SET userId = '$userId' WHERE id = '$last_id'");
 
     if (!$result_delete_project) {
         // Handle error if deletion from project table fails

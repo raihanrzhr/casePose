@@ -50,9 +50,15 @@ if (empty($projectName) || empty($projectDescription) || empty($projectType) || 
                     $lengt = mysqli_query($conn, "SELECT MAX(CAST(projectId AS UNSIGNED)) AS last_id FROM project");
                     $hasil = mysqli_fetch_assoc($lengt);
                     echo $new_id = $projectName.$hasil["last_id"] + 1;
-
+                    
                     $stmt = $conn->prepare("CALL InsertProject(?,?, ?, ?, ?, ?, ?, ?, ?, ?)");
                     $stmt->bind_param("ssssssssss",$new_id, $projectName, $projectDescription, $projectType, $projectLink, $projectDate, $name_file, $projectTag, $projectStatus, $userId);
+
+                    $sql2 = mysqli_query($conn, "SELECT MAX(id) AS last_id FROM logactivity");
+                    $hasil = mysqli_fetch_assoc($sql2);
+                    echo$last_id = $hasil["last_id"];
+                    $trigger = mysqli_query($conn,"UPDATE logactivity SET userId = '$userId' WHERE id = '$last_id'");
+
 
                     if ($stmt->execute()) {
                         echo "Data berhasil ditambahkan";

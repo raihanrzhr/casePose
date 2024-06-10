@@ -9,6 +9,11 @@ include '../php/read-users.php';
 include '../php/read-project.php';  
 
 $sql_bar = mysqli_query($conn,"SELECT * FROM tag");
+$userId = $_SESSION["userId"];
+
+$logactivity = mysqli_query($conn, "SELECT *, DATE_FORMAT(STR_TO_DATE(actionTimestamp, '%Y-%m-%d'), '%d %M %Y') AS tanggal_hasil 
+                                    FROM logactivity WHERE userId = '$userId' ORDER BY id DESC LIMIT 15");
+
 ?>
 
 <!DOCTYPE html>
@@ -24,10 +29,9 @@ $sql_bar = mysqli_query($conn,"SELECT * FROM tag");
     <!-- Link Style CSS -->
     <link rel="stylesheet" href="../style/nav_bar.css">
     <link rel="stylesheet" href="../style/footer.css">
-    <link rel="stylesheet" href="../style/card.css">
     <link rel="stylesheet" href="../style/global.css">
-    <link rel="stylesheet" href="../style/style-index.css">
-    <link rel="stylesheet" href="../style/style-detail-project.css">
+    <link rel="stylesheet" href="../style/style-logactivity.css">
+
     <!-- Title -->
     <link rel="icon" href="../asset/logo/logo_1.png">
     <title>Log Activity</title>
@@ -100,6 +104,38 @@ $sql_bar = mysqli_query($conn,"SELECT * FROM tag");
 </nav>
 <br><br><br>
 <!-- content -->
+
+<div class="log-activity">
+    <div class="head">
+        <label for="" class="bold">Log Activity</label>
+    </div>
+    <?php if (mysqli_num_rows($logactivity) > 0) : ?>
+        <?php while($result = mysqli_fetch_assoc($logactivity)) : ?>
+        <div class="list">
+            <div class="list-left">
+                <div class="foto-profil-log" style="<?php 
+                    if ($rows["profilePicture"] == ""){
+                        echo "background-image:url('../asset/users/user/default-profil.jpg');";
+                    } else {
+                        echo "background-image:url('../asset/users/user/".$rows["profilePicture"]."');";
+                    }
+                ?>"></div>
+                <div class="desc">
+                    <label for="" class="bold"><?php echo $result["actionType"]?></label><br>
+                    <label for=""><?php echo $result["actionDetail"]?></label>
+                </div>
+            </div>
+            <div class="list-right">
+                <label for="" class="grey"><?php echo $result["tanggal_hasil"]?></label>
+            </div>
+        </div>
+        <?php endwhile ; ?>
+    <?php else : ?>
+        <div class="no-log-activity">
+            <label for="" class="bold">No Log Activity</label>
+        </div>
+    <?php endif; ?>
+</div>
 
 
 <!-- Footer -->
