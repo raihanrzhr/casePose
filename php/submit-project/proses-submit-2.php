@@ -26,7 +26,7 @@ $file_size = $_FILES['projectPicture']['size'];
                     ."projectName=$projectName&projectDescription=$projectDescription&projectType=$projectType&pesan=tipe");
                 }else{
                     // Cek apakah projectLink diawali dengan https://
-                    if (substr($projectLink, 0, 8) !== "https://") {
+                    if (substr($projectLink, 0, 8) !== "https://" ) {
                         header('Location: ../../after/submit-project/submit-project-2.php?'
                         ."projectName=$projectName&projectDescription=$projectDescription&projectType=$projectType&pesan=https");
                     }else{

@@ -80,6 +80,15 @@ function notifikasiEditSuccesBack() {
     notificationDiv.style.display = "none";
 }
 
+function notifikasiBack(id) {
+    var notificationDiv = document.getElementById(id);
+    notificationDiv.style.display = "none";
+}
+
 function goToPage(url) {
     window.location.href = url;
+}
+function notifikasiDelete() {
+    var notificationDiv = document.getElementById("notification-delete");
+    notificationDiv.style.display = "block";
 }

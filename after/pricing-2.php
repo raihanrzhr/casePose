@@ -205,7 +205,7 @@ $f = 1;
                     <div class="content-list-pricing">
                         <div class="benefit">
                             <img src="../asset/svg/check.svg" alt="">
-                            <label for="">promote your project for 1 Years</label>
+                            <label for="">promote your project for 1 Month</label>
                         </div>
                         <div class="benefit">
                             <img src="../asset/svg/check.svg" alt="">
@@ -214,7 +214,11 @@ $f = 1;
                         <div class="benefit">
                             <img src="../asset/svg/check.svg" alt="">
                             <label for="">show in top 3 homepage</label>
-                        </div>  
+                        </div>
+                        <div class="benefit">
+                            <img src="../asset/svg/check.svg" alt="">
+                            <label for="">label Sponsor</label>
+                        </div>    
                     </div>   
                 </div>
                 <?php }?>
@@ -229,12 +233,20 @@ $f = 1;
                     <div class="content-list-pricing">
                         <div class="benefit">
                             <img src="../asset/svg/check.svg" alt="">
-                            <label for="">promote your project for 1 month</label>
+                            <label for="">promote your project for 1 years</label>
                         </div>
                         <div class="benefit">
                             <img src="../asset/svg/check.svg" alt="">
                             <label for="">show in project recommendations</label>
                         </div>
+                        <div class="benefit">
+                            <img src="../asset/svg/check.svg" alt="">
+                            <label for="">show in top 3 homepage</label>
+                        </div>
+                        <div class="benefit">
+                            <img src="../asset/svg/check.svg" alt="">
+                            <label for="">label Sponsor</label>
+                        </div>    
                     </div>   
                  </div>
                 <?php }?>

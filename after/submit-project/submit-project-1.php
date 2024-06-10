@@ -147,11 +147,9 @@ include '../../php/read-users.php';
                             <option value="DESKTOP">DESKTOP</option>
                             <option value="MOBILE">MOBILE</option>
                             <option value="GAME">GAME</option>
-                            <option value="VR/AR">VR/AR</option>
                             <option value="SOCIAL MEDIA">SOCIAL MEDIA</option>
                             <option value="E-COMMERCE">E-COMMERCE</option>
                             <option value="COMMUNICATION">COMMUNICATION</option>
-                            <option value="IoT">IoT</option>
                             <option value="AI">AI</option>
                         </select>
 

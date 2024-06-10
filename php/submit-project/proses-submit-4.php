@@ -47,8 +47,12 @@ if (empty($projectName) || empty($projectDescription) || empty($projectType) || 
                     "&projectTag=$projectTag&projectStatus=$projectStatus&pesan=project-tag-length-255");
                     exit();
                 } else {
-                    $stmt = $conn->prepare("CALL InsertProject(?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                    $stmt->bind_param("ssssssssi", $projectName, $projectDescription, $projectType, $projectLink, $projectDate, $name_file, $projectTag, $projectStatus, $userId);
+                    $lengt = mysqli_query($conn, "SELECT MAX(CAST(projectId AS UNSIGNED)) AS last_id FROM project");
+                    $hasil = mysqli_fetch_assoc($lengt);
+                    echo $new_id = $projectName.$hasil["last_id"] + 1;
+
+                    $stmt = $conn->prepare("CALL InsertProject(?,?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    $stmt->bind_param("ssssssssss",$new_id, $projectName, $projectDescription, $projectType, $projectLink, $projectDate, $name_file, $projectTag, $projectStatus, $userId);
 
                     if ($stmt->execute()) {
                         echo "Data berhasil ditambahkan";
