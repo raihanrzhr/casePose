@@ -18,6 +18,37 @@ $top_3 = mysqli_query($conn, "SELECT u.userId AS id_user,u.profilePicture AS fot
 ,p.projectName AS nama_project, CONCAT(u.firstName,' ',u.lastName) AS nama_lengkap_2
 FROM project p JOIN user u  ON p.userId = u.userId JOIN pricing pr ON p.projectId = pr.projectId WHERE pr.pricingPackage != 1
 ORDER BY RAND() LIMIT 3;");
+
+function fetchProjects($conn, $tag = null)
+{
+    if ($tag) {
+        $tag = mysqli_real_escape_string($conn, $tag);
+        $sql = "SELECT u.userId AS id_user, u.profilePicture AS foto_profil, p.userId AS id_user, p.projectId AS id_project, p.projectPicture AS foto_project, p.projectName AS nama_project, CONCAT(u.firstName, ' ', u.lastName) AS nama_lengkap_2
+                FROM project p
+                JOIN user u ON p.userId = u.userId
+                WHERE p.projectType = '$tag'
+                LIMIT 9";
+    } else {
+        $sql = "SELECT u.userId AS id_user, u.profilePicture AS foto_profil, p.userId AS id_user, p.projectId AS id_project, p.projectPicture AS foto_project, p.projectName AS nama_project, CONCAT(u.firstName, ' ', u.lastName) AS nama_lengkap_2
+                FROM project p
+                JOIN user u ON p.userId = u.userId
+                LIMIT 9";
+    }
+
+    $result = mysqli_query($conn, $sql);
+    $projects = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $projects[] = $row;
+    }
+    return $projects;
+}
+
+if (isset($_GET['tag'])) {
+    echo json_encode(fetchProjects($conn, $_GET['tag']));
+    exit();
+}
+
+$sql_bar = mysqli_query($conn, "SELECT * FROM project_type");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -257,7 +288,7 @@ ORDER BY RAND() LIMIT 3;");
             divDaftarElements.forEach(div => {
                 div.addEventListener("click", function() {
                     const tagName = this.textContent.trim();
-                    if (tagName === "ON FIRE") {
+                    if (tagName === "On Fire") {
                         fetchProjectsByTag(null); // Fetch all projects
                     } else {
                         fetchProjectsByTag(tagName);
@@ -268,9 +299,9 @@ ORDER BY RAND() LIMIT 3;");
 
         function fetchProjectsByTag(tagName) {
             const xhr = new XMLHttpRequest();
-            let url = `fetch_projects.php`;
-            if (tagName) {
-                url += `?tag=${tagName}`;
+            let url = `?tag=${tagName}`;
+            if (!tagName) {
+                url = '?tag=';
             }
             xhr.open("GET", url, true);
             xhr.onload = function() {
@@ -287,21 +318,21 @@ ORDER BY RAND() LIMIT 3;");
             contentCard.innerHTML = ""; // Clear current cards
             projects.forEach(project => {
                 const cardHTML = `
-                <a href="detail_project_viewer.php?idproject=${project.id_project}">
-                    <div class="card">
-                        <div class="card_image" style="background-image: url('asset/users/project/halaman/${project.foto_project}')">
-                            <div class="card_image_hover"></div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="card-foto-profil" style="background-image:url('asset/users/user/${project.foto_profil ? project.foto_profil : 'default-profil.jpg'}');"></div>
-                            <div class="div-label">
-                                <label class="roboto bold">${project.nama_project}</label><br>
-                                <label for="" class="roboto">by ${project.nama_lengkap_2}</label>
+                    <a href="detail_project_viewer.php?idproject=${project.id_project}">
+                        <div class="card">
+                            <div class="card_image" style="background-image: url('asset/users/project/halaman/${project.foto_project}')">
+                                <div class="card_image_hover"></div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="card-foto-profil" style="background-image:url('asset/users/user/${project.foto_profil ? project.foto_profil : 'default-profil.jpg'}');"></div>
+                                <div class="div-label">
+                                    <label class="roboto bold">${project.nama_project}</label><br>
+                                    <label for="" class="roboto">by ${project.nama_lengkap_2}</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-            `;
+                    </a>
+                `;
                 contentCard.innerHTML += cardHTML;
             });
         }

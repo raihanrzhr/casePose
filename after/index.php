@@ -13,6 +13,35 @@ $sqlp_2 = mysqli_query($conn, "SELECT u.userId AS id_user,u.profilePicture AS fo
 ,p.projectName AS nama_project, CONCAT(u.firstName,' ',u.lastName) AS nama_lengkap_2
 FROM project p JOIN user u ON p.userId = u.userId ORDER BY RAND() LIMIT 9;");
 $sql_bar = mysqli_query($conn, "SELECT * FROM project_type");
+
+function fetchProjects($conn, $tag = null)
+{
+    if ($tag) {
+        $tag = mysqli_real_escape_string($conn, $tag);
+        $sql = "SELECT u.userId AS id_user, u.profilePicture AS foto_profil, p.userId AS id_user, p.projectId AS id_project, p.projectPicture AS foto_project, p.projectName AS nama_project, CONCAT(u.firstName, ' ', u.lastName) AS nama_lengkap_2
+                FROM project p
+                JOIN user u ON p.userId = u.userId
+                WHERE p.projectType = '$tag'
+                LIMIT 9";
+    } else {
+        $sql = "SELECT u.userId AS id_user, u.profilePicture AS foto_profil, p.userId AS id_user, p.projectId AS id_project, p.projectPicture AS foto_project, p.projectName AS nama_project, CONCAT(u.firstName, ' ', u.lastName) AS nama_lengkap_2
+                FROM project p
+                JOIN user u ON p.userId = u.userId
+                LIMIT 9";
+    }
+
+    $result = mysqli_query($conn, $sql);
+    $projects = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $projects[] = $row;
+    }
+    return $projects;
+}
+
+if (isset($_GET['tag'])) {
+    echo json_encode(fetchProjects($conn, $_GET['tag']));
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -316,9 +345,9 @@ $sql_bar = mysqli_query($conn, "SELECT * FROM project_type");
 
         function fetchProjectsByTag(tagName) {
             const xhr = new XMLHttpRequest();
-            let url = `fetch_projects.php`;
-            if (tagName) {
-                url += `?tag=${tagName}`;
+            let url = `?tag=${tagName}`;
+            if (!tagName) {
+                url = '?tag=';
             }
             xhr.open("GET", url, true);
             xhr.onload = function() {
@@ -335,24 +364,25 @@ $sql_bar = mysqli_query($conn, "SELECT * FROM project_type");
             contentCard.innerHTML = ""; // Clear current cards
             projects.forEach(project => {
                 const cardHTML = `
-                <a href="detail_project_viewer.php?idproject=${project.id_project}">
-                    <div class="card">
-                        <div class="card_image" style="background-image: url('asset/users/project/halaman/${project.foto_project}')">
-                            <div class="card_image_hover"></div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="card-foto-profil" style="background-image:url('asset/users/user/${project.foto_profil ? project.foto_profil : 'default-profil.jpg'}');"></div>
-                            <div class="div-label">
-                                <label class="roboto bold">${project.nama_project}</label><br>
-                                <label for="" class="roboto">by ${project.nama_lengkap_2}</label>
+                    <a href="detail_project_viewer.php?idproject=${project.id_project}">
+                        <div class="card">
+                            <div class="card_image" style="background-image: url('asset/users/project/halaman/${project.foto_project}')">
+                                <div class="card_image_hover"></div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="card-foto-profil" style="background-image:url('asset/users/user/${project.foto_profil ? project.foto_profil : 'default-profil.jpg'}');"></div>
+                                <div class="div-label">
+                                    <label class="roboto bold">${project.nama_project}</label><br>
+                                    <label for="" class="roboto">by ${project.nama_lengkap_2}</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-            `;
+                    </a>
+                `;
                 contentCard.innerHTML += cardHTML;
             });
         }
+
         const container = document.querySelector(".div-bar");
 
         function smoothScroll(element, delta) {
@@ -369,7 +399,6 @@ $sql_bar = mysqli_query($conn, "SELECT * FROM project_type");
             };
             window.requestAnimationFrame(step);
         }
-
         container.addEventListener("wheel", function(e) {
             e.preventDefault();
             const delta = e.deltaY > 0 ? 100 : -100;
