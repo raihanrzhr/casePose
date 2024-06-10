@@ -105,68 +105,73 @@ $f = 1;
         <br><br><br>
         <!-- content -->
         <div class="pricing-2">
+            <form action="../php/proses-pricing-2.php" method="post">
             <div class="pricing-2-1">
-                <div class="tabel">
-                    <div class="head-tabel">
-                        <img src="../asset/svg/Line.png" alt=""><h2 for="">Your Project</h2>
-                    </div>
-                    <div class="div-tabel"><br>
-                        <table class="tabel-1">
-                            <thead>
-                                <tr>
-                                    <th class="th-no"><div class="div-th">No</div></th>
-                                    <th class="th-project-id"><div class="div-th">Project Id</div></th>
-                                    <th class="th-title"><div class="div-th">Project Title</div></th>
-                                    <th class="th-promote"><div class="div-th">Promote</div></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php 
-                                
-                                while($rows = mysqli_fetch_assoc($sql_pricing)) : ?>
-                                <tr>
-                                    <td><div class="div-th"><?php echo $f++?></div></td>
-                                    <td><div class="div-th"><?php echo $rows["projectId"]?></div></td>
-                                    <td><div class="div-th"><?php echo $rows["projectName"]?></div></td>
-                                    <td><button class="btn-promote">Promote</button></td>
-                                </tr>
-                                <?php endwhile ;?>
-                                <!-- Tambahkan lebih banyak baris sesuai kebutuhan -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="tabel">
-                    <div class="head-tabel">
-                    <img src="../asset/svg/Line.png" alt=""><h2 for="">Successfully Promoted</h2>
-                    </div>
-                    <div class="div-tabel">
-                        <table class="tabel-1">
-                            <thead>
-                                <tr>
-                                    <th class="th-no"><div class="div-th">No</div></th>
-                                    <th class="th-project-id"><div class="div-th">Project Id</div></th>
-                                    <th class="th-title"><div class="div-th">Project Title</div></th>
-                                    <th class="th-promote"><div class="div-th">Promote</div></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php 
-                                
-                                while($rows_2 = mysqli_fetch_assoc($sql_pricing_2)) : ?>
-                                <tr>
-                                    <td><div class="div-th"><?php echo $i++?></div></td>
-                                    <td><div class="div-th"><?php echo $rows_2["projectId"]?></div></td>
-                                    <td><div class="div-th"><?php echo $rows_2["projectName"]?></div></td>
-                                    <td><button class="btn-promote">Promote</button></td>
-                                </tr>
-                                <?php endwhile ;?>
-                                <!-- Tambahkan lebih banyak baris sesuai kebutuhan -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+
+                        <div class="head-tabel">
+                            <img src="../asset/svg/Line.png" alt=""><h2 for="">Promote Your Project</h2>
+                        </div><br>
+
+                        <label for="" class="bold">Choose yout project</label><br>
+                        <select class="input-1" name="projectId" id="" >
+                            <option value=""selected disabled>Click Here......</option>
+                            <?php while($rows = mysqli_fetch_assoc($sql_pricing)) : ?>
+                            <option value="<?php echo $rows["projectId"]?>"><?php echo $rows["projectName"]?></option>
+                            <?php endwhile ;?>
+                        </select><br><br>
+                        
+                        <label for="" class="bold">Promote Package</label><br>
+
+                            <?php if($paket == 1) { ?>
+                                <div class="disabled" >
+                                    <label for="">Package 1</label>                   
+                                    <a href="pricing.php" class="choose-pck">Choose Package</a>
+                                    <input type="text" name="pricingPackage" value="1" hidden>
+                                </div>
+                            <?php } else if ($paket == 2 ) {?>
+                                <div class="disabled" >
+                                    <label for="">Package 2</label>                   
+                                    <a href="pricing.php" class="choose-pck">Choose Package</a>
+                                    <input type="text" name="pricingPackage" value="2" hidden>
+                                </div>
+                            <?php } else if ($paket == 3 ) {?>
+                                <div class="disabled" >
+                                    <label for="">Package 3</label>                   
+                                    <a href="pricing.php" class="choose-pck">Choose Package</a>
+                                    <input type="text" name="pricingPackage" value="3" hidden>
+                                </div>
+                            <?php }?>
+                            
+                        <br>
+                        <label for="" class="bold">Payment</label><br>
+                            <select class="input-1" name="payment" id="" >
+                                <option value=""selected disabled>Click Here......</option>
+                                <option value="DANA">DANA</option>
+                                <option value="GO-PAY">GO-PAY</option>
+                                <option value="SHOPEE-PAY">SHOPEE-PAY</option>
+                            </select><br><br>
+
+                            <label class="roboto bold red">
+                        <?php
+                        if(isset($_GET['pesan'])){
+                            if($_GET['pesan'] == "kosong"){
+                                echo "Make sure the input data is filled in completely";
+                            }
+                        }
+                        ?>
+                        </label>
+                        <label class="roboto bold green" >
+                            <?php
+                            if(isset($_GET['pesan'])){
+                                if($_GET['pesan'] == "sukses"){
+                                    echo "Your Project successfully Promoted";
+                                }                        
+                            }
+                            ?>
+                        </label><br><br>
+                        <button type="submit" class="btn-promote">Promote</button>
             </div>
+            </form>
 
             <div class="pricing-2-2">
 
@@ -237,6 +242,40 @@ $f = 1;
 
 
             </div>
+        </div>
+
+        <div class="pricing-3">
+                    <div class="head-tabel">
+                    <img src="../asset/svg/Line.png" alt=""><h2 for="">Successfully Promoted</h2>
+                    </div>
+                    <div class="div-tabel">
+                        <table class="tabel-1">
+                            <thead>
+                                <tr>
+                                    <th class="th-no"><div class="div-th">No</div></th>
+                                    <th class="th-project-id"><div class="div-th">Project Id</div></th>
+                                    <th class="th-title"><div class="div-th">Project Title</div></th>
+                                    <th class="th-promote"><div class="div-th">Package</div></th>
+                                    <th class="th-promote"><div class="div-th">Payment</div></th>
+                                    <th class="th-promote"><div class="div-th">Date Expired</div></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                
+                                while($rows_2 = mysqli_fetch_assoc($sql_pricing_2)) : ?>
+                                <tr>
+                                    <td><div class="div-th"><?php echo $i++?></div></td>
+                                    <td><div class="div-th"><?php echo $rows_2["projectId"]?></div></td>
+                                    <td><div class="div-th"><?php echo $rows_2["projectName"]?></div></td>
+                                    <td><div class="div-th"><?php echo $rows_2["pricingPackage"]?></div></td>
+                                    <td><div class="div-th"><?php echo $rows_2["payment"]?></div></td>
+                                    <td><div class="div-th"><?php echo $rows_2["dateExpired"]?></div></td>
+                                </tr>
+                                <?php endwhile ;?>
+                            </tbody>
+                        </table>
+                    </div>
         </div>
         <!-- Footer -->
         <footer class="footer">

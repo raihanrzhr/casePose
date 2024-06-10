@@ -70,18 +70,33 @@ body {
 }
 .pricing-2 {
   margin: 30px auto;
-  width:1200px;
-  height: 980px;
+  width:1160px;
+  height: 580px;
   display: flex;
   flex-wrap: wrap;
   gap: 100px;
 }
+
+.pricing-3 {
+  border-radius: 20px;
+  border: 2px solid rgba(233, 233, 235, 1);
+  margin: 30px auto;
+  padding: 10px 40px 40px 40px;
+  width:1160px;
+  height: 580px;
+  display: flex;
+  flex-wrap: wrap;  
+}
 .pricing-2-1 {
+  margin-top: 40px;
   width: 700px;
-  height: 900px;
+  height: 500px;
+  padding: 10px 30px 30px 30px ;
+  border-radius: 20px;
+  border:2px solid rgba(233, 233, 235, 1);
 }
 .pricing-2-2 {
-  width: 400px;
+  width: 360px;
   height: 900px;
   padding-top: 40px;
 }
@@ -114,7 +129,9 @@ body {
 }
 th {
   line-height: 40px;
-  background-color: #d7e5f3;
+  background-color:black;
+  color: white;
+  list-style: none;
   border-radius: 8px;
 }
 td{
@@ -126,29 +143,61 @@ td{
   text-align: center;
 }
 .th-project-id {
-  width: 100px;
+  width: 200px;
 }
 .th-title {
   width: 450px;
 }
 .th-promote {
-  width: 100px;  
+  width: 200px;  
 }
-.div-th {
+td {
   border-radius: 8px;
   border: 2px solid rgb(236, 236, 236);
   
 }
 .btn-promote {
-  background-color: rgb(165, 218, 244);
-  color: black;
-  line-height: 40px;
+  background-color: black;
+  color: white;
+  line-height: 50px;
   border-radius: 8px;
-  width: 100px;
   font-weight: 600;
   border: 0;
+  width: 100%;
+  transition-duration: 0.3s;
 }
 .btn-promote:hover {
-  background-color: rgb(144, 211, 244);
-  transition-duration: 0.5s;
+  background-color: rgb(222, 222, 222);
+  transition-duration: 0.3s;
+  color: black;
+}
+.input-1 {
+  padding: 15px;
+  margin-top: 10px;
+  border-radius: 6px;
+  width: 100%;
+  border: 2px solid rgba(233, 233, 235, 1);
+}
+.disabled{
+  background-color: rgba(233, 233, 235, 0.582);
+  color: #707070;
+  padding: 8px 20px;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 6px;
+  width: 100%;
+  border: 2px solid rgba(233, 233, 235, 1);
+}
+.disabled a {
+  float: right;
+}
+.disabled label {
+  float:  left  ;
+line-height: 34px;
+}
+.choose-pck {
+  background-color: rgb(255, 255, 255);
+  color: black;
+  padding: 7px;
+  border-radius: 6px;
 }

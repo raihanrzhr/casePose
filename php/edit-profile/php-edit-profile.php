@@ -9,6 +9,9 @@ $ukuran_file_maksimal = 5 * 1024 * 1024; // 5 MB
 
 // Data file yang diupload
 $file = $_FILES['profilePicture'];
+
+$old_picture = $file["name"];
+
 $nama_file = $file['name'];
 $ukuran_file = $file['size'];
 $tmp_file = $file['tmp_name'];
@@ -31,6 +34,7 @@ if (empty($nama_file)) {
     if (in_array($ekstensi_file, $ekstensi_diperbolehkan) && $ukuran_file <= $ukuran_file_maksimal) {
         // Memindahkan file yang diupload ke folder tujuan
         if (move_uploaded_file($tmp_file, $folder_p_picture . $nama_file)) {
+
             $updateGeneral = "UPDATE user SET firstName = '$firstName', lastName = '$lastName', 
             email = '$email', about_me = '$about', profilePicture = '$nama_file' WHERE userId = '$userId'";
         } else {
