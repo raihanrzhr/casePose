@@ -13,6 +13,8 @@ $id_project = $_GET["idproject"];
 $query = mysqli_query($conn,"SELECT project.*,user.* ,user.userId,CONCAT(user.firstName,' ',user.lastName)AS nama_lengkap FROM project JOIN user ON project.userId = user.userId AND project.projectId = '$id_project'");
 $rows_project_detail = mysqli_fetch_assoc($query);
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -191,6 +193,76 @@ $rows_project_detail = mysqli_fetch_assoc($query);
                     </div>
                 </div>
             </div>
+            <!-- report project -->
+            <div class="div-report">
+                <a class="btn-report" onclick="notifikasiReports()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                        <path d="M11.9998 9.50006V13.2501M2.69653 16.6257C1.83114 18.1257 2.91371 20.0001 4.64544 20.0001H19.3541C21.0858 20.0001 22.1684 18.1257 21.303 16.6257L13.9487 3.87819C13.0828 2.37736 10.9167 2.37736 10.0509 3.87819L2.69653 16.6257ZM11.9998 16.2501H12.0073V16.2576H11.9998V16.2501Z" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <label for="">Report this Project</label>
+                </a>
+            </div>
+            
+            <script src="../javascript/detail-project.js"></script>
+            <div class="bg-pop-up" id="notification-report" style="display: none;">
+                <form action="../php/proses-report.php" method="post">
+                <div class="pop-up-report">
+                    <div class="pop-up-report-head">
+                        <label for="" class="bold">Report Project</label>
+                    </div>
+                    <div class="content-report">
+                        <label class="list-report">
+                            <input type="radio" name="report" value="Spam"> Spam
+                        </label>
+                        <label class="list-report">
+                            <input type="radio" name="report" value="Adult Content"> Adult Content
+                        </label>
+                        <label class="list-report">
+                            <input type="radio" name="report" value="Fraud or Scam"> Fraud or Scam
+                        </label>
+                        <label class="list-report">
+                            <input type="radio" name="report" value="Harmful or Illegal"> Harmful or Illegal
+                        </label>
+                        <label class="list-report">
+                            <input type="radio" name="report" value="Misinformation"> Misinformation
+                        </label>
+                        <label class="list-report">
+                            <input type="radio" name="report" value="Other"> Other
+                        </label>
+                        <label for="" class="bold">Additional Information</label>
+                        <textarea name="description" class="input-textarea-report" id=""></textarea>
+                    </div>
+                    
+                    <!-- disembunyikan -->
+                    <input type="text" name="projectId" value="<?php echo $id_project?>" hidden>
+
+                    <div class="bottom-report">
+                        <div class="btn-cancel-report" onclick="notifikasiBack('notification-report')">Cancel</div>
+                        <button name="submit"type="submit" class="btn-send-report">Send</button>
+                    </div>
+                </div> 
+                </form>              
+            </div>   
+                
+               <div class="bg-pop-up" style="padding-top: 200px;display:none;" id="notif-sukses">
+                    <div class="notif-sukses">
+                        <div class="notif-sukses-head">
+                            <label for="" class="bold">Report Sent</label>
+                            <div onclick="notifikasiBack('notif-sukses')">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                    <path d="M5.94037 4.74713C5.61087 4.41762 5.07663 4.41762 4.74713 4.74713C4.41762 5.07663 4.41762 5.61087 4.74713 5.94037L7.80676 9L4.74713 12.0596C4.41762 12.3891 4.41762 12.9234 4.74713 13.2529C5.07663 13.5824 5.61087 13.5824 5.94037 13.2529L9 10.1932L12.0596 13.2529C12.3891 13.5824 12.9234 13.5824 13.2529 13.2529C13.5824 12.9234 13.5824 12.3891 13.2529 12.0596L10.1932 9L13.2529 5.94037C13.5824 5.61087 13.5824 5.07663 13.2529 4.74713C12.9234 4.41762 12.3891 4.41762 12.0596 4.74713L9 7.80676L5.94037 4.74713Z" fill="#0F172A"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="content-notif-sukses">
+                            <label for="" class="bold">Thanks for letting us know</label>
+                            <label for="">Your report has been sent.</label>
+                            <label for="">This post is under investigation.</label>
+                        </div>
+                    </div>
+                </div>
+
+           
 
             <!-- rekomendasi more project -->
             <div class="more-project">
@@ -232,7 +304,8 @@ $rows_project_detail = mysqli_fetch_assoc($query);
                         </div></a>
                     <?php endwhile ;?>
                 </div>
-            </div>  
+            </div>
+        </div>  
   <!-- footer -->
     <footer class="footer">
         <div class="footer-navigation">
