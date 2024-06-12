@@ -47,7 +47,7 @@ if (empty($projectName) || empty($projectDescription) || empty($projectType) || 
                     "&projectTag=$projectTag&projectStatus=$projectStatus&pesan=project-tag-length-255");
                     exit();
                 } else {
-                    $lengt = mysqli_query($conn, "SELECT MAX(CAST(projectId AS UNSIGNED)) AS last_id FROM project");
+                    $lengt = mysqli_query($conn, "SELECT COUNT(projectId) AS last_id FROM project");
                     $hasil = mysqli_fetch_assoc($lengt);
                     echo $new_id = $projectName.$hasil["last_id"] + 1;
                     
