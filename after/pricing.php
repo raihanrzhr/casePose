@@ -101,6 +101,14 @@ include '../php/read-users.php';
 </nav>
         <br><br><br>
         <!-- content -->
+        <div class="menu-pricing">
+            <a href="pricing.php"><div class="btn-pricing btn-pricing-active">
+                Month
+            </div></a>
+            <a href="pricing-year.php"><div class="btn-pricing ">
+                Years
+            </div></a>
+        </div>
         <div class="pricing">
             <script src="../javascript/pricing.js"></script>
             <div id="paket1" class="list-pricing" onclick="triggerButton('submit-1')">
@@ -155,35 +163,6 @@ include '../php/read-users.php';
                 </div>   
             </div>
 
-            <div class="list-pricing" onclick="triggerButton('submit-3')">
-                <div class="head-list-pricing">
-                    <h2>Package 3</h2><br>
-                    <label class="">Rp.159.000.-</label><br>
-                    <label class="">/Month</label>
-                </div>
-                <div class="content-list-pricing">
-                    <div class="benefit">
-                        <img src="../asset/svg/check.svg" alt="">
-                        <label for="">promote your project for 1 Years</label>
-                    </div>
-                    <div class="benefit">
-                        <img src="../asset/svg/check.svg" alt="">
-                        <label for="">show in project recommendations</label>
-                    </div>
-                    <div class="benefit">
-                        <img src="../asset/svg/check.svg" alt="">
-                        <label for="">show in top 3 homepage</label>
-                    </div>
-                    <div class="benefit">
-                        <img src="../asset/svg/check.svg" alt="">
-                        <label for="">label sponsor</label>
-                    </div>
-                    <form action="../php/proses-pricing.php" method="post">
-                        <input type="text" name="paket" value="3" hidden>
-                        <button id="submit-3" type="submit" hidden></button>
-                    </form>   
-                </div>   
-            </div>
         </div>
         <!-- alertt -->
         <!-- <div class="alert1">

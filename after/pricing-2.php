@@ -35,6 +35,7 @@ $f = 1;
         <link rel="stylesheet" href="../style/footer.css"/>
         <link rel="stylesheet" href="../style/style.css">
         <link rel="stylesheet" href="../style/global.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     </head>
     <body>
         <!-- Navigation Bar after-->
@@ -140,6 +141,12 @@ $f = 1;
                                     <a href="pricing.php" class="choose-pck">Choose Package</a>
                                     <input type="text" name="pricingPackage" value="3" hidden>
                                 </div>
+                            <?php } else if ($paket == 4 ) {?>
+                                <div class="disabled" >
+                                    <label for="">Package 4</label>                   
+                                    <a href="pricing.php" class="choose-pck">Choose Package</a>
+                                    <input type="text" name="pricingPackage" value="4" hidden>
+                                </div>
                             <?php }?>
                             
                         <br>
@@ -227,13 +234,32 @@ $f = 1;
                 <div class="list-pricing">
                     <div class="head-list-pricing">
                         <h2>Package 3</h2><br>
-                        <label class="">Rp.159.000.-</label><br>
+                        <label class="">Rp.119.000.-</label><br>
                         <label class="">/Month</label>
                     </div>
                     <div class="content-list-pricing">
                         <div class="benefit">
                             <img src="../asset/svg/check.svg" alt="">
                             <label for="">promote your project for 1 years</label>
+                        </div>
+                        <div class="benefit">
+                            <img src="../asset/svg/check.svg" alt="">
+                            <label for="">show in project recommendations</label>
+                    </div>   
+                 </div>
+                <?php }?>
+                
+                <?php if ($paket == '4'){?>
+                <div class="list-pricing margin-auto">
+                    <div class="head-list-pricing" >
+                        <h2>Package 4</h2><br>
+                        <label class="">Rp.159.000.-</label><br>
+                        <label class="">/Month</label>
+                    </div>
+                    <div class="content-list-pricing">
+                        <div class="benefit">
+                            <img src="../asset/svg/check.svg" alt="">
+                            <label for="">promote your project for 1 Years</label>
                         </div>
                         <div class="benefit">
                             <img src="../asset/svg/check.svg" alt="">
@@ -248,9 +274,8 @@ $f = 1;
                             <label for="">label Sponsor</label>
                         </div>    
                     </div>   
-                 </div>
+                </div>
                 <?php }?>
-
 
 
             </div>
