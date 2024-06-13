@@ -16,7 +16,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap :80px;
-  width: 1210px;
+  width: 800px;
   height: 600px;
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 1);
@@ -200,4 +200,28 @@ line-height: 34px;
   color: black;
   padding: 7px;
   border-radius: 6px;
+}
+.menu-pricing{
+  border-radius: 10px;
+  width: 800px;
+  margin: 20px auto 0px;
+  display: flex;
+  justify-content: space-between  ;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid rgb(224, 224, 224);
+}
+.btn-pricing {
+  color: black;
+  font-weight: 600;
+  padding: 20px 170px;
+  border-radius: 10px;
+  border: 2px solid rgb(224, 224, 224);
+}
+.btn-pricing:hover {
+  background-color: #cddfff9d;
+  transition-duration: 0.2s;
+}
+.btn-pricing-active {
+  background-color: #cddfff9d;
 }
