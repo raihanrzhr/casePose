@@ -181,6 +181,7 @@ $rows_project_detail = mysqli_fetch_assoc($query);
                     </div>
                     <div class="content-lbl">
                         <label for="" class="grey ft-20" ><?php echo $rows_project_detail["email"];?></label>
+                        <button onclick="location.href='mailto:<?php echo $rows_project_detail['email']?>';">Kirim Email</button>
                     </div>
                 </div>
 
