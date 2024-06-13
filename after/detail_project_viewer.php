@@ -10,7 +10,7 @@ include '../php/read-users.php';
 
 $id_project = $_GET["idproject"];
 
-$query = mysqli_query($conn, "SELECT project.*,user.* ,user.userId,CONCAT(user.firstName,' ',user.lastName)AS nama_lengkap FROM project JOIN user ON project.userId = user.userId AND project.projectId = '$id_project'");
+$query = mysqli_query($conn,"SELECT project.*,user.*,  DATE_FORMAT(STR_TO_DATE(uploadDate, '%Y-%m-%d'), '%d %M %Y') AS tanggal_upload ,user.userId,CONCAT(user.firstName,' ',user.lastName)AS nama_lengkap FROM project JOIN user ON project.userId = user.userId AND project.projectId = '$id_project'");
 $rows_project_detail = mysqli_fetch_assoc($query);
 
 
@@ -196,28 +196,28 @@ $rows_project_detail = mysqli_fetch_assoc($query);
                 </div>
             </div>
 
-            <div class="content-detail-list-content">
-                <div class="lbl">
-                    <label for="" class="bold2 ft-20">Date</label>
-                </div>
-                <div class="content-lbl">
-                    <label for="" class="grey ft-20"><?php echo $rows_project_detail["uploadDate"]; ?></label>
+                <div class="content-detail-list-content">
+                    <div class="lbl">
+                        <label for="" class="bold2 ft-20">Date</label>
+                    </div>
+                    <div class="content-lbl">
+                        <label for="" class="grey ft-20"><?php echo $rows_project_detail["uploadDate"];?></label>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- report project -->
-        <div class="div-report">
-            <a class="btn-report" onclick="notifikasiReports()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-                    <path d="M11.9998 9.50006V13.2501M2.69653 16.6257C1.83114 18.1257 2.91371 20.0001 4.64544 20.0001H19.3541C21.0858 20.0001 22.1684 18.1257 21.303 16.6257L13.9487 3.87819C13.0828 2.37736 10.9167 2.37736 10.0509 3.87819L2.69653 16.6257ZM11.9998 16.2501H12.0073V16.2576H11.9998V16.2501Z" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                <label for="">Report this Project</label>
-            </a>
-        </div>
+            <!-- report project -->
+            <div class="div-report">
+                <a class="btn-report" onclick="notifikasiReports()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                        <path d="M11.9998 9.50006V13.2501M2.69653 16.6257C1.83114 18.1257 2.91371 20.0001 4.64544 20.0001H19.3541C21.0858 20.0001 22.1684 18.1257 21.303 16.6257L13.9487 3.87819C13.0828 2.37736 10.9167 2.37736 10.0509 3.87819L2.69653 16.6257ZM11.9998 16.2501H12.0073V16.2576H11.9998V16.2501Z" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <label for="">Report this Project</label>
+                </a>
+            </div>
 
-        <script src="../javascript/detail-project.js"></script>
-        <div class="bg-pop-up" id="notification-report" style="display: none;">
-            <form action="../php/proses-report.php" method="post">
+            <script src="../javascript/detail-project.js"></script>
+            <div class="bg-pop-up" id="notification-report" style="display: none;">
+                <form action="../php/proses-report.php" method="post">
                 <div class="pop-up-report">
                     <div class="pop-up-report-head">
                         <label for="" class="bold">Report Project</label>

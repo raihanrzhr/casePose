@@ -159,7 +159,7 @@ include '../php/read-users.php';
                 <div class="head-list-pricing">
                     <h2>Package 3</h2><br>
                     <label class="">Rp.159.000.-</label><br>
-                    <label class="">/Month</label>
+                    <label class="">/Years</label>
                 </div>
                 <div class="content-list-pricing">
                     <div class="benefit">

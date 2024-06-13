@@ -112,7 +112,7 @@ $f = 1;
                             <img src="../asset/svg/Line.png" alt=""><h2 for="">Promote Your Project</h2>
                         </div><br>
 
-                        <label for="" class="bold">Choose yout project</label><br>
+                        <label for="" class="bold">Choose your project</label><br>
                         <select class="input-1" name="projectId" id="" >
                             <option value=""selected disabled>Click Here......</option>
                             <?php while($rows = mysqli_fetch_assoc($sql_pricing)) : ?>
@@ -228,7 +228,7 @@ $f = 1;
                     <div class="head-list-pricing">
                         <h2>Package 3</h2><br>
                         <label class="">Rp.159.000.-</label><br>
-                        <label class="">/Month</label>
+                        <label class="">/Years</label>
                     </div>
                     <div class="content-list-pricing">
                         <div class="benefit">
