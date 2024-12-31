@@ -111,6 +111,7 @@ include '../php/read-users.php';
         </div>
         <div class="pricing">
             <script src="../javascript/pricing.js"></script>
+            
             <div id="paket1" class="list-pricing" onclick="triggerButton('submit-1')">
                 <div class="head-list-pricing">
                     <h2>Package 1</h2><br>
@@ -163,8 +164,6 @@ include '../php/read-users.php';
                 </div>   
             </div>
 
-<<<<<<< HEAD
-=======
             <div class="list-pricing" onclick="triggerButton('submit-3')">
                 <div class="head-list-pricing">
                     <h2>Package 3</h2><br>
@@ -194,7 +193,7 @@ include '../php/read-users.php';
                     </form>   
                 </div>   
             </div>
->>>>>>> a739b540e8cbcddae3c82b8c9664746a2d0c5327
+
         </div>
         <!-- alertt -->
         <!-- <div class="alert1">

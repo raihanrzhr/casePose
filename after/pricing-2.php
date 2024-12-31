@@ -234,7 +234,7 @@ $f = 1;
                 <div class="list-pricing">
                     <div class="head-list-pricing">
                         <h2>Package 3</h2><br>
-                        <label class="">Rp.119.000.-</label><br>
+                        <label class="">Rp.159.000.-</label><br>
                         <label class="">/Month</label>
                     </div>
                     <div class="content-list-pricing">
@@ -245,7 +245,15 @@ $f = 1;
                         <div class="benefit">
                             <img src="../asset/svg/check.svg" alt="">
                             <label for="">show in project recommendations</label>
-                    </div>   
+                    </div>
+                    <div class="benefit">
+                            <img src="../asset/svg/check.svg" alt="">
+                            <label for="">show in top 3 homepage</label>
+                        </div>
+                        <div class="benefit">
+                            <img src="../asset/svg/check.svg" alt="">
+                            <label for="">label Sponsor</label>
+                        </div>      
                  </div>
                 <?php }?>
                 
@@ -253,6 +261,26 @@ $f = 1;
                 <div class="list-pricing margin-auto">
                     <div class="head-list-pricing" >
                         <h2>Package 4</h2><br>
+                        <label class="">Rp.119.000.-</label><br>
+                        <label class="">/Month</label>
+                    </div>
+                    <div class="content-list-pricing">
+                        <div class="benefit">
+                            <img src="../asset/svg/check.svg" alt="">
+                            <label for="">promote your project for 1 Years</label>
+                        </div>
+                        <div class="benefit">
+                            <img src="../asset/svg/check.svg" alt="">
+                            <label for="">show in project recommendations</label>
+                        </div> 
+                    </div>   
+                </div>
+                <?php }?>
+
+                <?php if ($paket == '5'){?>
+                <div class="list-pricing margin-auto">
+                    <div class="head-list-pricing" >
+                        <h2>Package 5</h2><br>
                         <label class="">Rp.159.000.-</label><br>
                         <label class="">/Month</label>
                     </div>

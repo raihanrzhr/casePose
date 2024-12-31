@@ -12,8 +12,8 @@ $sqlp_2 = mysqli_query($conn, "SELECT u.userId AS id_user,u.profilePicture AS fo
 ,p.userId AS id_user, p.projectId AS id_project, p.projectPicture AS foto_project
 ,p.projectName AS nama_project, CONCAT(u.firstName,' ',u.lastName) AS nama_lengkap_2
 FROM project p JOIN user u ON p.userId = u.userId ORDER BY RAND() LIMIT 9;");
-$sql_bar = mysqli_query($conn, "SELECT * FROM project_type");
-
+$sql_bar = mysqli_query($conn, "SELECT * FROM project_type WHERE nama != 'SHOW ALL'");
+$sql_bar2 = mysqli_query($conn, "SELECT * FROM project_type WHERE nama = 'SHOW ALL'");
 function fetchProjects($conn, $tag = null)
 {
     if ($tag) {
@@ -243,6 +243,11 @@ if(isset($_POST['search'])) {
     <!-- bar menu    -->
     <div class="div-filter">
         <div class="div-bar">
+        <?php while($rows = mysqli_fetch_assoc($sql_bar2)) : ?>
+            <div class="div-daftar">
+                <label><?php echo $rows["nama"]?></label>
+            </div>
+            <?php endwhile ;?>
             <?php while($rows = mysqli_fetch_assoc($sql_bar)) : ?>
             <div class="div-daftar">
                 <label><?php echo $rows["nama"]?></label>
@@ -382,7 +387,7 @@ if(isset($_POST['search'])) {
             divDaftarElements.forEach(div => {
                 div.addEventListener("click", function() {
                     const tagName = this.textContent.trim();
-                    if (tagName === "On Fire") {
+                    if (tagName === "SHOW ALL") {
                         fetchProjectsByTag(null); // Fetch all projects
                     } else {
                         fetchProjectsByTag(tagName);

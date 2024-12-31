@@ -109,11 +109,11 @@ include '../php/read-users.php';
                 Years
             </div></a>
         </div>
-        <div class="pricing">
+        <div class="pricing-years">
             <script src="../javascript/pricing.js"></script>
             <div id="paket1" class="list-pricing" onclick="triggerButton('submit-1')">
                 <div class="head-list-pricing">
-                    <h2>Package 3</h2><br>
+                    <h2>Package 4</h2><br>
                     <label class="">Rp.119.000.-</label><br>
                     <label class="">/Years</label>
                 </div>
@@ -128,14 +128,14 @@ include '../php/read-users.php';
                     </div>
                 </div>
                 <form action="../php/proses-pricing.php" method="post">
-                    <input type="text" name="paket" value="3" hidden>
+                    <input type="text" name="paket" value="4" hidden>
                     <button id="submit-1" type="submit" hidden></button>
                 </form>   
             </div>
 
             <div class="list-pricing" onclick="triggerButton('submit-2')">
                 <div class="head-list-pricing" >
-                    <h2>Package 4</h2><br>
+                    <h2>Package 5</h2><br>
                     <label class="">Rp.159.000.-</label><br>
                     <label class="">/years</label>
                 </div>
@@ -157,7 +157,7 @@ include '../php/read-users.php';
                         <label for="">label sponsor</label>
                     </div>
                     <form action="../php/proses-pricing.php" method="post">
-                    <input type="text" name="paket" value="4" hidden>
+                    <input type="text" name="paket" value="5" hidden>
                     <button id="submit-2" type="submit" hidden></button>
                 </form>   
                 </div>   

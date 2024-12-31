@@ -124,6 +124,7 @@ include '../php/read-users.php';
         </p>
     </div>  
     <div class="team-container">
+
         <div class="team-section">
             <div class="team-member">
                 <div class="team-image">
@@ -136,14 +137,36 @@ include '../php/read-users.php';
             </div>
             <div class="team-member">
                 <div class="team-image">
-                    <img src="../asset/member/raya.jpg" alt="Team Image">
+                    <img src="../asset/member/raihan.jpg" alt="Team Image">
                 </div>                        
                 <div class="team-info">
-                    <div class="member-name">Mohammad Raya Satriatama<br>(2206418)</div>
+                    <div class="member-name">Raihan Nurazhar<br>(2203868)</div>
                     <div class="member-role">as Member</div>
                 </div>
             </div>
         </div>
+
+        <div class="team-section">
+            <div class="team-member">
+                <div class="team-image">
+                    <img src="../asset/member/papay.jpg" alt="Team Image">
+                </div>  
+                <div class="team-info">
+                    <div class="member-name">Muhammad Fayyadh Rabbani<br>(2200265)</div>
+                    <div class="member-role">as Member</div>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="team-image">
+                    <img src="../asset/member/davin.jpg" alt="Team Image">
+                </div>                        
+                <div class="team-info">
+                    <div class="member-name">Davin Ghani Ananta Kusuma<br>(2200029)</div>
+                    <div class="member-role">as Member</div>
+                </div>
+            </div>
+        </div>
+
         <div class="team-section">
             <div class="team-member">
                 <div class="team-image">
@@ -164,6 +187,19 @@ include '../php/read-users.php';
                 </div>
             </div>
         </div>
+
+        <div class="team-container">
+            <div class="team-member">
+                <div class="team-image">
+                    <img src="../asset/member/raya.jpg" alt="Team Image">
+                </div>                        
+                <div class="team-info">
+                    <div class="member-name">Mohammad Raya Satriatama<br>(2206418)</div>
+                    <div class="member-role">as Member</div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 <!-- Footer -->
